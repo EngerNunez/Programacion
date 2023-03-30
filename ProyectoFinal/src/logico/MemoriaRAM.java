@@ -3,7 +3,8 @@ package logico;
 public class MemoriaRAM extends Componente {
 	private String tipoMemoria;
 	private float cantMemoria;
-	private MemoriaRAM(String marca, String numeroSerie, float precio, String tipoMemoria, float cantMemoria) {
+	
+	public MemoriaRAM(String marca, String numeroSerie, float precio, String tipoMemoria, float cantMemoria) {
 		super(marca, numeroSerie, precio);
 		this.tipoMemoria = tipoMemoria;
 		this.cantMemoria = cantMemoria;

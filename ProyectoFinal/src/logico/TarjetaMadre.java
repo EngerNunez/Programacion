@@ -5,7 +5,8 @@ public class TarjetaMadre extends Componente {
 	private String tipoConector;
 	private String tipoMemoriaRAM;
 	private String tipoConexionDiscoDuro;
-	private TarjetaMadre(String marca, String numeroSerie, float precio, String modelo, String tipoConector,
+	
+	public TarjetaMadre(String marca, String numeroSerie, float precio, String modelo, String tipoConector,
 			String tipoMemoriaRAM, String tipoConexionDiscoDuro) {
 		super(marca, numeroSerie, precio);
 		this.modelo = modelo;
