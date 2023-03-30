@@ -31,6 +31,13 @@ public class Combo {
 		this.misComponentes = misComponentes;
 	}
 	
+	public float precioCombo() {
+		float precio = 0;
+		for(Componente aux: misComponentes) {
+			precio += aux.precio;
+		}
+		return precio;
+	}
 	
 	
 	

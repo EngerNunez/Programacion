@@ -79,6 +79,95 @@ public class TiendaElite {
 		TiendaElite.tienda = tienda;
 	}
 	
+	public void insertarComponente(Componente componente) {
+		misComponentes.add(componente);
+		codigo_componente++;
+	}
+	
+	public void insertarFactura(Factura factura) {
+		misFacturas.add(factura);
+		codigo_factura++;
+	}
+	public void insertarClientes(Cliente cliente) {
+		misClientes.add(cliente);
+	}
+	
+	public void insertarCombo(Combo combo) {
+		misCombos.add(combo);
+		codigo_combo++;
+	}
+	
+	public int cantTarjetaMadreVendido() {
+		int cant = 0;
+		for(Componente aux: misComponentes) {
+			if(aux instanceof TarjetaMadre)
+				cant++;
+		}
+		return cant;
+	}
+	
+	public int cantDiscoDuroVendido() {
+		int cant = 0;
+		for(Componente aux: misComponentes) {
+			if(aux instanceof DiscoDuro)
+				cant++;
+		}
+		return cant;
+	}
+	
+	public int cantMemoriaRAMVendido() {
+		int cant = 0;
+		for(Componente aux: misComponentes) {
+			if(aux instanceof MemoriaRAM)
+				cant++;
+		}
+		return cant;
+	}
+	
+	public int cantCPUVendido() {
+		int cant = 0;
+		for(Componente aux: misComponentes) {
+			if(aux instanceof Microprocesador)
+				cant++;
+		}
+		return cant;
+	}
+	
+	public float dineroTotalGenerado() {
+		float total = 0;
+		for(Factura aux: misFacturas) {
+			total += aux.precioFactura();
+		}
+		return total;
+		//retorna la cantidad de dinero vendido en la tienda
+	}
+	
+	public Cliente buscarClienteByCedula(String cedula) {
+		Cliente aux = null;
+		boolean encontrado = false;
+		for (Cliente cliente : misClientes) {
+			if (cliente.getCedula().equalsIgnoreCase(cedula)) {
+				aux = cliente;
+				encontrado = true;
+			}
+		}
+		return aux;
+	}
+	
+	public Componente buscarComponenteBySerial(String codigo) {
+		Componente aux = null;
+		boolean encontrado = false;
+		for(Componente componente: misComponentes) {
+			if(componente.getNumeroSerie().equalsIgnoreCase(codigo)) {
+				encontrado = true;
+				aux = componente;
+			}
+		}
+		return aux;
+	}
+	
+	
+	
 	
 	
 	

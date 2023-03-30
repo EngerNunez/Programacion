@@ -8,6 +8,7 @@ public class Factura {
 	private ArrayList<Componente>misComponentes;
 	private Cliente cliente;
 	
+	
 	public Factura(String codigo, ArrayList<Componente> misComponentes, Cliente cliente) {
 		super();
 		this.codigo = codigo;
@@ -37,6 +38,14 @@ public class Factura {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+	
+	public float precioFactura () {
+		float precio = 0;
+		for(Componente aux: misComponentes) {
+			precio += aux.precio;
+		}
+		return precio;
 	}
 	
 	
