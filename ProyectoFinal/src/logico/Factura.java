@@ -47,9 +47,7 @@ public class Factura {
 		}
 		return precio;
 	}
-	
-	//a
-	
+		
 	
 	
 	
