@@ -33,6 +33,7 @@ public class Principal extends JFrame {
 	private final Action action_5 = new SwingAction_5();
 	private final Action action_6 = new SwingAction_6();
 	private final Action action_7 = new SwingAction_7();
+	private final Action action_8 = new SwingAction_8();
 
 
 	/**
@@ -108,10 +109,27 @@ public class Principal extends JFrame {
 		JMenuItem mntmFacturar = mnVentas.add(action_3);
 		mntmFacturar.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmFacturar.setText("Facturar");
+		mntmFacturar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Facturar facturar = new Facturar();
+				facturar.setModal(true);
+				facturar.setVisible(true);
+			}
+
+		});
+		
 		
 		JMenuItem mntmListaDeFacturas = mnVentas.add(action_4);
 		mntmListaDeFacturas.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmListaDeFacturas.setText("Lista de Facturas");
+		mntmListaDeFacturas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaFactura listfactura = new ListaFactura();
+				listfactura.setModal(true);
+				listfactura.setVisible(true);
+			}
+
+		});
 		
 		JMenu mnAdministracion = new JMenu("Administracion");
 		mnAdministracion.setFont(new Font("Segoe UI", Font.BOLD, 15));
@@ -120,14 +138,42 @@ public class Principal extends JFrame {
 		JMenuItem mntmReporteDeVentas = mnAdministracion.add(action_5);
 		mntmReporteDeVentas.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmReporteDeVentas.setText("Componentes vendidos");
+		mntmReporteDeVentas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ReporteVentas reporteventas = new ReporteVentas();
+				reporteventas.setModal(true);
+				reporteventas.setVisible(true);
+			}
+
+		});
 		
 		JMenuItem mntmDineroDeVentas = mnAdministracion.add(action_6);
 		mntmDineroDeVentas.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmDineroDeVentas.setText("Dinero generado");
+		mntmDineroDeVentas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DineroVenta dineroventa = new DineroVenta();
+				dineroventa.setModal(true);
+				dineroventa.setVisible(true);
+			}
+
+		});
 		
 		JMenu mnAyuda = new JMenu("Ayuda");
 		mnAyuda.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		menuBar.add(mnAyuda);
+		
+		JMenuItem mntmSugerencias = mnAyuda.add(action_8);
+		mntmSugerencias.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		mntmSugerencias.setText("Sugerencias");
+		mntmSugerencias.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ayuda ayuda = new Ayuda();
+				ayuda.setModal(true);
+				ayuda.setVisible(true);
+			}
+
+		});
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -196,6 +242,14 @@ public class Principal extends JFrame {
 	private class SwingAction_7 extends AbstractAction {
 		public SwingAction_7() {
 			putValue(NAME, "SwingAction_7");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
+	}
+	private class SwingAction_8 extends AbstractAction {
+		public SwingAction_8() {
+			putValue(NAME, "SwingAction_8");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {

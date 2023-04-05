@@ -143,6 +143,7 @@ public class DineroVenta extends JDialog {
 				cancelButton.setBackground(new Color(255, 255, 224));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						dispose();
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
