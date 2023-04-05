@@ -132,8 +132,8 @@ public class Principal extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/Wallpaper Elite Electronics 2.png")));
-		lblNewLabel.setBounds(0, 0, 2557, 978);
+		lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/5.png")));
+		lblNewLabel.setBounds(0, 0, 1915, 968);
 		contentPane.add(lblNewLabel);
 	}
 
