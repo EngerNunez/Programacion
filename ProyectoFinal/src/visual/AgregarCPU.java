@@ -107,6 +107,7 @@ public class AgregarCPU extends JDialog {
 		txtNumSerie.setColumns(10);
 		
 		JSpinner spnPrecio = new JSpinner();
+		spnPrecio.setToolTipText("");
 		spnPrecio.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 		spnPrecio.setBounds(239, 139, 136, 20);
 		contentPanel.add(spnPrecio);
@@ -140,6 +141,7 @@ public class AgregarCPU extends JDialog {
 				okButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
 					}
 				});
 				okButton.setActionCommand("OK");

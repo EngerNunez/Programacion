@@ -14,7 +14,19 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
+
+import logico.TiendaElite;
+import logico.Componente;
+import logico.Factura;
+import logico.Cliente;
+import logico.MemoriaRAM;
+import logico.Combo;
+import logico.DiscoDuro;
+import logico.Microprocesador;
+import logico.TarjetaMadre;
 
 public class Facturar extends JDialog {
 
@@ -53,8 +65,10 @@ public class Facturar extends JDialog {
 		contentPanel.setLayout(null);
 		
 		txtCodigo = new JTextField();
+		txtCodigo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtCodigo.setEnabled(false);
 		txtCodigo.setBounds(97, 30, 182, 20);
+		txtCodigo.setText("F-"+ TiendaElite.codigo_factura);
 		contentPanel.add(txtCodigo);
 		txtCodigo.setColumns(10);
 		
@@ -64,13 +78,13 @@ public class Facturar extends JDialog {
 		txtCedula.setColumns(10);
 		
 		txtNombre = new JTextField();
-		txtNombre.setEnabled(false);
+		txtNombre.setEditable(false);
 		txtNombre.setBounds(97, 94, 182, 20);
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		txtDireccion = new JTextField();
-		txtDireccion.setEnabled(false);
+		txtDireccion.setEditable(false);
 		txtDireccion.setBounds(96, 123, 416, 20);
 		contentPanel.add(txtDireccion);
 		txtDireccion.setColumns(10);
@@ -81,12 +95,41 @@ public class Facturar extends JDialog {
 		contentPanel.add(lblTelefono);
 		
 		txtTelefono = new JTextField();
-		txtTelefono.setEnabled(false);
+		txtTelefono.setEditable(false);
 		txtTelefono.setBounds(360, 94, 152, 20);
 		contentPanel.add(txtTelefono);
 		txtTelefono.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Cliente cliente = TiendaElite.getInstance().buscarClienteByCedula(txtCedula.getText());
+				
+				if(cliente != null)
+				{
+					JOptionPane.showMessageDialog(null, "El cliente se encuentra", "Buscar Cliente",
+							JOptionPane.INFORMATION_MESSAGE);
+					
+					txtNombre.setText(cliente.getNombre());
+					txtTelefono.setText(cliente.getTelefono());
+					txtDireccion.setText(cliente.getDireccion());
+					
+					
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "El cliente no se encuentra", "Buscar Cliente",
+							JOptionPane.INFORMATION_MESSAGE);
+					
+					txtNombre.setEditable(true);
+					txtTelefono.setEditable(true);
+					txtDireccion.setEditable(true);
+				}
+				
+				
+			}
+		});
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnBuscar.setBounds(289, 61, 89, 23);
 		contentPanel.add(btnBuscar);
@@ -127,7 +170,7 @@ public class Facturar extends JDialog {
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBackground(new Color(30, 144, 255));
 		panel_1.setBounds(10, 11, 515, 149);
 		panel.add(panel_1);
 		panel_1.setLayout(null);

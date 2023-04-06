@@ -12,10 +12,15 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import java.awt.Toolkit;
+
+import logico.Componente;
+import logico.DiscoDuro;
+import logico.TiendaElite;
 
 public class AgregarDiscoDuro extends JDialog {
 
@@ -24,6 +29,8 @@ public class AgregarDiscoDuro extends JDialog {
 	private JTextField txtModelo;
 	private JTextField txtTipoConexion;
 	private JTextField txtNumSerie;
+	private JSpinner spnPrecio;
+	private JSpinner spnCapacidadAlmacenamiento;
 
 	/**
 	 * Launch the application.
@@ -108,7 +115,7 @@ public class AgregarDiscoDuro extends JDialog {
 		contentPanel.add(txtNumSerie);
 		txtNumSerie.setColumns(10);
 		
-		JSpinner spnPrecio = new JSpinner();
+		spnPrecio = new JSpinner();
 		spnPrecio.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 		spnPrecio.setBounds(239, 139, 136, 20);
 		contentPanel.add(spnPrecio);
@@ -119,7 +126,7 @@ public class AgregarDiscoDuro extends JDialog {
 			contentPanel.add(panel);
 		}
 		{
-			JSpinner spnCapacidadAlmacenamiento = new JSpinner();
+			spnCapacidadAlmacenamiento = new JSpinner();
 			spnCapacidadAlmacenamiento.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 			spnCapacidadAlmacenamiento.setBounds(239, 89, 136, 20);
 			contentPanel.add(spnCapacidadAlmacenamiento);
@@ -142,6 +149,23 @@ public class AgregarDiscoDuro extends JDialog {
 				okButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
+						Componente aux = null;
+						String marca = txtMarca.getText();
+						String modelo = txtModelo.getText();
+						String tipoconexion = txtTipoConexion.getText();
+						String serie = txtNumSerie.getText();
+						float precio = Float.valueOf(spnPrecio.getValue().toString());
+						float almacenamiento =  Float.valueOf(spnCapacidadAlmacenamiento.getValue().toString());
+						
+						aux = new DiscoDuro(marca,serie,precio,modelo,almacenamiento,tipoconexion);
+
+						TiendaElite.getInstance().insertarComponente(aux);
+						
+						JOptionPane.showMessageDialog(null, "Disco Disco agregado", "Informacion",JOptionPane.INFORMATION_MESSAGE);
+						
+						clean();
+						
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -161,6 +185,17 @@ public class AgregarDiscoDuro extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+			
 		}
+	}
+	
+	private void clean()
+	{
+		txtMarca.setText("");
+		txtModelo.setText("");
+		txtTipoConexion.setText("");
+		txtNumSerie.setText("");
+		spnPrecio.setValue(new Float(0.0));
+		spnCapacidadAlmacenamiento.setValue(new Float(0.0));
 	}
 }
