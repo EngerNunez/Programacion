@@ -40,7 +40,7 @@ public class Ayuda extends JDialog {
 	public Ayuda() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Ayuda.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
 		setTitle("Ayuda");
-		setBounds(100, 100, 485, 397);
+		setBounds(100, 100, 519, 441);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
@@ -49,7 +49,7 @@ public class Ayuda extends JDialog {
 		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(30, 144, 255));
-			panel.setBounds(0, 0, 467, 354);
+			panel.setBounds(0, 0, 503, 367);
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			{
@@ -60,26 +60,26 @@ public class Ayuda extends JDialog {
 			}
 			{
 				txtSugerencia = new JTextField();
-				txtSugerencia.setBounds(10, 35, 447, 215);
+				txtSugerencia.setBounds(10, 35, 483, 234);
 				panel.add(txtSugerencia);
 				txtSugerencia.setColumns(10);
 			}
 			{
 				JLabel lblJose = new JLabel("-Josearieldabas01@gmail.com");
 				lblJose.setFont(new Font("Tahoma", Font.BOLD, 12));
-				lblJose.setBounds(274, 281, 183, 14);
+				lblJose.setBounds(310, 301, 183, 14);
 				panel.add(lblJose);
 			}
 			{
 				JLabel lblNewLabel_1 = new JLabel("-Engerdouglas@gmail.com");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-				lblNewLabel_1.setBounds(274, 296, 183, 14);
+				lblNewLabel_1.setBounds(310, 327, 183, 14);
 				panel.add(lblNewLabel_1);
 			}
 			{
 				JLabel lblNewLabel_2 = new JLabel("Contactos:");
 				lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-				lblNewLabel_2.setBounds(274, 261, 82, 14);
+				lblNewLabel_2.setBounds(310, 276, 82, 14);
 				panel.add(lblNewLabel_2);
 			}
 		}

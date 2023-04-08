@@ -35,6 +35,7 @@ public class Principal extends JFrame {
 	private final Action action_7 = new SwingAction_7();
 	private final Action action_8 = new SwingAction_8();
 
+
 	/**
 	 * Launch the application.
 	 */
@@ -55,8 +56,7 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
-		setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(Principal.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
 		setTitle("ELITE ELECTRONICS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -65,15 +65,15 @@ public class Principal extends JFrame {
 		dim = getToolkit().getScreenSize();
 		setSize(dim.width, dim.height - 50);
 		setLocationRelativeTo(null);
-
+		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(Color.WHITE);
 		setJMenuBar(menuBar);
-
+		
 		JMenu mnComponentes = new JMenu("Componentes");
 		mnComponentes.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		menuBar.add(mnComponentes);
-
+		
 		JMenuItem mntmAgregarComponentes = mnComponentes.add(action);
 		mntmAgregarComponentes.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmAgregarComponentes.setText("Agregar Componentes");
@@ -85,34 +85,39 @@ public class Principal extends JFrame {
 			}
 
 		});
-
+		
 		JMenuItem mntmReabastecerComponente = mnComponentes.add(action_7);
 		mntmReabastecerComponente.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmReabastecerComponente.setText("Reabastecer Componente");
-
+		
 		JMenuItem mntmListaDeComponentes = mnComponentes.add(action_1);
 		mntmListaDeComponentes.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmListaDeComponentes.setText("Lista de Componentes");
-
+		
 		JMenu mnClientes = new JMenu("Clientes");
 		mnClientes.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		menuBar.add(mnClientes);
-
+		
 		JMenuItem mntmListaDeClientes = mnClientes.add(action_2);
 		mntmListaDeClientes.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmListaDeClientes.setText("Lista de Clientes");
 		mntmListaDeClientes.addActionListener(new ActionListener() {
-
+			
 			public void actionPerformed(ActionEvent e) {
-
+				
+				ListaClientes clientes = new ListaClientes();
+				clientes.setModal(true);
+				clientes.setVisible(true);
+				
 			}
-
+			
+			
 		});
-
+		
 		JMenu mnVentas = new JMenu("Ventas");
 		mnVentas.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		menuBar.add(mnVentas);
-
+		
 		JMenuItem mntmFacturar = mnVentas.add(action_3);
 		mntmFacturar.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmFacturar.setText("Facturar");
@@ -124,7 +129,8 @@ public class Principal extends JFrame {
 			}
 
 		});
-
+		
+		
 		JMenuItem mntmListaDeFacturas = mnVentas.add(action_4);
 		mntmListaDeFacturas.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmListaDeFacturas.setText("Lista de Facturas");
@@ -136,11 +142,11 @@ public class Principal extends JFrame {
 			}
 
 		});
-
+		
 		JMenu mnAdministracion = new JMenu("Administracion");
 		mnAdministracion.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		menuBar.add(mnAdministracion);
-
+		
 		JMenuItem mntmReporteDeVentas = mnAdministracion.add(action_5);
 		mntmReporteDeVentas.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmReporteDeVentas.setText("Componentes vendidos");
@@ -152,7 +158,7 @@ public class Principal extends JFrame {
 			}
 
 		});
-
+		
 		JMenuItem mntmDineroDeVentas = mnAdministracion.add(action_6);
 		mntmDineroDeVentas.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmDineroDeVentas.setText("Dinero generado");
@@ -164,11 +170,11 @@ public class Principal extends JFrame {
 			}
 
 		});
-
+		
 		JMenu mnAyuda = new JMenu("Ayuda");
 		mnAyuda.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		menuBar.add(mnAyuda);
-
+		
 		JMenuItem mntmSugerencias = mnAyuda.add(action_8);
 		mntmSugerencias.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmSugerencias.setText("Sugerencias");
@@ -182,7 +188,7 @@ public class Principal extends JFrame {
 		});
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/5.png")));
 		lblNewLabel.setBounds(0, 0, 1915, 968);
@@ -194,87 +200,70 @@ public class Principal extends JFrame {
 			putValue(NAME, "SwingAction");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
-
 		public void actionPerformed(ActionEvent e) {
 		}
 	}
-
 	private class SwingAction_1 extends AbstractAction {
 		public SwingAction_1() {
 			putValue(NAME, "SwingAction_1");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
-
 		public void actionPerformed(ActionEvent e) {
 		}
 	}
-
 	private class SwingAction_2 extends AbstractAction {
 		public SwingAction_2() {
 			putValue(NAME, "SwingAction_2");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
-
 		public void actionPerformed(ActionEvent e) {
 		}
 	}
-
 	private class SwingAction_3 extends AbstractAction {
 		public SwingAction_3() {
 			putValue(NAME, "SwingAction_3");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
-
 		public void actionPerformed(ActionEvent e) {
 		}
 	}
-
 	private class SwingAction_4 extends AbstractAction {
 		public SwingAction_4() {
 			putValue(NAME, "SwingAction_4");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
-
 		public void actionPerformed(ActionEvent e) {
 		}
 	}
-
 	private class SwingAction_5 extends AbstractAction {
 		public SwingAction_5() {
 			putValue(NAME, "SwingAction_5");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
-
 		public void actionPerformed(ActionEvent e) {
 		}
 	}
-
 	private class SwingAction_6 extends AbstractAction {
 		public SwingAction_6() {
 			putValue(NAME, "SwingAction_6");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
-
 		public void actionPerformed(ActionEvent e) {
 		}
 	}
-
 	private class SwingAction_7 extends AbstractAction {
 		public SwingAction_7() {
 			putValue(NAME, "SwingAction_7");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
-
 		public void actionPerformed(ActionEvent e) {
 		}
 	}
-
 	private class SwingAction_8 extends AbstractAction {
 		public SwingAction_8() {
 			putValue(NAME, "SwingAction_8");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
-
 		public void actionPerformed(ActionEvent e) {
 		}
 	}

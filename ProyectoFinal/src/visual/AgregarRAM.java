@@ -12,18 +12,24 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import java.awt.Toolkit;
 
+import logico.Componente;
+import logico.MemoriaRAM;
+import logico.TiendaElite;
+
 public class AgregarRAM extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtMarca;
-	private JTextField txtModelo;
 	private JTextField txtTipoMemoria;
 	private JTextField txtNumSerie;
+	private JSpinner spnPrecio;
+	private JSpinner spnCantMemoria;
 
 	/**
 	 * Launch the application.
@@ -44,7 +50,7 @@ public class AgregarRAM extends JDialog {
 	public AgregarRAM() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarRAM.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
 		setTitle("Memoria RAM");
-		setBounds(100, 100, 428, 306);
+		setBounds(100, 100, 428, 298);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
@@ -55,30 +61,6 @@ public class AgregarRAM extends JDialog {
 			lblMarca.setFont(new Font("Tahoma", Font.BOLD, 12));
 			lblMarca.setBounds(30, 41, 57, 14);
 			contentPanel.add(lblMarca);
-		}
-		{
-			JLabel lblModelo = new JLabel("Modelo:");
-			lblModelo.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblModelo.setBounds(30, 66, 81, 14);
-			contentPanel.add(lblModelo);
-		}
-		{
-			JLabel lblCantidadMemoria = new JLabel("Cantidad de Memoria:");
-			lblCantidadMemoria.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblCantidadMemoria.setBounds(30, 91, 199, 14);
-			contentPanel.add(lblCantidadMemoria);
-		}
-		{
-			JLabel lblTipoMemoria = new JLabel("Tipo de Memoria:");
-			lblTipoMemoria.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblTipoMemoria.setBounds(30, 116, 188, 14);
-			contentPanel.add(lblTipoMemoria);
-		}
-		{
-			JLabel lblPrecio = new JLabel("Precio:");
-			lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblPrecio.setBounds(30, 141, 46, 14);
-			contentPanel.add(lblPrecio);
 		}
 		{
 			JLabel lblNumSerie = new JLabel("Numero de serie:");
@@ -93,25 +75,10 @@ public class AgregarRAM extends JDialog {
 		contentPanel.add(txtMarca);
 		txtMarca.setColumns(10);
 		
-		txtModelo = new JTextField();
-		txtModelo.setBounds(239, 64, 136, 20);
-		contentPanel.add(txtModelo);
-		txtModelo.setColumns(10);
-		
-		txtTipoMemoria = new JTextField();
-		txtTipoMemoria.setBounds(239, 114, 136, 20);
-		contentPanel.add(txtTipoMemoria);
-		txtTipoMemoria.setColumns(10);
-		
 		txtNumSerie = new JTextField();
 		txtNumSerie.setBounds(239, 164, 136, 20);
 		contentPanel.add(txtNumSerie);
 		txtNumSerie.setColumns(10);
-		
-		JSpinner spnPrecio = new JSpinner();
-		spnPrecio.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
-		spnPrecio.setBounds(239, 139, 136, 20);
-		contentPanel.add(spnPrecio);
 		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(30, 144, 255));
@@ -119,16 +86,45 @@ public class AgregarRAM extends JDialog {
 			contentPanel.add(panel);
 		}
 		{
-			JSpinner spnCantMemoria = new JSpinner();
-			spnCantMemoria.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
-			spnCantMemoria.setBounds(239, 89, 136, 20);
-			contentPanel.add(spnCantMemoria);
-		}
-		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(30, 144, 255));
 			panel.setBounds(0, 0, 411, 232);
 			contentPanel.add(panel);
+			panel.setLayout(null);
+			{
+				JLabel lblCantidadMemoria = new JLabel("Cantidad de Memoria:");
+				lblCantidadMemoria.setBounds(29, 72, 199, 14);
+				panel.add(lblCantidadMemoria);
+				lblCantidadMemoria.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			{
+				spnCantMemoria = new JSpinner();
+				spnCantMemoria.setBounds(238, 70, 136, 20);
+				panel.add(spnCantMemoria);
+				spnCantMemoria.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
+			}
+			{
+				JLabel lblTipoMemoria = new JLabel("Tipo de Memoria:");
+				lblTipoMemoria.setBounds(29, 103, 188, 14);
+				panel.add(lblTipoMemoria);
+				lblTipoMemoria.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			
+			txtTipoMemoria = new JTextField();
+			txtTipoMemoria.setBounds(238, 101, 136, 20);
+			panel.add(txtTipoMemoria);
+			txtTipoMemoria.setColumns(10);
+			{
+				JLabel lblPrecio = new JLabel("Precio:");
+				lblPrecio.setBounds(29, 134, 46, 14);
+				panel.add(lblPrecio);
+				lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			
+			spnPrecio = new JSpinner();
+			spnPrecio.setBounds(238, 132, 136, 20);
+			panel.add(spnPrecio);
+			spnPrecio.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -142,6 +138,22 @@ public class AgregarRAM extends JDialog {
 				okButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
+						Componente aux = null;
+						String marca = txtMarca.getText();
+						float cantmemoria = Float.valueOf(spnCantMemoria.getValue().toString());
+						float precio = Float.valueOf(spnPrecio.getValue().toString());
+						String tipomemoria = txtTipoMemoria.getText();
+						String numserie = txtNumSerie.getText();
+						
+						aux = new MemoriaRAM(marca,numserie,precio,0, tipomemoria,cantmemoria);
+						
+						TiendaElite.getInstance().insertarComponente(aux);
+						
+						JOptionPane.showMessageDialog(null, "Memoria RAM agregada", "Informacion",JOptionPane.INFORMATION_MESSAGE);
+						
+						clean();
+						
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -163,4 +175,14 @@ public class AgregarRAM extends JDialog {
 			}
 		}
 	}
+	
+	private void clean()
+	{
+		txtMarca.setText("");
+		spnCantMemoria.setValue(new Float(0.0));
+		spnPrecio.setValue(new Float(0.0));
+		txtTipoMemoria.setText("");
+		txtNumSerie.setText("");
+	}
+	
 }
