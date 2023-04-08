@@ -118,7 +118,7 @@ public class ListadoComponente extends JDialog {
 		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblTipo.setBounds(22, 49, 79, 36);
 		panel_1.add(lblTipo);
-
+		//prueba
 		cbxEstado = new JComboBox();
 		cbxEstado.setModel(new DefaultComboBoxModel(new String[] { "<Todos>", "Disponible", "Critico" }));
 		cbxEstado.setBounds(500, 49, 188, 36);
