@@ -30,6 +30,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 public class ListadoComponente extends JDialog {
 
@@ -60,14 +61,16 @@ public class ListadoComponente extends JDialog {
 	 */
 	public ListadoComponente() {
 		setTitle("Lista de componente\r\n");
-		setBounds(100, 100, 780, 555);
+		setBounds(100, 100, 667, 422);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(30, 144, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLocationRelativeTo(null);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 156, 732, 316);
+		panel.setBounds(10, 96, 626, 236);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 
@@ -82,10 +85,10 @@ public class ListadoComponente extends JDialog {
 				}
 			}
 		});
-		scrollPane.setBounds(0, 0, 732, 316);
+		scrollPane.setBounds(0, 0, 626, 236);
 		panel.add(scrollPane,BorderLayout.CENTER);
 		{
-			String[] headers = {"Numero Serial","Marca","Precio","Disponibilidad"};
+			String[] headers = {"Numero de Serie","Marca","Precio","Disponibilidad"};
 			
 			table = new JTable();
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -99,46 +102,55 @@ public class ListadoComponente extends JDialog {
 		
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 11, 732, 134);
+		panel_1.setBounds(10, 11, 626, 74);
 		contentPanel.add(panel_1);
 		panel_1.setLayout(null);
 
 		JLabel lblNewLabel_1 = new JLabel("Estado:\r\n");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(412, 49, 79, 36);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel_1.setBounds(355, 17, 79, 36);
 		panel_1.add(lblNewLabel_1);
 
 		cbxTarjetaMadre = new JComboBox();
+		cbxTarjetaMadre.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cbxTarjetaMadre.setModel(new DefaultComboBoxModel(
 				new String[] { "<Todos>", "Tarjeta Madre", "Memoria RAM", "Disco Duro", "Microprocesador" }));
-		cbxTarjetaMadre.setBounds(88, 49, 188, 36);
+		cbxTarjetaMadre.setBounds(92, 24, 158, 25);
 		panel_1.add(cbxTarjetaMadre);
 
 		JLabel lblTipo = new JLabel("Tipo:\r\n");
-		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblTipo.setBounds(22, 49, 79, 36);
+		lblTipo.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblTipo.setBounds(35, 17, 47, 36);
 		panel_1.add(lblTipo);
 		//prueba
 		cbxEstado = new JComboBox();
+		cbxEstado.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cbxEstado.setModel(new DefaultComboBoxModel(new String[] { "<Todos>", "Disponible", "Critico" }));
-		cbxEstado.setBounds(500, 49, 188, 36);
+		cbxEstado.setBounds(431, 24, 158, 25);
 		panel_1.add(cbxEstado);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(255, 255, 224));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
 			JButton btnEliminar = new JButton("Eliminar\r\n");
+			btnEliminar.setBackground(new Color(255, 255, 224));
+			btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			btnEliminar.setActionCommand("OK");
 			buttonPane.add(btnEliminar);
 			{
 				JButton okButton = new JButton("Modificar\r\n");
+				okButton.setBackground(new Color(255, 255, 224));
+				okButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBackground(new Color(255, 255, 224));
+				cancelButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
@@ -156,7 +168,7 @@ public class ListadoComponente extends JDialog {
 		rows = new Object[model.getColumnCount()];
 		if (index == 0) {
 			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
-				if (aux.getDisponibilidad() == 'D') {
+				
 					rows[0] = aux.getNumeroSerie();
 					rows[1] = aux.getMarca();
 					rows[2] = aux.getPrecio();
@@ -173,7 +185,6 @@ public class ListadoComponente extends JDialog {
 					if (aux instanceof MemoriaRAM) {
 						rows[4] = "Memoria RAM";
 					}
-				}
 			}
 		}
 		if (index == 1) {
