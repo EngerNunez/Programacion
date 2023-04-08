@@ -91,6 +91,14 @@ public class Principal extends JFrame {
 		mntmReabastecerComponente.setText("Reabastecer Componente");
 		
 		JMenuItem mntmListaDeComponentes = mnComponentes.add(action_1);
+		mntmListaDeComponentes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ListadoComponente listcomponente = new ListadoComponente();
+				listcomponente.setModal(true);
+				listcomponente.setVisible(true);
+			}
+		});
 		mntmListaDeComponentes.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmListaDeComponentes.setText("Lista de Componentes");
 		
