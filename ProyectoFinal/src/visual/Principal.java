@@ -101,6 +101,18 @@ public class Principal extends JFrame {
 		JMenuItem mntmListaDeClientes = mnClientes.add(action_2);
 		mntmListaDeClientes.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmListaDeClientes.setText("Lista de Clientes");
+		mntmListaDeClientes.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				ListaClientes clientes = new ListaClientes();
+				clientes.setModal(true);
+				clientes.setVisible(true);
+				
+			}
+			
+			
+		});
 		
 		JMenu mnVentas = new JMenu("Ventas");
 		mnVentas.setFont(new Font("Segoe UI", Font.BOLD, 15));
