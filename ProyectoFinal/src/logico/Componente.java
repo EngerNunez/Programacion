@@ -42,6 +42,9 @@ public abstract class Componente {
 	}
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+		if(cantidad <= 3) {
+			setDisponibilidad('C');
+		}
 	}
 	
 	
