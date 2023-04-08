@@ -58,21 +58,24 @@ public class ListaClientes extends JDialog {
 		setTitle("Listado de Clientes");
 		setBounds(100, 100, 646, 369);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(30, 144, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(new BorderLayout(0, 0));
+		contentPanel.setLayout(null);
 		{
 
 			JPanel panel = new JPanel();
+			panel.setBounds(5, 5, 620, -117);
 			panel.setBackground(new Color(255, 255, 255));
 			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			contentPanel.add(panel, BorderLayout.CENTER);
+			contentPanel.add(panel);
 			panel.setLayout(new BorderLayout(0, 0));
 			{
 				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(10, 5, 610, 279);
 				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-				contentPanel.add(scrollPane, BorderLayout.CENTER);
+				contentPanel.add(scrollPane);
 				{
 					String headers[] = { "Cedula", "Nombre", "Direccion", "Telefono" };
 					model = new DefaultTableModel();
