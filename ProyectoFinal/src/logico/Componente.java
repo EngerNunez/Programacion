@@ -44,7 +44,9 @@ public abstract class Componente {
 		this.cantidad = cantidad;
 		if(cantidad <= 3) {
 			setDisponibilidad('C');
-		}//hola
+		}else {
+			setDisponibilidad('D');
+		}
 	}
 	
 	
