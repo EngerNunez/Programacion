@@ -7,11 +7,17 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import logico.TiendaElite;
+import logico.Componente;
+import logico.TarjetaMadre;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -25,6 +31,9 @@ public class AgregarTarjetaMadre extends JDialog {
 	private JTextField txtTipoConector;
 	private JTextField txtTipoDiscoCompatible;
 	private JTextField txtNumSerie;
+	private JSpinner spnPrecio;
+	private JTextField txtTipoMemoria;
+	private JSpinner spnCantiadad;
 
 	/**
 	 * Launch the application.
@@ -43,7 +52,8 @@ public class AgregarTarjetaMadre extends JDialog {
 	 * Create the dialog.
 	 */
 	public AgregarTarjetaMadre() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarTarjetaMadre.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(AgregarTarjetaMadre.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
 		setTitle("Tarjeta Madre");
 		setBounds(100, 100, 427, 378);
 		getContentPane().setLayout(new BorderLayout());
@@ -93,47 +103,58 @@ public class AgregarTarjetaMadre extends JDialog {
 			lblNumSerie.setBounds(30, 191, 112, 14);
 			contentPanel.add(lblNumSerie);
 		}
-		
+
 		txtMarca = new JTextField();
 		txtMarca.setBackground(new Color(255, 255, 255));
 		txtMarca.setBounds(239, 39, 136, 20);
 		contentPanel.add(txtMarca);
 		txtMarca.setColumns(10);
-		
+
 		txtModelo = new JTextField();
 		txtModelo.setBounds(239, 64, 136, 20);
 		contentPanel.add(txtModelo);
 		txtModelo.setColumns(10);
-		
+
 		txtTipoConector = new JTextField();
 		txtTipoConector.setBounds(239, 89, 136, 20);
 		contentPanel.add(txtTipoConector);
 		txtTipoConector.setColumns(10);
-		
-		JTextField txtTipoMemoria = new JTextField();
+
+		txtTipoMemoria = new JTextField();
 		txtTipoMemoria.setBounds(239, 114, 136, 20);
 		contentPanel.add(txtTipoMemoria);
 		txtTipoMemoria.setColumns(10);
-		
+
 		txtTipoDiscoCompatible = new JTextField();
 		txtTipoDiscoCompatible.setBounds(239, 139, 136, 20);
 		contentPanel.add(txtTipoDiscoCompatible);
 		txtTipoDiscoCompatible.setColumns(10);
-		
+
 		txtNumSerie = new JTextField();
 		txtNumSerie.setBounds(239, 189, 136, 20);
 		contentPanel.add(txtNumSerie);
 		txtNumSerie.setColumns(10);
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
-		spinner.setBounds(239, 164, 136, 20);
-		contentPanel.add(spinner);
+
+		spnPrecio = new JSpinner();
+		spnPrecio.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
+		spnPrecio.setBounds(239, 164, 136, 20);
+		contentPanel.add(spnPrecio);
 		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(30, 144, 255));
 			panel.setBounds(0, 0, 411, 304);
 			contentPanel.add(panel);
+			panel.setLayout(null);
+
+			JLabel lblCantidad = new JLabel("Cantidad:");
+			lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 12));
+			lblCantidad.setBounds(30, 218, 89, 14);
+			panel.add(lblCantidad);
+
+			spnCantiadad = new JSpinner();
+			spnCantiadad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+			spnCantiadad.setBounds(239, 216, 136, 20);
+			panel.add(spnCantiadad);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -147,6 +168,15 @@ public class AgregarTarjetaMadre extends JDialog {
 				okButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+
+						Componente componente = new TarjetaMadre(txtMarca.getText(), txtNumSerie.getText(),
+								Float.valueOf(spnPrecio.getValue().toString()),
+								Integer.valueOf(spnCantiadad.getValue().toString()), txtModelo.getText(),
+								txtTipoConector.getText(), txtTipoMemoria.getText(), txtTipoDiscoCompatible.getText());
+						TiendaElite.getInstance().insertarComponente(componente);
+						JOptionPane.showMessageDialog(null, "Exito! se registro correctamente",
+								"Tarjeta Madre Agregada", JOptionPane.INFORMATION_MESSAGE);
+
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -159,7 +189,7 @@ public class AgregarTarjetaMadre extends JDialog {
 				cancelButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+
 						dispose();
 					}
 				});

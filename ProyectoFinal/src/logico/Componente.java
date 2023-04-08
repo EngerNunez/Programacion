@@ -4,11 +4,14 @@ public abstract class Componente {
 	protected String marca;
 	protected String numeroSerie;
 	protected float precio;
-	public Componente(String marca, String numeroSerie, float precio) {
+	protected char disponibilidad;
+	protected int cantidad;
+	public Componente(String marca, String numeroSerie, float precio,int cantidad) {
 		super();
 		this.marca = marca;
 		this.numeroSerie = numeroSerie;
 		this.precio = precio;
+		this.cantidad = cantidad;
 	}
 	public String getMarca() {
 		return marca;
@@ -28,4 +31,17 @@ public abstract class Componente {
 	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
+	public char getDisponibilidad() {
+		return disponibilidad;
+	}
+	public void setDisponibilidad(char disponibilidad) {
+		this.disponibilidad = disponibilidad;
+	}
+	public int getCantidad() {
+		return cantidad;
+	}
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+	
 }
