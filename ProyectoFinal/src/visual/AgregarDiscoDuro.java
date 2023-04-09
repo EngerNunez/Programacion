@@ -173,9 +173,9 @@ public class AgregarDiscoDuro extends JDialog {
 						int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 						
 						aux = new DiscoDuro(marca,serie,precio,cantidad,modelo,almacenamiento,tipoconexion);
-
-						TiendaElite.getInstance().insertarComponente(aux);
 						
+						TiendaElite.getInstance().insertarComponente(aux);
+				
 						JOptionPane.showMessageDialog(null, "Disco Disco agregado", "Informacion",JOptionPane.INFORMATION_MESSAGE);
 						
 						clean();

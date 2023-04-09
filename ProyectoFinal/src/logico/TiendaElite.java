@@ -166,17 +166,26 @@ public class TiendaElite {
 		return aux;
 	}
 	
+	
 	public boolean reabastecer (int cantidad , String serial) {
 		Componente componente = buscarComponenteBySerial(serial);
 		boolean realizado = false;
 		if( componente != null) {
-			for(int i=0; i<cantidad;i++) {
-				insertarComponente(componente);
-				realizado = true;
-			}
-			
+			int suma = cantidad + componente.getCantidad();
+			componente.setCantidad(suma);
+			realizado = true;
 		}
 		return realizado;
+	}
+	
+	public void Disponibilidad(String codigo) {
+		Componente componente = buscarComponenteBySerial(codigo);
+		if( componente != null) {
+			if(componente.getCantidad() <= 3) {
+				componente.setDisponibilidad('C');
+			}
+		}
+		
 	}
 	
 	

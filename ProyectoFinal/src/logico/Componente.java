@@ -13,6 +13,7 @@ public abstract class Componente {
 		this.precio = precio;
 		this.cantidad = cantidad;
 		this.disponibilidad = 'D';
+		
 	}
 	public String getMarca() {
 		return marca;
@@ -44,9 +45,7 @@ public abstract class Componente {
 	
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
-		if(cantidad <= 3) {
-			setDisponibilidad('C');
-		}
+
 	}
 	
 	

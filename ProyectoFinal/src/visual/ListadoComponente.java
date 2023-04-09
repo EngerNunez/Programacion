@@ -78,7 +78,7 @@ public class ListadoComponente extends JDialog {
 		scrollPane.setBounds(0, 0, 626, 236);
 		panel.add(scrollPane,BorderLayout.CENTER);
 		{
-			String[] headers = {"Numero de Serie","Marca","Precio","Disponibilidad", "Tipo"};
+			String[] headers = {"Numero de Serie","Marca","Precio","Disponibilidad","Cantidad", "Tipo"};
 			
 			table = new JTable();
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -146,17 +146,19 @@ public class ListadoComponente extends JDialog {
 					rows[1] = aux.getMarca();
 					rows[2] = "$" + aux.getPrecio();
 					rows[3] = aux.getDisponibilidad();
+					
+					rows[4] = aux.getCantidad();
 					if (aux instanceof TarjetaMadre) {
-						rows[4] = "Tarjeta Madre";
+						rows[5] = "Tarjeta Madre";
 					}
 					if (aux instanceof DiscoDuro) {
-						rows[4] = "Disco Duro";
+						rows[5] = "Disco Duro";
 					}
 					if (aux instanceof Microprocesador) {
-						rows[4] = "Microprocesador";
+						rows[5] = "Microprocesador";
 					}
 					if (aux instanceof MemoriaRAM) {
-						rows[4] = "Memoria RAM";
+						rows[5] = "Memoria RAM";
 					}
 					model.addRow(rows);
 					
@@ -170,7 +172,8 @@ public class ListadoComponente extends JDialog {
 					rows[1] = aux.getMarca();
 					rows[2] = "$" + aux.getPrecio();
 					rows[3] = aux.getDisponibilidad();
-					rows[4] = "Tarjeta Madre";
+					rows[4] = aux.getCantidad();
+					rows[5] = "Tarjeta Madre";
 					model.addRow(rows);
 				}
 				
@@ -183,7 +186,8 @@ public class ListadoComponente extends JDialog {
 					rows[1] = aux.getMarca();
 					rows[2] = "$" + aux.getPrecio();
 					rows[3] = aux.getDisponibilidad();
-					rows[4] = "Memoria RAM";
+					rows[4] = aux.getCantidad();
+					rows[5] = "Memoria RAM";
 					model.addRow(rows);
 				}
 				
@@ -196,7 +200,8 @@ public class ListadoComponente extends JDialog {
 					rows[1] = aux.getMarca();
 					rows[2] = "$" + aux.getPrecio();
 					rows[3] = aux.getDisponibilidad();
-					rows[4] = "Disco Duro";
+					rows[4] = aux.getCantidad();
+					rows[5] = "Disco Duro";
 					model.addRow(rows);
 				}
 				
@@ -209,11 +214,13 @@ public class ListadoComponente extends JDialog {
 					rows[1] = aux.getMarca();
 					rows[2] = "$" + aux.getPrecio();
 					rows[3] = aux.getDisponibilidad();
-					rows[4] = "CPU";
+					rows[4] = aux.getCantidad();
+					rows[5] = "CPU";
 					model.addRow(rows);
 				}
 				
 			}
 		}
 	}
+	
 }

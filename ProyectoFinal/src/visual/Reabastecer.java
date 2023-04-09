@@ -103,10 +103,10 @@ public class Reabastecer extends JDialog {
 				if(compo !=  null) {
 					txtmarca.setText(compo.getMarca());
 					spnAgregarCantidad.setEnabled(true);
-					
-					
+				
 				}else {
 					 JOptionPane.showMessageDialog(null,"Debe ingresar un numero serial correcto o ingrese un nuevo componente", "ERORR", JOptionPane.ERROR_MESSAGE);
+					 clean();
 				}
 			}
 		});
@@ -128,6 +128,7 @@ public class Reabastecer extends JDialog {
 						}else {
 							JOptionPane.showMessageDialog(null,"Error al realizar el reabastecimiento", "ERROR", JOptionPane.ERROR_MESSAGE);
 						}
+						clean();
 					}
 				});
 				btnReabastecer.setActionCommand("OK");
@@ -147,5 +148,11 @@ public class Reabastecer extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	private void clean()
+	{
+		txtmarca.setText("");
+		txtnumeroSerie.setText("");
+		spnAgregarCantidad.setValue(new Integer(0));
 	}
 }
