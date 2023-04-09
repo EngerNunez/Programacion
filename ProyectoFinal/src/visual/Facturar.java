@@ -57,7 +57,7 @@ public class Facturar extends JDialog {
 	public Facturar() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Facturar.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
 		setTitle("Facturar");
-		setBounds(100, 100, 551, 547);
+		setBounds(100, 100, 563, 759);
 		getContentPane().setLayout(new BorderLayout()); 
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
@@ -145,32 +145,21 @@ public class Facturar extends JDialog {
 		
 		JPanel PanelCarritoCompra = new JPanel();
 		PanelCarritoCompra.setBackground(Color.LIGHT_GRAY);
-		PanelCarritoCompra.setBounds(319, 209, 199, 183);
+		PanelCarritoCompra.setBounds(319, 209, 199, 422);
 		contentPanel.add(PanelCarritoCompra);
 		
 		JList ListCarritoCompra = new JList();
 		ListCarritoCompra.setBounds(319, 389, 193, -179);
 		contentPanel.add(ListCarritoCompra);
 		
-		JLabel lblNewLabel_2 = new JLabel("Total:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_2.setBounds(319, 420, 59, 14);
-		contentPanel.add(lblNewLabel_2);
-		
-		textField = new JTextField();
-		textField.setEnabled(false);
-		textField.setBounds(360, 418, 158, 20);
-		contentPanel.add(textField);
-		textField.setColumns(10);
-		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(30, 144, 255));
-		panel.setBounds(0, 0, 535, 502);
+		panel.setBounds(0, 0, 535, 685);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(30, 144, 255));
+		panel_1.setBackground(new Color(255, 255, 255));
 		panel_1.setBounds(10, 11, 515, 149);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -197,7 +186,7 @@ public class Facturar extends JDialog {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(255, 255, 255));
-		panel_2.setBounds(10, 171, 515, 237);
+		panel_2.setBounds(10, 171, 515, 472);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -212,17 +201,56 @@ public class Facturar extends JDialog {
 		panel_2.add(lblComponentesDisp);
 		lblComponentesDisp.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
-		JButton btnNewButton_1 = new JButton("<<");
-		btnNewButton_1.setBounds(219, 142, 79, 23);
-		panel_2.add(btnNewButton_1);
-		btnNewButton_1.setEnabled(false);
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		JButton btnComponenteIzquierda = new JButton("<<");
+		btnComponenteIzquierda.setBounds(219, 142, 79, 23);
+		panel_2.add(btnComponenteIzquierda);
+		btnComponenteIzquierda.setEnabled(false);
+		btnComponenteIzquierda.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		JButton btnNewButton = new JButton(">>");
-		btnNewButton.setBounds(219, 108, 79, 23);
-		panel_2.add(btnNewButton);
-		btnNewButton.setEnabled(false);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		JButton btnComponentesDerecho = new JButton(">>");
+		btnComponentesDerecho.setBounds(219, 108, 79, 23);
+		panel_2.add(btnComponentesDerecho);
+		btnComponentesDerecho.setEnabled(false);
+		btnComponentesDerecho.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		JLabel lblNewLabel_3 = new JLabel("Combos Disponibles");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_3.setBounds(10, 245, 199, 14);
+		panel_2.add(lblNewLabel_3);
+		
+		JPanel PanelCombo = new JPanel();
+		PanelCombo.setToolTipText("Combo Estudiante");
+		PanelCombo.setBackground(Color.LIGHT_GRAY);
+		PanelCombo.setBounds(10, 278, 199, 183);
+		panel_2.add(PanelCombo);
+		PanelCombo.setLayout(null);
+		
+		JList list = new JList();
+		list.setBounds(0, 191, 199, -190);
+		PanelCombo.add(list);
+		
+		JButton btnComboDerecha = new JButton(">>");
+		btnComboDerecha.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnComboDerecha.setEnabled(false);
+		btnComboDerecha.setBounds(219, 325, 79, 23);
+		panel_2.add(btnComboDerecha);
+		
+		JButton btnComboIzquierda = new JButton("<<");
+		btnComboIzquierda.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnComboIzquierda.setEnabled(false);
+		btnComboIzquierda.setBounds(219, 359, 79, 23);
+		panel_2.add(btnComboIzquierda);
+		
+		textField = new JTextField();
+		textField.setBounds(367, 654, 158, 20);
+		panel.add(textField);
+		textField.setEnabled(false);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Total:");
+		lblNewLabel_2.setBounds(318, 656, 59, 14);
+		panel.add(lblNewLabel_2);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(255, 255, 224));
