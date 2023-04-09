@@ -3,6 +3,7 @@ package visual;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -10,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -27,6 +29,7 @@ import logico.Combo;
 import logico.DiscoDuro;
 import logico.Microprocesador;
 import logico.TarjetaMadre;
+import javax.swing.JScrollPane;
 
 public class Facturar extends JDialog {
 
@@ -37,6 +40,33 @@ public class Facturar extends JDialog {
 	private JTextField txtDireccion;
 	private JTextField txtTelefono;
 	private JTextField textField;
+	private JScrollPane scrollPaneCompDisponibles;
+	private JList ListCompDisponibles;
+	private DefaultListModel<String>modelListCompDisponibles;
+	private JButton btnComponenteIzquierda;
+	private JButton btnComponentesDerecho;
+	private JButton btnComboDerecha;
+	private JButton btnComboIzquierda;
+	private JScrollPane scrollPaneCombos;
+	private JList ListCombos;
+	private DefaultListModel<String>modelListCombos;
+	private JScrollPane scrollPaneCarrito;
+	private JList ListCarrito;
+	private DefaultListModel<String>modelListCarrito;
+	private ArrayList<String>compdisp;
+	private ArrayList<String>combosdisp;
+	private ArrayList<String>carrito;
+	private int selected = -1;
+	private float total = 0;
+	private int ind = 0;
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/**
 	 * Launch the application.
@@ -55,6 +85,11 @@ public class Facturar extends JDialog {
 	 * Create the dialog.
 	 */
 	public Facturar() {
+		
+		compdisp = new ArrayList<>();
+		combosdisp = new ArrayList<>();
+		carrito = new ArrayList<>();
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Facturar.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
 		setTitle("Facturar");
 		setBounds(100, 100, 563, 759);
@@ -139,19 +174,6 @@ public class Facturar extends JDialog {
 		lblCarritoCompra.setBounds(319, 183, 139, 14);
 		contentPanel.add(lblCarritoCompra);
 		
-		JList ListCompDisponibles = new JList();
-		ListCompDisponibles.setBounds(10, 389, 199, -179);
-		contentPanel.add(ListCompDisponibles);
-		
-		JPanel PanelCarritoCompra = new JPanel();
-		PanelCarritoCompra.setBackground(Color.LIGHT_GRAY);
-		PanelCarritoCompra.setBounds(319, 209, 199, 422);
-		contentPanel.add(PanelCarritoCompra);
-		
-		JList ListCarritoCompra = new JList();
-		ListCarritoCompra.setBounds(319, 630, 193, -420);
-		contentPanel.add(ListCarritoCompra);
-		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(30, 144, 255));
 		panel.setBounds(0, 0, 547, 685);
@@ -190,24 +212,18 @@ public class Facturar extends JDialog {
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JPanel PanelComponentesDisponibles = new JPanel();
-		PanelComponentesDisponibles.setForeground(new Color(255, 255, 255));
-		PanelComponentesDisponibles.setBounds(10, 43, 199, 183);
-		panel_2.add(PanelComponentesDisponibles);
-		PanelComponentesDisponibles.setBackground(Color.LIGHT_GRAY);
-		
 		JLabel lblComponentesDisp = new JLabel("Componentes Disponibles");
 		lblComponentesDisp.setBounds(10, 11, 199, 14);
 		panel_2.add(lblComponentesDisp);
 		lblComponentesDisp.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
-		JButton btnComponenteIzquierda = new JButton("<<");
+		btnComponenteIzquierda = new JButton("<<");
 		btnComponenteIzquierda.setBounds(219, 142, 79, 23);
 		panel_2.add(btnComponenteIzquierda);
 		btnComponenteIzquierda.setEnabled(false);
 		btnComponenteIzquierda.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		JButton btnComponentesDerecho = new JButton(">>");
+		btnComponentesDerecho = new JButton(">>");
 		btnComponentesDerecho.setBounds(219, 108, 79, 23);
 		panel_2.add(btnComponentesDerecho);
 		btnComponentesDerecho.setEnabled(false);
@@ -218,28 +234,56 @@ public class Facturar extends JDialog {
 		lblNewLabel_3.setBounds(10, 245, 199, 14);
 		panel_2.add(lblNewLabel_3);
 		
-		JPanel PanelCombo = new JPanel();
-		PanelCombo.setToolTipText("Combo Estudiante");
-		PanelCombo.setBackground(Color.LIGHT_GRAY);
-		PanelCombo.setBounds(10, 278, 199, 183);
-		panel_2.add(PanelCombo);
-		PanelCombo.setLayout(null);
-		
-		JList list = new JList();
-		list.setBounds(0, 191, 199, -190);
-		PanelCombo.add(list);
-		
-		JButton btnComboDerecha = new JButton(">>");
+		btnComboDerecha = new JButton(">>");
 		btnComboDerecha.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnComboDerecha.setEnabled(false);
 		btnComboDerecha.setBounds(219, 325, 79, 23);
 		panel_2.add(btnComboDerecha);
 		
-		JButton btnComboIzquierda = new JButton("<<");
+		btnComboIzquierda = new JButton("<<");
 		btnComboIzquierda.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnComboIzquierda.setEnabled(false);
 		btnComboIzquierda.setBounds(219, 359, 79, 23);
 		panel_2.add(btnComboIzquierda);
+		
+		JPanel PanelCompDisponibles = new JPanel();
+		PanelCompDisponibles.setBounds(10, 41, 188, 193);
+		panel_2.add(PanelCompDisponibles);
+		PanelCompDisponibles.setLayout(null);
+		
+		scrollPaneCompDisponibles = new JScrollPane();
+		scrollPaneCompDisponibles.setBounds(10, 231, 188, -188);
+		panel_2.add(scrollPaneCompDisponibles);
+		
+		ListCompDisponibles = new JList();
+		ListCompDisponibles.setBounds(10, 231, 188, -188);
+		panel_2.add(ListCompDisponibles);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(10, 270, 188, 191);
+		panel_2.add(panel_3);
+		panel_3.setLayout(null);
+		
+		scrollPaneCombos = new JScrollPane();
+		scrollPaneCombos.setBounds(0, 189, 188, -187);
+		panel_3.add(scrollPaneCombos);
+		
+		ListCombos = new JList();
+		ListCombos.setBounds(0, 189, 188, -187);
+		panel_3.add(ListCombos);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBounds(313, 41, 204, 420);
+		panel_2.add(panel_4);
+		panel_4.setLayout(null);
+		
+		scrollPaneCarrito = new JScrollPane();
+		scrollPaneCarrito.setBounds(0, 416, 204, -414);
+		panel_4.add(scrollPaneCarrito);
+		
+		ListCarrito = new JList();
+		ListCarrito.setBounds(0, 415, 204, -414);
+		panel_4.add(ListCarrito);
 		
 		textField = new JTextField();
 		textField.setBounds(367, 654, 158, 20);
