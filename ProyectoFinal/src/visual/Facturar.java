@@ -58,7 +58,7 @@ public class Facturar extends JDialog {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Facturar.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
 		setTitle("Facturar");
 		setBounds(100, 100, 551, 547);
-		getContentPane().setLayout(new BorderLayout());
+		getContentPane().setLayout(new BorderLayout()); 
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

@@ -52,29 +52,12 @@ public class AgregarRAM extends JDialog {
 	public AgregarRAM() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarRAM.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
 		setTitle("Memoria RAM");
-		setBounds(100, 100, 428, 324);
+		setBounds(100, 100, 428, 294);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		{
-			JLabel lblMarca = new JLabel("Marca:");
-			lblMarca.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblMarca.setBounds(30, 41, 57, 14);
-			contentPanel.add(lblMarca);
-		}
-		
-		txtMarca = new JTextField();
-		txtMarca.setBackground(new Color(255, 255, 255));
-		txtMarca.setBounds(239, 39, 136, 20);
-		contentPanel.add(txtMarca);
-		txtMarca.setColumns(10);
-		
-		txtNumSerie = new JTextField();
-		txtNumSerie.setBounds(239, 164, 136, 20);
-		contentPanel.add(txtNumSerie);
-		txtNumSerie.setColumns(10);
 		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(30, 144, 255));
@@ -89,56 +72,73 @@ public class AgregarRAM extends JDialog {
 			panel.setLayout(null);
 			{
 				JLabel lblCantidadMemoria = new JLabel("Cantidad de Memoria:");
-				lblCantidadMemoria.setBounds(29, 72, 199, 14);
+				lblCantidadMemoria.setBounds(29, 89, 199, 14);
 				panel.add(lblCantidadMemoria);
 				lblCantidadMemoria.setFont(new Font("Tahoma", Font.BOLD, 12));
 			}
 			{
 				spnCantMemoria = new JSpinner();
-				spnCantMemoria.setBounds(238, 70, 136, 20);
+				spnCantMemoria.setBounds(238, 87, 136, 20);
 				panel.add(spnCantMemoria);
 				spnCantMemoria.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 			}
 			{
 				JLabel lblTipoMemoria = new JLabel("Tipo de Memoria:");
-				lblTipoMemoria.setBounds(29, 103, 188, 14);
+				lblTipoMemoria.setBounds(29, 114, 188, 14);
 				panel.add(lblTipoMemoria);
 				lblTipoMemoria.setFont(new Font("Tahoma", Font.BOLD, 12));
 			}
 			
 			txtTipoMemoria = new JTextField();
-			txtTipoMemoria.setBounds(238, 101, 136, 20);
+			txtTipoMemoria.setBounds(238, 112, 136, 20);
 			panel.add(txtTipoMemoria);
 			txtTipoMemoria.setColumns(10);
 			{
 				JLabel lblPrecio = new JLabel("Precio:");
-				lblPrecio.setBounds(29, 134, 46, 14);
+				lblPrecio.setBounds(29, 139, 46, 14);
 				panel.add(lblPrecio);
 				lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 12));
 			}
 			
 			spnPrecio = new JSpinner();
-			spnPrecio.setBounds(238, 132, 136, 20);
+			spnPrecio.setBounds(238, 137, 136, 20);
 			panel.add(spnPrecio);
 			spnPrecio.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 			{
 				JLabel lblCantidad = new JLabel("Cantidad:");
 				lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 12));
-				lblCantidad.setBounds(29, 193, 102, 14);
+				lblCantidad.setBounds(29, 164, 102, 14);
 				panel.add(lblCantidad);
 			}
 			{
 				spnCantidad = new JSpinner();
 				spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-				spnCantidad.setBounds(239, 193, 135, 20);
+				spnCantidad.setBounds(238, 162, 135, 20);
 				panel.add(spnCantidad);
 			}
 			{
 				JLabel lblNumSerie = new JLabel("Numero de serie:");
-				lblNumSerie.setBounds(29, 159, 112, 14);
+				lblNumSerie.setBounds(29, 39, 112, 14);
 				panel.add(lblNumSerie);
 				lblNumSerie.setFont(new Font("Tahoma", Font.BOLD, 12));
 			}
+			
+			txtNumSerie = new JTextField();
+			txtNumSerie.setBounds(238, 37, 136, 20);
+			panel.add(txtNumSerie);
+			txtNumSerie.setColumns(10);
+			{
+				JLabel lblMarca = new JLabel("Marca:");
+				lblMarca.setBounds(29, 64, 57, 14);
+				panel.add(lblMarca);
+				lblMarca.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			
+			txtMarca = new JTextField();
+			txtMarca.setBounds(238, 62, 136, 20);
+			panel.add(txtMarca);
+			txtMarca.setBackground(new Color(255, 255, 255));
+			txtMarca.setColumns(10);
 		}
 		{
 			JPanel buttonPane = new JPanel();

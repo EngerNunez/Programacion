@@ -59,96 +59,97 @@ public class AgregarDiscoDuro extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblMarca = new JLabel("Marca:");
-			lblMarca.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblMarca.setBounds(30, 41, 57, 14);
-			contentPanel.add(lblMarca);
-		}
-		{
-			JLabel lblModelo = new JLabel("Modelo:");
-			lblModelo.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblModelo.setBounds(30, 66, 81, 14);
-			contentPanel.add(lblModelo);
-		}
-		{
-			JLabel lblCapacidadAlmacenamiento = new JLabel("Capacidad de almacenamiento:");
-			lblCapacidadAlmacenamiento.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblCapacidadAlmacenamiento.setBounds(30, 91, 199, 14);
-			contentPanel.add(lblCapacidadAlmacenamiento);
-		}
-		{
-			JLabel lblTipoDeConexion = new JLabel("Tipo de conexion:");
-			lblTipoDeConexion.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblTipoDeConexion.setBounds(30, 116, 188, 14);
-			contentPanel.add(lblTipoDeConexion);
-		}
-		{
-			JLabel lblPrecio = new JLabel("Precio:");
-			lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblPrecio.setBounds(30, 141, 46, 14);
-			contentPanel.add(lblPrecio);
-		}
-		{
-			JLabel lblNumSerie = new JLabel("Numero de serie:");
-			lblNumSerie.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblNumSerie.setBounds(30, 166, 112, 14);
-			contentPanel.add(lblNumSerie);
-		}
-		
-		txtMarca = new JTextField();
-		txtMarca.setBackground(new Color(255, 255, 255));
-		txtMarca.setBounds(239, 39, 136, 20);
-		contentPanel.add(txtMarca);
-		txtMarca.setColumns(10);
-		
-		txtModelo = new JTextField();
-		txtModelo.setBounds(239, 64, 136, 20);
-		contentPanel.add(txtModelo);
-		txtModelo.setColumns(10);
-		
-		txtTipoConexion = new JTextField();
-		txtTipoConexion.setBounds(239, 114, 136, 20);
-		contentPanel.add(txtTipoConexion);
-		txtTipoConexion.setColumns(10);
-		
-		txtNumSerie = new JTextField();
-		txtNumSerie.setBounds(239, 164, 136, 20);
-		contentPanel.add(txtNumSerie);
-		txtNumSerie.setColumns(10);
-		
-		spnPrecio = new JSpinner();
-		spnPrecio.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
-		spnPrecio.setBounds(239, 139, 136, 20);
-		contentPanel.add(spnPrecio);
-		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(30, 144, 255));
 			panel.setBounds(322, 263, 89, 41);
 			contentPanel.add(panel);
 		}
 		{
-			spnCapacidadAlmacenamiento = new JSpinner();
-			spnCapacidadAlmacenamiento.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
-			spnCapacidadAlmacenamiento.setBounds(239, 89, 136, 20);
-			contentPanel.add(spnCapacidadAlmacenamiento);
-		}
-		{
-			JLabel lblCantidad = new JLabel("Cantidad:");
-			lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblCantidad.setBounds(30, 191, 96, 14);
-			contentPanel.add(lblCantidad);
-		}
-		{
-			spnCantidad = new JSpinner();
-			spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-			spnCantidad.setBounds(239, 189, 136, 20);
-			contentPanel.add(spnCantidad);
-		}
-		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(30, 144, 255));
 			panel.setBounds(0, 0, 411, 255);
 			contentPanel.add(panel);
+			panel.setLayout(null);
+			{
+				JLabel lblNumSerie = new JLabel("Numero de serie:");
+				lblNumSerie.setBounds(28, 37, 112, 14);
+				panel.add(lblNumSerie);
+				lblNumSerie.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			
+			txtNumSerie = new JTextField();
+			txtNumSerie.setBounds(240, 35, 136, 20);
+			panel.add(txtNumSerie);
+			txtNumSerie.setColumns(10);
+			{
+				JLabel lblPrecio = new JLabel("Precio:");
+				lblPrecio.setBounds(28, 162, 46, 14);
+				panel.add(lblPrecio);
+				lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			
+			spnPrecio = new JSpinner();
+			spnPrecio.setBounds(240, 160, 136, 20);
+			panel.add(spnPrecio);
+			spnPrecio.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
+			{
+				JLabel lblTipoDeConexion = new JLabel("Tipo de conexion:");
+				lblTipoDeConexion.setBounds(28, 137, 188, 14);
+				panel.add(lblTipoDeConexion);
+				lblTipoDeConexion.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			
+			txtTipoConexion = new JTextField();
+			txtTipoConexion.setBounds(240, 135, 136, 20);
+			panel.add(txtTipoConexion);
+			txtTipoConexion.setColumns(10);
+			{
+				JLabel lblCapacidadAlmacenamiento = new JLabel("Capacidad de almacenamiento:");
+				lblCapacidadAlmacenamiento.setBounds(28, 112, 199, 14);
+				panel.add(lblCapacidadAlmacenamiento);
+				lblCapacidadAlmacenamiento.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			{
+				spnCapacidadAlmacenamiento = new JSpinner();
+				spnCapacidadAlmacenamiento.setBounds(240, 110, 136, 20);
+				panel.add(spnCapacidadAlmacenamiento);
+				spnCapacidadAlmacenamiento.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
+			}
+			{
+				JLabel lblModelo = new JLabel("Modelo:");
+				lblModelo.setBounds(28, 87, 81, 14);
+				panel.add(lblModelo);
+				lblModelo.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			
+			txtModelo = new JTextField();
+			txtModelo.setBounds(240, 85, 136, 20);
+			panel.add(txtModelo);
+			txtModelo.setColumns(10);
+			{
+				JLabel lblCantidad = new JLabel("Cantidad:");
+				lblCantidad.setBounds(28, 187, 96, 14);
+				panel.add(lblCantidad);
+				lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			{
+				JLabel lblMarca = new JLabel("Marca:");
+				lblMarca.setBounds(28, 62, 57, 14);
+				panel.add(lblMarca);
+				lblMarca.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			
+			txtMarca = new JTextField();
+			txtMarca.setBounds(240, 60, 136, 20);
+			panel.add(txtMarca);
+			txtMarca.setBackground(new Color(255, 255, 255));
+			txtMarca.setColumns(10);
+			{
+				spnCantidad = new JSpinner();
+				spnCantidad.setBounds(240, 185, 136, 20);
+				panel.add(spnCantidad);
+				spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+			}
 		}
 		{
 			JPanel buttonPane = new JPanel();

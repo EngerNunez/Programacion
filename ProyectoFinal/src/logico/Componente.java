@@ -34,6 +34,7 @@ public abstract class Componente {
 		this.precio = precio;
 	}
 	public char getDisponibilidad() {
+		
 		return disponibilidad;
 	}
 	public void setDisponibilidad(char disponibilidad) {

@@ -98,9 +98,17 @@ public class ListadoComponente extends JDialog {
 
 		cbxTipos = new JComboBox();
 		cbxTipos.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cbxTipos.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				loadComponentes(cbxTipos.getSelectedIndex());
+			}
+		});
+		
 		
 		cbxTipos.setModel(new DefaultComboBoxModel(
-				new String[] { "<Todos>", "Tarjeta Madre", "Memoria RAM", "Disco Duro", "Microprocesador" }));
+				new String[] { "<Todos>", "Tarjeta Madre", "Memoria RAM", "Disco Duro", "CPU" }));
 		cbxTipos.setBounds(183, 24, 158, 25);
 		panel_1.add(cbxTipos);
 
@@ -155,7 +163,7 @@ public class ListadoComponente extends JDialog {
 						rows[5] = "Disco Duro";
 					}
 					if (aux instanceof Microprocesador) {
-						rows[5] = "Microprocesador";
+						rows[5] = "CPU";
 					}
 					if (aux instanceof MemoriaRAM) {
 						rows[5] = "Memoria RAM";

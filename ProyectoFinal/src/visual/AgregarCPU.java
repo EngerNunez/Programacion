@@ -57,75 +57,6 @@ public class AgregarCPU extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblMarca = new JLabel("Marca:");
-			lblMarca.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblMarca.setBounds(30, 41, 57, 14);
-			contentPanel.add(lblMarca);
-		}
-		{
-			JLabel lblModelo = new JLabel("Modelo:");
-			lblModelo.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblModelo.setBounds(30, 66, 81, 14);
-			contentPanel.add(lblModelo);
-		}
-		{
-			JLabel lblVelocidadProcesamiento = new JLabel("Velocidad de procesamiento:");
-			lblVelocidadProcesamiento.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblVelocidadProcesamiento.setBounds(30, 91, 199, 14);
-			contentPanel.add(lblVelocidadProcesamiento);
-		}
-		{
-			JLabel lblTipoConexion = new JLabel("Tipo de conexion");
-			lblTipoConexion.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblTipoConexion.setBounds(30, 116, 188, 14);
-			contentPanel.add(lblTipoConexion);
-		}
-		{
-			JLabel lblPrecio = new JLabel("Precio:");
-			lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblPrecio.setBounds(30, 141, 46, 14);
-			contentPanel.add(lblPrecio);
-		}
-		{
-			JLabel lblNumSerie = new JLabel("Numero de serie:");
-			lblNumSerie.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblNumSerie.setBounds(30, 166, 112, 14);
-			contentPanel.add(lblNumSerie);
-		}
-		
-		txtMarca = new JTextField();
-		txtMarca.setBackground(new Color(255, 255, 255));
-		txtMarca.setBounds(239, 39, 136, 20);
-		contentPanel.add(txtMarca);
-		txtMarca.setColumns(10);
-		
-		txtModelo = new JTextField();
-		txtModelo.setBounds(239, 64, 136, 20);
-		contentPanel.add(txtModelo);
-		txtModelo.setColumns(10);
-		
-		txtTipoConexion = new JTextField();
-		txtTipoConexion.setBounds(239, 114, 136, 20);
-		contentPanel.add(txtTipoConexion);
-		txtTipoConexion.setColumns(10);
-		
-		txtNumSerie = new JTextField();
-		txtNumSerie.setBounds(239, 164, 136, 20);
-		contentPanel.add(txtNumSerie);
-		txtNumSerie.setColumns(10);
-		
-		spnPrecio = new JSpinner();
-		spnPrecio.setToolTipText("");
-		spnPrecio.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
-		spnPrecio.setBounds(239, 139, 136, 20);
-		contentPanel.add(spnPrecio);
-		{
-			spnVelocidadProcesamiento = new JSpinner();
-			spnVelocidadProcesamiento.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
-			spnVelocidadProcesamiento.setBounds(239, 89, 136, 20);
-			contentPanel.add(spnVelocidadProcesamiento);
-		}
-		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(30, 144, 255));
 			panel.setBounds(0, 0, 413, 264);
@@ -134,13 +65,82 @@ public class AgregarCPU extends JDialog {
 			
 			JLabel lblCantidad = new JLabel("Cantidad:");
 			lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblCantidad.setBounds(28, 193, 103, 14);
+			lblCantidad.setBounds(28, 189, 103, 14);
 			panel.add(lblCantidad);
 			
 			spnCantidad = new JSpinner();
 			spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-			spnCantidad.setBounds(239, 191, 138, 20);
+			spnCantidad.setBounds(239, 189, 136, 20);
 			panel.add(spnCantidad);
+			{
+				JLabel lblNumSerie = new JLabel("Numero de serie:");
+				lblNumSerie.setBounds(28, 35, 112, 14);
+				panel.add(lblNumSerie);
+				lblNumSerie.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			{
+				JLabel lblMarca = new JLabel("Marca:");
+				lblMarca.setBounds(28, 60, 57, 14);
+				panel.add(lblMarca);
+				lblMarca.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			{
+				JLabel lblPrecio = new JLabel("Precio:");
+				lblPrecio.setBounds(27, 162, 46, 14);
+				panel.add(lblPrecio);
+				lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			
+			txtNumSerie = new JTextField();
+			txtNumSerie.setBounds(239, 33, 136, 20);
+			panel.add(txtNumSerie);
+			txtNumSerie.setColumns(10);
+			{
+				JLabel lblTipoConexion = new JLabel("Tipo de conexion:");
+				lblTipoConexion.setBounds(28, 135, 188, 14);
+				panel.add(lblTipoConexion);
+				lblTipoConexion.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			{
+				JLabel lblVelocidadProcesamiento = new JLabel("Velocidad de procesamiento:");
+				lblVelocidadProcesamiento.setBounds(28, 110, 199, 14);
+				panel.add(lblVelocidadProcesamiento);
+				lblVelocidadProcesamiento.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			{
+				JLabel lblModelo = new JLabel("Modelo:");
+				lblModelo.setBounds(28, 85, 81, 14);
+				panel.add(lblModelo);
+				lblModelo.setFont(new Font("Tahoma", Font.BOLD, 12));
+			}
+			
+			spnPrecio = new JSpinner();
+			spnPrecio.setBounds(239, 160, 136, 20);
+			panel.add(spnPrecio);
+			spnPrecio.setToolTipText("");
+			spnPrecio.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
+			
+			txtTipoConexion = new JTextField();
+			txtTipoConexion.setBounds(239, 133, 136, 20);
+			panel.add(txtTipoConexion);
+			txtTipoConexion.setColumns(10);
+			{
+				spnVelocidadProcesamiento = new JSpinner();
+				spnVelocidadProcesamiento.setBounds(239, 108, 136, 20);
+				panel.add(spnVelocidadProcesamiento);
+				spnVelocidadProcesamiento.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
+			}
+			
+			txtModelo = new JTextField();
+			txtModelo.setBounds(239, 83, 136, 20);
+			panel.add(txtModelo);
+			txtModelo.setColumns(10);
+			
+			txtMarca = new JTextField();
+			txtMarca.setBounds(239, 58, 136, 20);
+			panel.add(txtMarca);
+			txtMarca.setBackground(new Color(255, 255, 255));
+			txtMarca.setColumns(10);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -169,6 +169,8 @@ public class AgregarCPU extends JDialog {
 						TiendaElite.getInstance().insertarComponente(aux);
 						
 						JOptionPane.showMessageDialog(null, "CPU agregado", "Informacion",JOptionPane.INFORMATION_MESSAGE);
+						
+						clean();
 
 						
 					}
@@ -201,8 +203,7 @@ public class AgregarCPU extends JDialog {
 		txtNumSerie.setText("");
 		spnPrecio.setValue(new Float(0.0));
 		spnVelocidadProcesamiento.setValue(new Float(0.0));
-		spnCantidad.setValue(new Integer(1));
-		
-		
+		spnCantidad.setValue(new Integer(1));	
 	}
+	
 }
