@@ -102,7 +102,9 @@ public class Reabastecer extends JDialog {
 				Componente compo = TiendaElite.getInstance().buscarComponenteBySerial(txtnumeroSerie.getText());
 				if(compo !=  null) {
 					txtmarca.setText(compo.getMarca());
-					spnAgregarCantidad.enable();
+					spnAgregarCantidad.setEnabled(true);
+					
+					
 				}else {
 					 JOptionPane.showMessageDialog(null,"Debe ingresar un numero serial correcto o ingrese un nuevo componente", "ERORR", JOptionPane.ERROR_MESSAGE);
 				}

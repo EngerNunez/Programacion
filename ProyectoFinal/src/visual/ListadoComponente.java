@@ -37,8 +37,7 @@ public class ListadoComponente extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JScrollPane scrollPane;
 	private DefaultTableModel model;
-	private JComboBox cbxTarjetaMadre;
-	private JComboBox cbxEstado;
+	private JComboBox cbxTipos;
 	private JTable table;
 	private Object rows[];
 	private Componente selected = null;
@@ -75,20 +74,11 @@ public class ListadoComponente extends JDialog {
 		panel.setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int index = table.getSelectedRow();
-				if(index >= 0) {
-					String codigo = table.getValueAt(index, 0).toString();
-					selected = TiendaElite.getInstance().buscarComponenteBySerial(codigo);
-				}
-			}
-		});
+		
 		scrollPane.setBounds(0, 0, 626, 236);
 		panel.add(scrollPane,BorderLayout.CENTER);
 		{
-			String[] headers = {"Numero de Serie","Marca","Precio","Disponibilidad"};
+			String[] headers = {"Numero de Serie","Marca","Precio","Disponibilidad", "Tipo"};
 			
 			table = new JTable();
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -106,28 +96,18 @@ public class ListadoComponente extends JDialog {
 		contentPanel.add(panel_1);
 		panel_1.setLayout(null);
 
-		JLabel lblNewLabel_1 = new JLabel("Estado:\r\n");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel_1.setBounds(355, 17, 79, 36);
-		panel_1.add(lblNewLabel_1);
-
-		cbxTarjetaMadre = new JComboBox();
-		cbxTarjetaMadre.setFont(new Font("Tahoma", Font.BOLD, 11));
-		cbxTarjetaMadre.setModel(new DefaultComboBoxModel(
+		cbxTipos = new JComboBox();
+		cbxTipos.setFont(new Font("Tahoma", Font.BOLD, 11));
+		
+		cbxTipos.setModel(new DefaultComboBoxModel(
 				new String[] { "<Todos>", "Tarjeta Madre", "Memoria RAM", "Disco Duro", "Microprocesador" }));
-		cbxTarjetaMadre.setBounds(92, 24, 158, 25);
-		panel_1.add(cbxTarjetaMadre);
+		cbxTipos.setBounds(183, 24, 158, 25);
+		panel_1.add(cbxTipos);
 
-		JLabel lblTipo = new JLabel("Tipo:\r\n");
+		JLabel lblTipo = new JLabel("Tipo de componente:");
 		lblTipo.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblTipo.setBounds(35, 17, 47, 36);
+		lblTipo.setBounds(35, 17, 151, 36);
 		panel_1.add(lblTipo);
-		//prueba
-		cbxEstado = new JComboBox();
-		cbxEstado.setFont(new Font("Tahoma", Font.BOLD, 11));
-		cbxEstado.setModel(new DefaultComboBoxModel(new String[] { "<Todos>", "Disponible", "Critico" }));
-		cbxEstado.setBounds(431, 24, 158, 25);
-		panel_1.add(cbxEstado);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(255, 255, 224));
@@ -139,14 +119,6 @@ public class ListadoComponente extends JDialog {
 			btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			btnEliminar.setActionCommand("OK");
 			buttonPane.add(btnEliminar);
-			{
-				JButton okButton = new JButton("Modificar\r\n");
-				okButton.setBackground(new Color(255, 255, 224));
-				okButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.setBackground(new Color(255, 255, 224));
@@ -169,9 +141,10 @@ public class ListadoComponente extends JDialog {
 		if (index == 0) {
 			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
 				
+				if (aux.getDisponibilidad() == 'D') {
 					rows[0] = aux.getNumeroSerie();
 					rows[1] = aux.getMarca();
-					rows[2] = aux.getPrecio();
+					rows[2] = "$" + aux.getPrecio();
 					rows[3] = aux.getDisponibilidad();
 					if (aux instanceof TarjetaMadre) {
 						rows[4] = "Tarjeta Madre";
@@ -185,6 +158,9 @@ public class ListadoComponente extends JDialog {
 					if (aux instanceof MemoriaRAM) {
 						rows[4] = "Memoria RAM";
 					}
+					model.addRow(rows);
+					
+				}
 			}
 		}
 		if (index == 1) {
@@ -192,17 +168,12 @@ public class ListadoComponente extends JDialog {
 				if (aux instanceof TarjetaMadre && aux.getDisponibilidad() == 'D') {
 					rows[0] = aux.getNumeroSerie();
 					rows[1] = aux.getMarca();
-					rows[2] = aux.getPrecio();
+					rows[2] = "$" + aux.getPrecio();
 					rows[3] = aux.getDisponibilidad();
+					rows[4] = "Tarjeta Madre";
 					model.addRow(rows);
 				}
-				if (aux instanceof TarjetaMadre && aux.getDisponibilidad() == 'C') {
-					rows[0] = aux.getNumeroSerie();
-					rows[1] = aux.getMarca();
-					rows[2] = aux.getPrecio();
-					rows[3] = aux.getDisponibilidad();
-					model.addRow(rows);
-				}
+				
 			}
 		}
 		if (index == 2) {
@@ -210,17 +181,12 @@ public class ListadoComponente extends JDialog {
 				if (aux instanceof MemoriaRAM && aux.getDisponibilidad() == 'D') {
 					rows[0] = aux.getNumeroSerie();
 					rows[1] = aux.getMarca();
-					rows[2] = aux.getPrecio();
+					rows[2] = "$" + aux.getPrecio();
 					rows[3] = aux.getDisponibilidad();
+					rows[4] = "Memoria RAM";
 					model.addRow(rows);
 				}
-				if (aux instanceof MemoriaRAM && aux.getDisponibilidad() == 'C') {
-					rows[0] = aux.getNumeroSerie();
-					rows[1] = aux.getMarca();
-					rows[2] = aux.getPrecio();
-					rows[3] = aux.getDisponibilidad();
-					model.addRow(rows);
-				}
+				
 			}
 		}
 		if (index == 3) {
@@ -228,17 +194,12 @@ public class ListadoComponente extends JDialog {
 				if (aux instanceof DiscoDuro && aux.getDisponibilidad() == 'D') {
 					rows[0] = aux.getNumeroSerie();
 					rows[1] = aux.getMarca();
-					rows[2] = aux.getPrecio();
+					rows[2] = "$" + aux.getPrecio();
 					rows[3] = aux.getDisponibilidad();
+					rows[4] = "Disco Duro";
 					model.addRow(rows);
 				}
-				if (aux instanceof DiscoDuro && aux.getDisponibilidad() == 'C') {
-					rows[0] = aux.getNumeroSerie();
-					rows[1] = aux.getMarca();
-					rows[2] = aux.getPrecio();
-					rows[3] = aux.getDisponibilidad();
-					model.addRow(rows);
-				}
+				
 			}
 		}
 		if (index == 4) {
@@ -246,17 +207,12 @@ public class ListadoComponente extends JDialog {
 				if (aux instanceof Microprocesador && aux.getDisponibilidad() == 'D') {
 					rows[0] = aux.getNumeroSerie();
 					rows[1] = aux.getMarca();
-					rows[2] = aux.getPrecio();
+					rows[2] = "$" + aux.getPrecio();
 					rows[3] = aux.getDisponibilidad();
+					rows[4] = "CPU";
 					model.addRow(rows);
 				}
-				if (aux instanceof Microprocesador && aux.getDisponibilidad() == 'C') {
-					rows[0] = aux.getNumeroSerie();
-					rows[1] = aux.getMarca();
-					rows[2] = aux.getPrecio();
-					rows[3] = aux.getDisponibilidad();
-					model.addRow(rows);
-				}
+				
 			}
 		}
 	}

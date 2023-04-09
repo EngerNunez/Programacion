@@ -12,9 +12,14 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+
+import logico.Componente;
+import logico.Microprocesador;
+import logico.TiendaElite;
 
 public class AgregarCPU extends JDialog {
 
@@ -23,6 +28,9 @@ public class AgregarCPU extends JDialog {
 	private JTextField txtModelo;
 	private JTextField txtTipoConexion;
 	private JTextField txtNumSerie;
+	private JSpinner spnPrecio;
+	private JSpinner spnVelocidadProcesamiento;
+	private JSpinner spnCantidad;
 
 	/**
 	 * Launch the application.
@@ -42,7 +50,7 @@ public class AgregarCPU extends JDialog {
 	 */
 	public AgregarCPU() {
 		setTitle("CPU");
-		setBounds(100, 100, 428, 306);
+		setBounds(100, 100, 429, 324);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
@@ -106,19 +114,13 @@ public class AgregarCPU extends JDialog {
 		contentPanel.add(txtNumSerie);
 		txtNumSerie.setColumns(10);
 		
-		JSpinner spnPrecio = new JSpinner();
+		spnPrecio = new JSpinner();
 		spnPrecio.setToolTipText("");
 		spnPrecio.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 		spnPrecio.setBounds(239, 139, 136, 20);
 		contentPanel.add(spnPrecio);
 		{
-			JPanel panel = new JPanel();
-			panel.setBackground(new Color(30, 144, 255));
-			panel.setBounds(322, 263, 89, 41);
-			contentPanel.add(panel);
-		}
-		{
-			JSpinner spnVelocidadProcesamiento = new JSpinner();
+			spnVelocidadProcesamiento = new JSpinner();
 			spnVelocidadProcesamiento.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 			spnVelocidadProcesamiento.setBounds(239, 89, 136, 20);
 			contentPanel.add(spnVelocidadProcesamiento);
@@ -126,8 +128,19 @@ public class AgregarCPU extends JDialog {
 		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(30, 144, 255));
-			panel.setBounds(0, 0, 425, 232);
+			panel.setBounds(0, 0, 413, 264);
 			contentPanel.add(panel);
+			panel.setLayout(null);
+			
+			JLabel lblCantidad = new JLabel("Cantidad:");
+			lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 12));
+			lblCantidad.setBounds(28, 193, 103, 14);
+			panel.add(lblCantidad);
+			
+			spnCantidad = new JSpinner();
+			spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+			spnCantidad.setBounds(239, 191, 138, 20);
+			panel.add(spnCantidad);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -141,6 +154,22 @@ public class AgregarCPU extends JDialog {
 				okButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
+						Componente aux = null;
+						String marca = txtMarca.getText();
+						String modelo = txtModelo.getText();
+						String tipoconexion = txtTipoConexion.getText();
+						String numserie = txtNumSerie.getText();
+						float precio = Float.valueOf(spnPrecio.getValue().toString());
+						float velocidadprocesamiento = Float.valueOf(spnVelocidadProcesamiento.getValue().toString());
+						int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
+						
+						aux = new Microprocesador(marca,numserie,precio,cantidad,modelo,tipoconexion,velocidadprocesamiento);
+						
+						TiendaElite.getInstance().insertarComponente(aux);
+						
+						JOptionPane.showMessageDialog(null, "CPU agregado", "Informacion",JOptionPane.INFORMATION_MESSAGE);
+
 						
 					}
 				});
@@ -162,5 +191,18 @@ public class AgregarCPU extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	
+	private void clean()
+	{
+		txtMarca.setText("");
+		txtModelo.setText("");
+		txtTipoConexion.setText("");
+		txtNumSerie.setText("");
+		spnPrecio.setValue(new Float(0.0));
+		spnVelocidadProcesamiento.setValue(new Float(0.0));
+		spnCantidad.setValue(new Integer(1));
+		
+		
 	}
 }

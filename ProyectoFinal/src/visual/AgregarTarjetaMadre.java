@@ -33,7 +33,7 @@ public class AgregarTarjetaMadre extends JDialog {
 	private JTextField txtNumSerie;
 	private JSpinner spnPrecio;
 	private JTextField txtTipoMemoria;
-	private JSpinner spnCantiadad;
+	private JSpinner spnCantidad;
 
 	/**
 	 * Launch the application.
@@ -151,10 +151,10 @@ public class AgregarTarjetaMadre extends JDialog {
 			lblCantidad.setBounds(30, 218, 89, 14);
 			panel.add(lblCantidad);
 
-			spnCantiadad = new JSpinner();
-			spnCantiadad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-			spnCantiadad.setBounds(239, 216, 136, 20);
-			panel.add(spnCantiadad);
+			spnCantidad = new JSpinner();
+			spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+			spnCantidad.setBounds(239, 216, 136, 20);
+			panel.add(spnCantidad);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -169,14 +169,24 @@ public class AgregarTarjetaMadre extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						Componente componente = new TarjetaMadre(txtMarca.getText(), txtNumSerie.getText(),
-								Float.valueOf(spnPrecio.getValue().toString()),
-								Integer.valueOf(spnCantiadad.getValue().toString()), txtModelo.getText(),
-								txtTipoConector.getText(), txtTipoMemoria.getText(), txtTipoDiscoCompatible.getText());
-						TiendaElite.getInstance().insertarComponente(componente);
-						JOptionPane.showMessageDialog(null, "Exito! se registro correctamente",
-								"Tarjeta Madre Agregada", JOptionPane.INFORMATION_MESSAGE);
+						Componente aux = null;
+						String marca = txtMarca.getText();
+						String modelo = txtModelo.getText();
+						String tipoconector = txtTipoConector.getText();
+						String tipomemoria = txtTipoMemoria.getText();
+						String TipoDiscoCompatible = txtTipoDiscoCompatible.getText();
+						String numserie = txtNumSerie.getText();
+						float precio = Float.valueOf(spnPrecio.getValue().toString());
+						int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
+						
+						aux = new TarjetaMadre(marca,numserie,precio,cantidad,modelo,tipoconector,tipomemoria,TipoDiscoCompatible);
 
+						TiendaElite.getInstance().insertarComponente(aux);
+						
+						JOptionPane.showMessageDialog(null, "Tarjeta Madre agregada", "Informacion",JOptionPane.INFORMATION_MESSAGE);
+
+						clean();
+						
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -197,5 +207,18 @@ public class AgregarTarjetaMadre extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	
+	private void clean()
+	{
+		txtMarca.setText("");
+		txtModelo.setText("");
+		txtTipoConector.setText("");
+		txtTipoMemoria.setText("");
+		txtTipoDiscoCompatible.setText("");
+		txtNumSerie.setText("");
+		spnPrecio.setValue(new Float(0.0));
+		spnCantidad.setValue(new Integer(1));
+		
 	}
 }

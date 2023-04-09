@@ -87,6 +87,14 @@ public class Principal extends JFrame {
 		});
 		
 		JMenuItem mntmReabastecerComponente = mnComponentes.add(action_7);
+		mntmReabastecerComponente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Reabastecer reabastecer = new Reabastecer();
+				reabastecer.setModal(true);
+				reabastecer.setVisible(true);
+			}
+		});
 		mntmReabastecerComponente.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmReabastecerComponente.setText("Reabastecer Componente");
 		

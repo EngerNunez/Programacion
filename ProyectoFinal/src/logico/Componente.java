@@ -12,6 +12,7 @@ public abstract class Componente {
 		this.numeroSerie = numeroSerie;
 		this.precio = precio;
 		this.cantidad = cantidad;
+		this.disponibilidad = 'D';
 	}
 	public String getMarca() {
 		return marca;
@@ -40,12 +41,11 @@ public abstract class Componente {
 	public int getCantidad() {
 		return cantidad;
 	}
+	
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 		if(cantidad <= 3) {
 			setDisponibilidad('C');
-		}else {
-			setDisponibilidad('D');
 		}
 	}
 	

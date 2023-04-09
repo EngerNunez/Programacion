@@ -31,6 +31,7 @@ public class AgregarDiscoDuro extends JDialog {
 	private JTextField txtNumSerie;
 	private JSpinner spnPrecio;
 	private JSpinner spnCapacidadAlmacenamiento;
+	private JSpinner spnCantidad;
 
 	/**
 	 * Launch the application.
@@ -51,7 +52,7 @@ public class AgregarDiscoDuro extends JDialog {
 	public AgregarDiscoDuro() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarDiscoDuro.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
 		setTitle("Disco Duro");
-		setBounds(100, 100, 428, 306);
+		setBounds(100, 100, 428, 329);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
@@ -132,9 +133,21 @@ public class AgregarDiscoDuro extends JDialog {
 			contentPanel.add(spnCapacidadAlmacenamiento);
 		}
 		{
+			JLabel lblCantidad = new JLabel("Cantidad:");
+			lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 12));
+			lblCantidad.setBounds(30, 191, 96, 14);
+			contentPanel.add(lblCantidad);
+		}
+		{
+			spnCantidad = new JSpinner();
+			spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+			spnCantidad.setBounds(239, 189, 136, 20);
+			contentPanel.add(spnCantidad);
+		}
+		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(30, 144, 255));
-			panel.setBounds(0, 0, 428, 232);
+			panel.setBounds(0, 0, 411, 255);
 			contentPanel.add(panel);
 		}
 		{
@@ -157,8 +170,9 @@ public class AgregarDiscoDuro extends JDialog {
 						String serie = txtNumSerie.getText();
 						float precio = Float.valueOf(spnPrecio.getValue().toString());
 						float almacenamiento =  Float.valueOf(spnCapacidadAlmacenamiento.getValue().toString());
+						int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 						
-						aux = new DiscoDuro(marca,serie,precio,0,modelo,almacenamiento,tipoconexion);
+						aux = new DiscoDuro(marca,serie,precio,cantidad,modelo,almacenamiento,tipoconexion);
 
 						TiendaElite.getInstance().insertarComponente(aux);
 						
@@ -197,5 +211,6 @@ public class AgregarDiscoDuro extends JDialog {
 		txtNumSerie.setText("");
 		spnPrecio.setValue(new Float(0.0));
 		spnCapacidadAlmacenamiento.setValue(new Float(0.0));
+		spnCantidad.setValue(new Integer(1));
 	}
 }
