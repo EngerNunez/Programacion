@@ -30,6 +30,8 @@ import logico.DiscoDuro;
 import logico.Microprocesador;
 import logico.TarjetaMadre;
 import javax.swing.JScrollPane;
+import javax.swing.AbstractListModel;
+
 
 public class Facturar extends JDialog {
 
@@ -234,7 +236,30 @@ public class Facturar extends JDialog {
 		lblNewLabel_3.setBounds(10, 245, 199, 14);
 		panel_2.add(lblNewLabel_3);
 		
+
 		btnComboDerecha = new JButton(">>");
+		JPanel PanelCombo = new JPanel();
+		PanelCombo.setToolTipText("");
+		PanelCombo.setBackground(Color.LIGHT_GRAY);
+		PanelCombo.setBounds(10, 278, 199, 183);
+		panel_2.add(PanelCombo);
+		PanelCombo.setLayout(null);
+		
+		JList list = new JList();
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] {};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		
+		list.setBounds(0, 191, 199, -190);
+		PanelCombo.add(list);
+		
+		JButton btnComboDerecha = new JButton(">>");
 		btnComboDerecha.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnComboDerecha.setEnabled(false);
 		btnComboDerecha.setBounds(219, 325, 79, 23);
