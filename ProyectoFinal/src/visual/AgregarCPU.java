@@ -155,6 +155,8 @@ public class AgregarCPU extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
+						
+						
 						Componente aux = null;
 						String marca = txtMarca.getText();
 						String modelo = txtModelo.getText();
@@ -172,6 +174,15 @@ public class AgregarCPU extends JDialog {
 						
 						clean();
 
+						if(TiendaElite.getInstance().serialExiste(numserie)) {
+							JOptionPane.showMessageDialog(null, "Este numero de serie ya esta en uso!", "Error",JOptionPane.ERROR_MESSAGE);
+							clean();
+						}else {
+							aux = new Microprocesador(marca,numserie,precio,cantidad,modelo,tipoconexion,velocidadprocesamiento);
+							TiendaElite.getInstance().insertarComponente(aux);
+							JOptionPane.showMessageDialog(null, "CPU agregado", "Informacion",JOptionPane.INFORMATION_MESSAGE);
+							clean();
+						}
 						
 					}
 				});

@@ -173,14 +173,19 @@ public class AgregarDiscoDuro extends JDialog {
 						float almacenamiento =  Float.valueOf(spnCapacidadAlmacenamiento.getValue().toString());
 						int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 						
-						aux = new DiscoDuro(marca,serie,precio,cantidad,modelo,almacenamiento,tipoconexion);
+						if(TiendaElite.getInstance().serialExiste(serie)) {
+							JOptionPane.showMessageDialog(null, "Este numero de serie ya esta en uso!", "Error",JOptionPane.ERROR_MESSAGE);
+							clean();
+						}else {
 						
-						TiendaElite.getInstance().insertarComponente(aux);
-				
-						JOptionPane.showMessageDialog(null, "Disco Disco agregado", "Informacion",JOptionPane.INFORMATION_MESSAGE);
-						
-						clean();
-						
+							aux = new DiscoDuro(marca,serie,precio,cantidad,modelo,almacenamiento,tipoconexion);
+							
+							TiendaElite.getInstance().insertarComponente(aux);
+					
+							JOptionPane.showMessageDialog(null, "Disco Disco agregado", "Informacion",JOptionPane.INFORMATION_MESSAGE);
+							
+							clean();
+						}
 					}
 				});
 				okButton.setActionCommand("OK");

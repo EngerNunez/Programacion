@@ -117,6 +117,12 @@ public class AgregarComponente extends JDialog {
 		panel.setBackground(new Color(30, 144, 255));
 		panel.setBounds(0, 0, 603, 415);
 		contentPanel.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("\r\n");
+		lblNewLabel.setIcon(new ImageIcon(AgregarComponente.class.getResource("/imagenes/8.png")));
+		lblNewLabel.setBounds(0, 160, 603, 255);
+		panel.add(lblNewLabel);
 		btnDiscoDuro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
