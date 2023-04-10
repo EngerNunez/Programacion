@@ -93,7 +93,7 @@ public class Factura {
 		int cant = 0;
 		for(Componente aux: misComponentes) {
 			if(aux instanceof TarjetaMadre)
-				cant++;
+				cant++; 
 		}
 		return cant;
 	}
@@ -125,16 +125,18 @@ public class Factura {
 		return cant;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public int ComponentesVendidos()
+	{
+		int cant = 0;
+		
+		for(Componente aux : misComponentes)
+		{
+			if(aux instanceof Componente)
+			{
+				cant++;
+			}
+		}
+		return cant;
+	}	
 
 }

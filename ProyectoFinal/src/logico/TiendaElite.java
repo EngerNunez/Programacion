@@ -144,27 +144,40 @@ public class TiendaElite {
 	}
 	
 	public Cliente buscarClienteByCedula(String cedula) {
-		Cliente aux = null;
-		boolean encontrado = false;
-		for (Cliente cliente : misClientes) {
-			if (cliente.getCedula().equalsIgnoreCase(cedula)) {
+		Cliente cliente = null;
+		
+		for (Cliente aux : misClientes) {
+			if (aux.getCedula().equalsIgnoreCase(cedula)) {
 				cliente = aux;
-				encontrado = true;
+			
 			}
 		}
-		return aux;
+		return cliente;
 	}
 	
+	public Factura buscarFacturaBycodigo(String codigo) {
+		Factura factura = null;
+
+		for (Factura aux : misFacturas) {
+			if (aux.getCodigo().equalsIgnoreCase(codigo)) {
+				factura = aux;
+			}
+		}
+		return factura;
+
+	}
+
+	
 	public Componente buscarComponenteBySerial(String codigo) {
-		Componente aux = null;
-		boolean encontrado = false;
-		for(Componente componente: misComponentes) {
-			if(componente.getNumeroSerie().equalsIgnoreCase(codigo)) {
-				encontrado = true;
+		Componente componente = null;
+		
+		for(Componente aux: misComponentes) {
+			if(aux.getNumeroSerie().equalsIgnoreCase(codigo)) {
+				
 			    componente = aux;
 			}
 		}
-		return aux;
+		return componente;
 	}
 	
 	public int buscarComponenteIndexBySerial(String codigo)

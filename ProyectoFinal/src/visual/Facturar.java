@@ -390,12 +390,12 @@ public class Facturar extends JDialog {
 						
 						for(int i = 0; i < carrito.size(); i++)
 						{
-							String codcomponente = carrito.get(i).substring(0,carrito.get(i).indexOf(" ")+6);
+							String codcomponente = carrito.get(i).substring(0,carrito.get(i).indexOf(" "));
 							
 							Componente componente = TiendaElite.getInstance().buscarComponenteBySerial(codcomponente);
 							
-							//int posicion = TiendaElite.getInstance().buscarComponenteIndexBySerial(componente.getNumeroSerie());
-							//compcarrito.add(TiendaElite.getInstance().getMisComponentes().remove(posicion));
+							int posicion = TiendaElite.getInstance().buscarComponenteIndexBySerial(componente.getNumeroSerie());
+							compcarrito.add(TiendaElite.getInstance().getMisComponentes().remove(posicion));
 						}
 						
 						Factura factura = new Factura(txtCodigo.getText(), compcarrito, cliente);

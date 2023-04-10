@@ -31,6 +31,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class ListadoComponente extends JDialog {
 
@@ -59,7 +60,8 @@ public class ListadoComponente extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListadoComponente() {
-		setTitle("Lista de componente\r\n");
+		setTitle("Lista de componente");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListadoComponente.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
 		setBounds(100, 100, 667, 422);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(30, 144, 255));
@@ -121,12 +123,6 @@ public class ListadoComponente extends JDialog {
 			buttonPane.setBackground(new Color(255, 255, 224));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-
-			JButton btnEliminar = new JButton("Eliminar\r\n");
-			btnEliminar.setBackground(new Color(255, 255, 224));
-			btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 13));
-			btnEliminar.setActionCommand("OK");
-			buttonPane.add(btnEliminar);
 			{
 				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.setBackground(new Color(255, 255, 224));
@@ -150,7 +146,7 @@ public class ListadoComponente extends JDialog {
 			
 			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
 				
-				for(int i = 0; i < aux.getCantidad(); i++)
+				for(int i = 0; i < aux.getCantidad(); i++) 
 				{
 				
 				if (aux.getDisponibilidad() == 'D') {
