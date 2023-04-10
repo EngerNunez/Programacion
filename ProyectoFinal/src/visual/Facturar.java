@@ -8,13 +8,18 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+
 import java.awt.Toolkit;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
@@ -41,7 +46,7 @@ public class Facturar extends JDialog {
 	private JTextField txtNombre;
 	private JTextField txtDireccion;
 	private JTextField txtTelefono;
-	private JTextField textField;
+	private JTextField txtTotal;
 	private JScrollPane scrollPaneCompDisponibles;
 	private JList ListCompDisponibles;
 	private DefaultListModel<String>modelListCompDisponibles;
@@ -49,8 +54,6 @@ public class Facturar extends JDialog {
 	private JButton btnComponentesDerecho;
 	private JButton btnComboDerecha;
 	private JButton btnComboIzquierda;
-	private JScrollPane scrollPaneCombos;
-	private JList ListCombos;
 	private DefaultListModel<String>modelListCombos;
 	private JScrollPane scrollPaneCarrito;
 	private JList ListCarrito;
@@ -62,14 +65,6 @@ public class Facturar extends JDialog {
 	private float total = 0;
 	private int ind = 0;
 	
-	
-	
-	
-	
-	
-	
-	
-
 	/**
 	 * Launch the application.
 	 */
@@ -171,150 +166,199 @@ public class Facturar extends JDialog {
 		btnBuscar.setBounds(289, 61, 89, 23);
 		contentPanel.add(btnBuscar);
 		
-		JLabel lblCarritoCompra = new JLabel("Carrito de Compra");
-		lblCarritoCompra.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblCarritoCompra.setBounds(319, 183, 139, 14);
-		contentPanel.add(lblCarritoCompra);
-		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(30, 144, 255));
 		panel.setBounds(0, 0, 547, 685);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(10, 11, 527, 149);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+		JPanel panelPrincipal = new JPanel();
+		panelPrincipal.setBackground(new Color(255, 255, 255));
+		panelPrincipal.setBounds(10, 11, 527, 149);
+		panel.add(panelPrincipal);
+		panelPrincipal.setLayout(null);
 		
 		JLabel lblCodigo = new JLabel("Codigo: ");
 		lblCodigo.setBounds(10, 22, 70, 21);
-		panel_1.add(lblCodigo);
+		panelPrincipal.add(lblCodigo);
 		lblCodigo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JLabel lblCedula = new JLabel("Cedula:");
 		lblCedula.setBounds(10, 50, 60, 21);
-		panel_1.add(lblCedula);
+		panelPrincipal.add(lblCedula);
 		lblCedula.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JLabel lblNewLabel = new JLabel("Nombre:");
 		lblNewLabel.setBounds(10, 82, 70, 21);
-		panel_1.add(lblNewLabel);
+		panelPrincipal.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JLabel lblNewLabel_1 = new JLabel("Direccion:");
 		lblNewLabel_1.setBounds(10, 114, 70, 14);
-		panel_1.add(lblNewLabel_1);
+		panelPrincipal.add(lblNewLabel_1);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(255, 255, 255));
-		panel_2.setBounds(10, 171, 527, 472);
-		panel.add(panel_2);
-		panel_2.setLayout(null);
+		JPanel PanelSecundario = new JPanel();
+		PanelSecundario.setBackground(new Color(255, 255, 255));
+		PanelSecundario.setBounds(10, 171, 527, 472);
+		panel.add(PanelSecundario);
+		PanelSecundario.setLayout(null);
 		
 		JLabel lblComponentesDisp = new JLabel("Componentes Disponibles");
 		lblComponentesDisp.setBounds(10, 11, 199, 14);
-		panel_2.add(lblComponentesDisp);
+		PanelSecundario.add(lblComponentesDisp);
 		lblComponentesDisp.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		btnComponenteIzquierda = new JButton("<<");
+		btnComponenteIzquierda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String temp = carrito.get(selected);
+				compdisp.add(temp);
+				modelListCompDisponibles.addElement(temp);
+				btnComponentesDerecho.setEnabled(false);
+			
+				
+				carrito.remove(selected);
+				reloadcarrito();
+				ind--;
+				
+				
+			}
+		});
 		btnComponenteIzquierda.setBounds(219, 142, 79, 23);
-		panel_2.add(btnComponenteIzquierda);
+		PanelSecundario.add(btnComponenteIzquierda);
 		btnComponenteIzquierda.setEnabled(false);
 		btnComponenteIzquierda.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		btnComponentesDerecho = new JButton(">>");
+		btnComponentesDerecho.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String temp = compdisp.get(selected);
+				carrito.add(temp);
+				modelListCarrito.addElement(temp);
+				btnComponenteIzquierda.setEnabled(false);
+				compdisp.remove(selected);
+				reloadcomponentes();
+				
+				total += Float.valueOf(carrito.get(ind).substring(carrito.get(ind).indexOf("    ")+1,carrito.get(ind).length()));
+				
+				txtTotal.setText("$" + Float.toString(total));
+				
+				ind++;
+				
+								
+				
+			}
+		});
 		btnComponentesDerecho.setBounds(219, 108, 79, 23);
-		panel_2.add(btnComponentesDerecho);
+		PanelSecundario.add(btnComponentesDerecho);
 		btnComponentesDerecho.setEnabled(false);
 		btnComponentesDerecho.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		JLabel lblNewLabel_3 = new JLabel("Combos Disponibles");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_3.setBounds(10, 245, 199, 14);
-		panel_2.add(lblNewLabel_3);
+		PanelSecundario.add(lblNewLabel_3);
 		
 
 		btnComboDerecha = new JButton(">>");
 		JPanel PanelCombo = new JPanel();
 		PanelCombo.setToolTipText("");
 		PanelCombo.setBackground(Color.LIGHT_GRAY);
-		PanelCombo.setBounds(10, 278, 199, 183);
-		panel_2.add(PanelCombo);
+		PanelCombo.setBounds(10, 270, 188, 191);
+		PanelSecundario.add(PanelCombo);
 		PanelCombo.setLayout(null);
 		
-		JList list = new JList();
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		
-		list.setBounds(0, 191, 199, -190);
-		PanelCombo.add(list);
 		
 		JButton btnComboDerecha = new JButton(">>");
 		btnComboDerecha.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnComboDerecha.setEnabled(false);
 		btnComboDerecha.setBounds(219, 325, 79, 23);
-		panel_2.add(btnComboDerecha);
+		PanelSecundario.add(btnComboDerecha);
 		
 		btnComboIzquierda = new JButton("<<");
 		btnComboIzquierda.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnComboIzquierda.setEnabled(false);
 		btnComboIzquierda.setBounds(219, 359, 79, 23);
-		panel_2.add(btnComboIzquierda);
+		PanelSecundario.add(btnComboIzquierda);
 		
 		JPanel PanelCompDisponibles = new JPanel();
-		PanelCompDisponibles.setBounds(10, 41, 188, 193);
-		panel_2.add(PanelCompDisponibles);
-		PanelCompDisponibles.setLayout(null);
+		PanelCompDisponibles.setBackground(Color.LIGHT_GRAY);
+		PanelCompDisponibles.setBounds(10, 36, 188, 198);
+		PanelSecundario.add(PanelCompDisponibles);
+		PanelCompDisponibles.setLayout(new BorderLayout(0, 0));
 		
 		scrollPaneCompDisponibles = new JScrollPane();
-		scrollPaneCompDisponibles.setBounds(10, 231, 188, -188);
-		panel_2.add(scrollPaneCompDisponibles);
+		PanelCompDisponibles.add(scrollPaneCompDisponibles, BorderLayout.CENTER);
 		
-		ListCompDisponibles = new JList();
-		ListCompDisponibles.setBounds(10, 231, 188, -188);
-		panel_2.add(ListCompDisponibles);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(10, 270, 188, 191);
-		panel_2.add(panel_3);
-		panel_3.setLayout(null);
+		ListCompDisponibles = new JList<>();
+		ListCompDisponibles.setBackground(Color.WHITE);
+		ListCompDisponibles.addMouseListener(new MouseAdapter() {
+			
+			public void mouseClicked(MouseEvent e)
+			{
+				selected = ListCompDisponibles.getSelectedIndex();
+				
+				if(selected >= 0)
+				{
+					btnComponentesDerecho.setEnabled(true);
+					btnComponenteIzquierda.setEnabled(false);
+				}
+			}
+			
+		});
 		
-		scrollPaneCombos = new JScrollPane();
-		scrollPaneCombos.setBounds(0, 189, 188, -187);
-		panel_3.add(scrollPaneCombos);
+		modelListCompDisponibles = new DefaultListModel<String>();
+		ListCompDisponibles.setModel(modelListCompDisponibles);
+		ListCompDisponibles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		ListCombos = new JList();
-		ListCombos.setBounds(0, 189, 188, -187);
-		panel_3.add(ListCombos);
+		scrollPaneCompDisponibles.setViewportView(ListCompDisponibles);
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(313, 41, 204, 420);
-		panel_2.add(panel_4);
-		panel_4.setLayout(null);
+		JPanel PanelCarrito = new JPanel();
+		PanelCarrito.setBackground(Color.LIGHT_GRAY);
+		PanelCarrito.setBounds(313, 41, 204, 420);
+		PanelSecundario.add(PanelCarrito);
+		PanelCarrito.setLayout(new BorderLayout(0, 0));
 		
 		scrollPaneCarrito = new JScrollPane();
-		scrollPaneCarrito.setBounds(0, 416, 204, -414);
-		panel_4.add(scrollPaneCarrito);
+		PanelCarrito.add(scrollPaneCarrito, BorderLayout.CENTER);
 		
-		ListCarrito = new JList();
-		ListCarrito.setBounds(0, 415, 204, -414);
-		panel_4.add(ListCarrito);
+		ListCarrito = new JList<>();
+		ListCarrito.setFont(new Font("Tahoma", Font.BOLD, 11));
+		ListCarrito.addMouseListener(new MouseAdapter() {
+			
+			public void mouseClicked(MouseEvent e)
+			{
+				selected = ListCarrito.getSelectedIndex();
+				
+				if(selected >= 0)
+				{
+					btnComponenteIzquierda.setEnabled(true);
+					btnComponentesDerecho.setEnabled(false);
+					
+				}
+			}
+			
+			
+		});
 		
-		textField = new JTextField();
-		textField.setBounds(367, 654, 158, 20);
-		panel.add(textField);
-		textField.setEnabled(false);
-		textField.setColumns(10);
+		modelListCarrito = new DefaultListModel<String>();
+		ListCarrito.setModel(modelListCarrito);
+		scrollPaneCarrito.setViewportView(ListCarrito);
+		
+		JLabel lblCarritoCompra = new JLabel("Carrito de Compra");
+		lblCarritoCompra.setBounds(313, 11, 139, 14);
+		PanelSecundario.add(lblCarritoCompra);
+		lblCarritoCompra.setFont(new Font("Tahoma", Font.BOLD, 12));
+		
+		txtTotal = new JTextField();
+		txtTotal.setBounds(367, 654, 158, 20);
+		panel.add(txtTotal);
+		txtTotal.setEnabled(false);
+		txtTotal.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Total:");
 		lblNewLabel_2.setBounds(318, 656, 59, 14);
@@ -330,6 +374,20 @@ public class Facturar extends JDialog {
 				ButtonFacturar.setBackground(new Color(255, 255, 224));
 				ButtonFacturar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
+						Cliente cliente = TiendaElite.getInstance().buscarClienteByCedula(txtCedula.getText());
+						
+						if(cliente == null)
+						{
+							cliente = new Cliente(txtCedula.getText(), txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
+							TiendaElite.getInstance().getMisClientes().add(cliente);
+						}
+						
+						ArrayList<Componente> compcarrito = new ArrayList<>();
+						
+						
+						
+						
 					}
 				});
 				ButtonFacturar.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -350,5 +408,105 @@ public class Facturar extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		
+		loadcomponentes();
+		loadcarrito();
+		
+		
 	}
+	
+	private void clear()
+	{
+		txtCodigo.setText("F-" + TiendaElite.codigo_factura);
+		txtCedula.setText("");
+		txtNombre.setText("");
+		txtDireccion.setText("");
+		txtTelefono.setText("");
+		txtNombre.setEditable(false);
+		txtTelefono.setEditable(false);
+		txtDireccion.setEditable(false);
+		total = 0;
+		compdisp = new ArrayList<>();
+		carrito = new ArrayList<>();
+		modelListCarrito.removeAllElements();
+		//LoadComponentes
+		
+	}
+	
+	private void reloadcomponentes()
+	{
+		modelListCompDisponibles.removeAllElements();
+		String aux = "";
+		
+		for(String componente : compdisp)
+		{
+			aux = componente;
+			modelListCompDisponibles.addElement(aux);
+		}
+
+		
+	}
+	
+	private void reloadcarrito()
+	{
+		modelListCarrito.removeAllElements();
+		String aux = "";
+		
+		for(String carrito : carrito)
+		{
+			aux = carrito;
+			modelListCarrito.addElement(aux);
+		}
+	}
+	
+	private void loadcomponentes()
+	{
+		modelListCompDisponibles.removeAllElements();
+		String aux = "";
+		
+		for(Componente componente : TiendaElite.getInstance().getMisComponentes())
+		{
+			for(int i = 0; i < componente.getCantidad(); i++)
+			{
+				
+				if(componente instanceof TarjetaMadre && componente.getDisponibilidad() == 'D')
+				{
+					aux = componente.getNumeroSerie() + " MB $" + componente.getPrecio();
+					compdisp.add(aux);
+					modelListCompDisponibles.addElement(aux);
+				}
+				if(componente instanceof MemoriaRAM && componente.getDisponibilidad() == 'D')
+				{
+					aux = componente.getNumeroSerie() + " RAM $" + componente.getPrecio();
+					compdisp.add(aux);
+					modelListCompDisponibles.addElement(aux);
+				}
+				if(componente instanceof DiscoDuro && componente.getDisponibilidad() == 'D')
+				{
+					aux = componente.getNumeroSerie() + " HDD $" + componente.getPrecio();
+					compdisp.add(aux);
+					modelListCompDisponibles.addElement(aux);
+				}
+				if(componente instanceof Microprocesador && componente.getDisponibilidad() == 'D')
+				{
+					aux = componente.getNumeroSerie() + " CPU $" + componente.getPrecio();
+					compdisp.add(aux);
+					modelListCompDisponibles.addElement(aux);
+				}
+				
+			
+			}
+			
+		}
+	}
+	
+	private void loadcarrito()
+	{
+		modelListCarrito.removeAllElements();
+	}
+	
+	
+	
+	
+	
 }
