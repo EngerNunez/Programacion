@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import javax.swing.BorderFactory;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,6 +24,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Window.Type;
+import java.awt.Dialog.ModalExclusionType;
 
 public class Login extends JFrame {
 
@@ -83,6 +88,7 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
+		setUndecorated(false);
 		setTitle("Elite Eletronics Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -92,14 +98,17 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 0, 255));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
+		lblUsuario.setForeground(new Color(255, 255, 255));
 		lblUsuario.setBounds(10, 37, 136, 14);
 		panel.add(lblUsuario);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
+		lblContrasea.setForeground(new Color(255, 255, 255));
 		lblContrasea.setBounds(10, 96, 105, 14);
 		panel.add(lblContrasea);
 		
@@ -126,5 +135,10 @@ public class Login extends JFrame {
 		});
 		btnLogin.setBounds(10, 177, 89, 23);
 		panel.add(btnLogin);
+		
+		JLabel lblNewLabel = new JLabel("\r\n");
+		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/imagenes/user (1).png")));
+		lblNewLabel.setBounds(231, 13, 315, 247);
+		panel.add(lblNewLabel);
 	}
 }
