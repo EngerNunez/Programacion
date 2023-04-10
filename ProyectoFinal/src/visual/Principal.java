@@ -34,6 +34,8 @@ public class Principal extends JFrame {
 	private final Action action_6 = new SwingAction_6();
 	private final Action action_7 = new SwingAction_7();
 	private final Action action_8 = new SwingAction_8();
+	private final Action action_9 = new SwingAction_9();
+	private final Action action_10 = new SwingAction_10();
 
 
 	/**
@@ -187,6 +189,29 @@ public class Principal extends JFrame {
 
 		});
 		
+		JMenu mnNewMenu = new JMenu("Usuario");
+		mnNewMenu.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmAgregarUsuario = mnNewMenu.add(action_9);
+		mntmAgregarUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegUsuario rg = new RegUsuario();
+				rg.setModal(true);
+				rg.setVisible(true);
+			}
+		});
+		mntmAgregarUsuario.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		mntmAgregarUsuario.setText("Agregar Usuario");
+		
+		JMenu mnNewMenu_1 = new JMenu("Respaldo\r\n");
+		mnNewMenu_1.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		menuBar.add(mnNewMenu_1);
+		
+		JMenuItem mntmRespaldar = mnNewMenu_1.add(action_10);
+		mntmRespaldar.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		mntmRespaldar.setText("Respaldar");
+		
 		JMenu mnAyuda = new JMenu("Ayuda");
 		mnAyuda.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		menuBar.add(mnAyuda);
@@ -278,6 +303,22 @@ public class Principal extends JFrame {
 	private class SwingAction_8 extends AbstractAction {
 		public SwingAction_8() {
 			putValue(NAME, "SwingAction_8");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
+	}
+	private class SwingAction_9 extends AbstractAction {
+		public SwingAction_9() {
+			putValue(NAME, "SwingAction_9");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
+	}
+	private class SwingAction_10 extends AbstractAction {
+		public SwingAction_10() {
+			putValue(NAME, "SwingAction_10");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {

@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import logico.Control;
@@ -88,7 +89,8 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
-		setUndecorated(false);
+		setUndecorated(true);
+	
 		setTitle("Elite Eletronics Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -96,6 +98,7 @@ public class Login extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 255));
@@ -117,12 +120,15 @@ public class Login extends JFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
+		textField_1 = new JPasswordField();
 		textField_1.setBounds(10, 126, 191, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnLogin = new JButton("Login");
+		JButton btnLogin = new JButton("\r\n");
+		btnLogin.setBackground(new Color(0, 0, 255));
+		btnLogin.setForeground(new Color(0, 0, 255));
+		btnLogin.setIcon(new ImageIcon(Login.class.getResource("/imagenes/acc.png")));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(Control.getInstance().confirmLogin(textField.getText(),textField_1.getText())){
@@ -133,12 +139,23 @@ public class Login extends JFrame {
 				
 			}
 		});
-		btnLogin.setBounds(10, 177, 89, 23);
+		btnLogin.setBounds(48, 177, 98, 49);
 		panel.add(btnLogin);
 		
 		JLabel lblNewLabel = new JLabel("\r\n");
 		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/imagenes/user (1).png")));
-		lblNewLabel.setBounds(231, 13, 315, 247);
+		lblNewLabel.setBounds(211, 37, 211, 236);
 		panel.add(lblNewLabel);
+		
+		JButton btnSalir = new JButton("\r\n");
+		btnSalir.setBackground(new Color(0, 0, 255));
+		btnSalir.setIcon(new ImageIcon(Login.class.getResource("/imagenes/boton_salir.png")));
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnSalir.setBounds(390, 0, 67, 49);
+		panel.add(btnSalir);
 	}
 }
