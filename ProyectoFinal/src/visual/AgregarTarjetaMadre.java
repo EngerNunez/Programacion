@@ -179,14 +179,19 @@ public class AgregarTarjetaMadre extends JDialog {
 						float precio = Float.valueOf(spnPrecio.getValue().toString());
 						int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 						
-						aux = new TarjetaMadre(marca,numserie,precio,cantidad,modelo,tipoconector,tipomemoria,TipoDiscoCompatible);
-
-						TiendaElite.getInstance().insertarComponente(aux);
-						
-						JOptionPane.showMessageDialog(null, "Tarjeta Madre agregada", "Informacion",JOptionPane.INFORMATION_MESSAGE);
-
-						clean();
-						
+						if(TiendaElite.getInstance().serialExiste(numserie)) {
+							JOptionPane.showMessageDialog(null, "Este numero de serie ya esta en uso!", "Error",JOptionPane.ERROR_MESSAGE);
+							clean();
+						}else {
+							
+							aux = new TarjetaMadre(marca,numserie,precio,cantidad,modelo,tipoconector,tipomemoria,TipoDiscoCompatible);
+	
+							TiendaElite.getInstance().insertarComponente(aux);
+							
+							JOptionPane.showMessageDialog(null, "Tarjeta Madre agregada", "Informacion",JOptionPane.INFORMATION_MESSAGE);
+	
+							clean();
+						}
 					}
 				});
 				okButton.setActionCommand("OK");

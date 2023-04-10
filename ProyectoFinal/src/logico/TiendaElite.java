@@ -97,7 +97,8 @@ public class TiendaElite {
 		codigo_combo++;
 	}
 	
-	public int cantTarjetaMadreVendido() {
+	
+	public int cantTarjetaMadreDisponible() {
 		int cant = 0;
 		for(Componente aux: misComponentes) {
 			if(aux instanceof TarjetaMadre)
@@ -106,7 +107,7 @@ public class TiendaElite {
 		return cant;
 	}
 	
-	public int cantDiscoDuroVendido() {
+	public int cantDiscoDuroDisponible() {
 		int cant = 0;
 		for(Componente aux: misComponentes) {
 			if(aux instanceof DiscoDuro)
@@ -115,7 +116,7 @@ public class TiendaElite {
 		return cant;
 	}
 	
-	public int cantMemoriaRAMVendido() {
+	public int cantMemoriaRAMDisponible() {
 		int cant = 0;
 		for(Componente aux: misComponentes) {
 			if(aux instanceof MemoriaRAM)
@@ -124,7 +125,7 @@ public class TiendaElite {
 		return cant;
 	}
 	
-	public int cantCPUVendido() {
+	public int cantCPUDisponible() {
 		int cant = 0;
 		for(Componente aux: misComponentes) {
 			if(aux instanceof Microprocesador)
@@ -186,6 +187,16 @@ public class TiendaElite {
 			}
 		}
 		
+	}
+	
+	public boolean serialExiste(String serial) {
+		boolean existe = false;
+		for(Componente aux: misComponentes) {
+			if(aux.getNumeroSerie().equalsIgnoreCase(serial)) {
+				existe = true;
+			}
+		}
+		return existe;
 	}
 	
 	

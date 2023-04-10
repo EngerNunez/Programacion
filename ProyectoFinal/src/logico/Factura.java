@@ -47,9 +47,83 @@ public class Factura {
 		}
 		return precio;
 	}
+	
+	public float ventaTarjeta(){
+		float total=0;
+		for(Componente aux: misComponentes) {
+			if(aux instanceof TarjetaMadre) {
+				total += aux.precio;
+			}
+		}
+		return total;
+	}
+	
+	public float ventaCPU(){
+		float total=0;
+		for(Componente aux: misComponentes) {
+			if(aux instanceof Microprocesador) {
+				total += aux.precio;
+			}
+		}
+		return total;
+	}
+	
+	public float ventaDiscoDuro(){
+		float total=0;
+		for(Componente aux: misComponentes) {
+			if(aux instanceof DiscoDuro) {
+				total += aux.precio;
+			}
+		}
+		return total;
+	}
 		
 	
+	public float ventaMemoriaRAM(){
+		float total=0;
+		for(Componente aux: misComponentes) {
+			if(aux instanceof MemoriaRAM) {
+				total += aux.precio;
+			}
+		}
+		return total;
+	}
+		
+	public int cantTarjetaMadreVendido() {
+		int cant = 0;
+		for(Componente aux: misComponentes) {
+			if(aux instanceof TarjetaMadre)
+				cant++;
+		}
+		return cant;
+	}
 	
+	public int cantDiscoDuroVendido() {
+		int cant = 0;
+		for(Componente aux: misComponentes) {
+			if(aux instanceof DiscoDuro)
+				cant++;
+		}
+		return cant;
+	}
+	
+	public int cantMemoriaRAMVendido() {
+		int cant = 0;
+		for(Componente aux: misComponentes) {
+			if(aux instanceof MemoriaRAM)
+				cant++;
+		}
+		return cant;
+	}
+	
+	public int cantCPUVendido() {
+		int cant = 0;
+		for(Componente aux: misComponentes) {
+			if(aux instanceof Microprocesador)
+				cant++;
+		}
+		return cant;
+	}
 	
 	
 	

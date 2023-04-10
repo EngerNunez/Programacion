@@ -160,15 +160,19 @@ public class AgregarRAM extends JDialog {
 						String tipomemoria = txtTipoMemoria.getText();
 						String numserie = txtNumSerie.getText();
 						int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
+						if(TiendaElite.getInstance().serialExiste(numserie)) {
+							JOptionPane.showMessageDialog(null, "Este numero de serie ya esta en uso!", "Error",JOptionPane.ERROR_MESSAGE);
+							clean();
+						}else {
 						
-						aux = new MemoriaRAM(marca,numserie,precio,cantidad,tipomemoria,cantmemoria);
-						
-						TiendaElite.getInstance().insertarComponente(aux);
-						
-						JOptionPane.showMessageDialog(null, "Memoria RAM agregada", "Informacion",JOptionPane.INFORMATION_MESSAGE);
-						
-						clean();
-						
+							aux = new MemoriaRAM(marca,numserie,precio,cantidad,tipomemoria,cantmemoria);
+							
+							TiendaElite.getInstance().insertarComponente(aux);
+							
+							JOptionPane.showMessageDialog(null, "Memoria RAM agregada", "Informacion",JOptionPane.INFORMATION_MESSAGE);
+							
+							clean();
+						}
 					}
 				});
 				okButton.setActionCommand("OK");
