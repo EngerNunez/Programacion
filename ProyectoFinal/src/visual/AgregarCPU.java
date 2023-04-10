@@ -42,7 +42,7 @@ public class AgregarCPU extends JDialog {
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 
 	/**
@@ -93,6 +93,7 @@ public class AgregarCPU extends JDialog {
 			
 			txtNumSerie = new JTextField();
 			txtNumSerie.setBounds(239, 33, 136, 20);
+			txtNumSerie.setText(txtNumSerie.getText() + "-" );
 			panel.add(txtNumSerie);
 			txtNumSerie.setColumns(10);
 			{

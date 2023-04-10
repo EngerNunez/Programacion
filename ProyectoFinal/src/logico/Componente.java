@@ -6,13 +6,13 @@ public abstract class Componente {
 	protected float precio;
 	protected char disponibilidad;
 	protected int cantidad;
-	public Componente(String marca, String numeroSerie, float precio,int cantidad) {
+	public Componente(String marca, String numeroSerie, float precio,int cantidad) { 
 		super();
 		this.marca = marca;
 		this.numeroSerie = numeroSerie;
 		this.precio = precio;
 		this.cantidad = cantidad;
-		this.disponibilidad = 'D';
+		this.disponibilidad = 'D'; 
 		
 	}
 	public String getMarca() {

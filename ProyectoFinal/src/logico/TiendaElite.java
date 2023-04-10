@@ -79,12 +79,12 @@ public class TiendaElite {
 		TiendaElite.tienda = tienda;
 	}
 	
-	public void insertarComponente(Componente componente) {
+	public void insertarComponente(Componente componente) { 
 		misComponentes.add(componente);
 		codigo_componente++;
 	}
 	
-	public void insertarFactura(Factura factura) {
+	public void insertarFactura(Factura factura) { 
 		misFacturas.add(factura);
 		codigo_factura++;
 	}
@@ -148,7 +148,7 @@ public class TiendaElite {
 		boolean encontrado = false;
 		for (Cliente cliente : misClientes) {
 			if (cliente.getCedula().equalsIgnoreCase(cedula)) {
-				aux = cliente;
+				cliente = aux;
 				encontrado = true;
 			}
 		}
@@ -161,10 +161,28 @@ public class TiendaElite {
 		for(Componente componente: misComponentes) {
 			if(componente.getNumeroSerie().equalsIgnoreCase(codigo)) {
 				encontrado = true;
-				aux = componente;
+			    componente = aux;
 			}
 		}
 		return aux;
+	}
+	
+	public int buscarComponenteIndexBySerial(String codigo)
+	{
+		boolean encontrado = false;
+		int ind = -1;
+		int i = 0;
+		
+		while(!encontrado && i < misComponentes.size())
+		{
+			if(misComponentes.get(i).getNumeroSerie().equalsIgnoreCase(codigo))
+			{
+				ind = i;
+				encontrado = true;
+			}
+			i++;
+		}
+		return ind;
 	}
 	
 	

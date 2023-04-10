@@ -217,8 +217,11 @@ public class Facturar extends JDialog {
 				compdisp.add(temp);
 				modelListCompDisponibles.addElement(temp);
 				btnComponentesDerecho.setEnabled(false);
-			
 				
+				total -= Float.valueOf(carrito.get(selected).substring(carrito.get(selected).indexOf(" ")+6,carrito.get(selected).length()));
+			
+				txtTotal.setText("$" + Float.toString(total));
+
 				carrito.remove(selected);
 				reloadcarrito();
 				ind--;
@@ -242,7 +245,7 @@ public class Facturar extends JDialog {
 				compdisp.remove(selected);
 				reloadcomponentes();
 				
-				total += Float.valueOf(carrito.get(ind).substring(carrito.get(ind).indexOf("    ")+1,carrito.get(ind).length()));
+				total += Float.valueOf(carrito.get(ind).substring(carrito.get(ind).indexOf(" ")+6,carrito.get(ind).length()));
 				
 				txtTotal.setText("$" + Float.toString(total));
 				
@@ -263,7 +266,7 @@ public class Facturar extends JDialog {
 		PanelSecundario.add(lblNewLabel_3);
 		
 
-		btnComboDerecha = new JButton(">>");
+		btnComboDerecha = new JButton(">>"); 
 		JPanel PanelCombo = new JPanel();
 		PanelCombo.setToolTipText("");
 		PanelCombo.setBackground(Color.LIGHT_GRAY);
@@ -273,7 +276,7 @@ public class Facturar extends JDialog {
 		
 		
 		JButton btnComboDerecha = new JButton(">>");
-		btnComboDerecha.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnComboDerecha.setFont(new Font("Tahoma", Font.BOLD, 13)); 
 		btnComboDerecha.setEnabled(false);
 		btnComboDerecha.setBounds(219, 325, 79, 23);
 		PanelSecundario.add(btnComboDerecha);
@@ -385,6 +388,28 @@ public class Facturar extends JDialog {
 						
 						ArrayList<Componente> compcarrito = new ArrayList<>();
 						
+						for(int i = 0; i < carrito.size(); i++)
+						{
+							String codcomponente = carrito.get(i).substring(0,carrito.get(i).indexOf(" ")+6);
+							
+							Componente componente = TiendaElite.getInstance().buscarComponenteBySerial(codcomponente);
+							
+							//int posicion = TiendaElite.getInstance().buscarComponenteIndexBySerial(componente.getNumeroSerie());
+							//compcarrito.add(TiendaElite.getInstance().getMisComponentes().remove(posicion));
+						}
+						
+						Factura factura = new Factura(txtCodigo.getText(), compcarrito, cliente);
+						
+						TiendaElite.getInstance().insertarFactura(factura);
+						
+						JOptionPane.showMessageDialog(null, "Factura realizada", "Informacion",
+								JOptionPane.INFORMATION_MESSAGE);
+						
+						clear();
+						dispose();
+						
+						
+						
 						
 						
 						
@@ -471,7 +496,7 @@ public class Facturar extends JDialog {
 				
 				if(componente instanceof TarjetaMadre && componente.getDisponibilidad() == 'D')
 				{
-					aux = componente.getNumeroSerie() + " MB $" + componente.getPrecio();
+					aux = componente.getNumeroSerie() + " TMB $" + componente.getPrecio();
 					compdisp.add(aux);
 					modelListCompDisponibles.addElement(aux);
 				}
@@ -483,7 +508,7 @@ public class Facturar extends JDialog {
 				}
 				if(componente instanceof DiscoDuro && componente.getDisponibilidad() == 'D')
 				{
-					aux = componente.getNumeroSerie() + " HDD $" + componente.getPrecio();
+					aux = componente.getNumeroSerie() + " SSD $" + componente.getPrecio();
 					compdisp.add(aux);
 					modelListCompDisponibles.addElement(aux);
 				}
