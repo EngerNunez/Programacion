@@ -3,8 +3,12 @@ package visual;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
-import logico.TiendaElite;
 import logico.Componente;
+import logico.DiscoDuro;
+import logico.MemoriaRAM;
+import logico.Microprocesador;
+import logico.TarjetaMadre;
+import logico.TiendaElite;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -28,6 +32,7 @@ public class Reabastecer extends JDialog {
 	private JTextField txtnumeroSerie;
 	private JTextField txtmarca;
 	private JSpinner spnAgregarCantidad;
+	private JTextField txtTipo;
 
 	/**
 	 * Launch the application.
@@ -38,7 +43,7 @@ public class Reabastecer extends JDialog {
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 	}
 
@@ -48,7 +53,7 @@ public class Reabastecer extends JDialog {
 	public Reabastecer() {
 		setTitle("Reabastecer");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Reabastecer.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
-		setBounds(100, 100, 419, 224);
+		setBounds(100, 100, 424, 252);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,7 +63,7 @@ public class Reabastecer extends JDialog {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(30, 144, 255));
-		panel.setBounds(0, 0, 433, 170);
+		panel.setBounds(0, 0, 408, 234);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
@@ -85,13 +90,13 @@ public class Reabastecer extends JDialog {
 		
 		JLabel lblAgregarCantidad = new JLabel("Agregar Cantidad:\r\n");
 		lblAgregarCantidad.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblAgregarCantidad.setBounds(10, 95, 123, 14);
+		lblAgregarCantidad.setBounds(10, 128, 123, 14);
 		panel.add(lblAgregarCantidad);
 		
 		spnAgregarCantidad = new JSpinner();
 		spnAgregarCantidad.setEnabled(false);
 		spnAgregarCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		spnAgregarCantidad.setBounds(143, 93, 136, 20);
+		spnAgregarCantidad.setBounds(143, 126, 136, 20);
 		panel.add(spnAgregarCantidad);
 		
 		JButton btnBuscar = new JButton("Buscar");
@@ -99,9 +104,32 @@ public class Reabastecer extends JDialog {
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String aux = "";
 				Componente compo = TiendaElite.getInstance().buscarComponenteBySerial(txtnumeroSerie.getText());
 				if(compo !=  null) {
 					txtmarca.setText(compo.getMarca());
+					
+					if(compo instanceof TarjetaMadre)
+					{
+						aux = "MB";
+						txtTipo.setText(aux);
+					}
+					else if(compo instanceof MemoriaRAM)
+					{
+						aux = "RAM";
+						txtTipo.setText(aux);
+					}
+					else if(compo instanceof DiscoDuro)
+					{
+						aux = "SSD";
+						txtTipo.setText(aux);
+					}
+					else if(compo instanceof Microprocesador)
+					{
+						aux = "CPU";
+						txtTipo.setText(aux);
+					}
+					
 					spnAgregarCantidad.setEnabled(true);
 				
 				}else {
@@ -112,6 +140,17 @@ public class Reabastecer extends JDialog {
 		});
 		btnBuscar.setBounds(289, 7, 89, 23);
 		panel.add(btnBuscar);
+		
+		JLabel lblNewLabel_2 = new JLabel("Tipo:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_2.setBounds(10, 92, 46, 14);
+		panel.add(lblNewLabel_2);
+		
+		txtTipo = new JTextField();
+		txtTipo.setEditable(false);
+		txtTipo.setBounds(143, 90, 136, 20);
+		panel.add(txtTipo);
+		txtTipo.setColumns(10);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(SystemColor.info);
@@ -153,6 +192,7 @@ public class Reabastecer extends JDialog {
 	{
 		txtmarca.setText("");
 		txtnumeroSerie.setText("");
+		txtTipo.setText("");
 		spnAgregarCantidad.setValue(new Integer(0));
 	}
 }

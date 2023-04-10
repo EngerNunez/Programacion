@@ -238,7 +238,7 @@ public class ListadoComponente extends JDialog {
 						rows[0] = aux.getNumeroSerie();
 						rows[1] = aux.getMarca();
 						rows[2] = "$" + aux.getPrecio();
-						rows[3] = "CPU";
+						rows[3] = "CPU"; 
 						model.addRow(rows);
 					}
 				

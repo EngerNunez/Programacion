@@ -8,6 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import logico.Factura;
 import logico.TiendaElite;
 
 import java.awt.Toolkit;
@@ -21,11 +22,11 @@ import javax.swing.JTextField;
 public class DineroVenta extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtTarjetaMadre;
-	private JTextField txtDiscoDuro;
-	private JTextField txtRAM;
-	private JTextField txtCPU;
-	private JTextField txtTotal;
+	private static JTextField txtTarjetaMadre;
+	private static JTextField txtDiscoDuro;
+	private static JTextField txtRAM;
+	private static JTextField txtCPU;
+	private static JTextField txtTotal;
 
 	/**
 	 * Launch the application.
@@ -84,6 +85,8 @@ public class DineroVenta extends JDialog {
 			}
 			{
 				txtTarjetaMadre = new JTextField();
+				txtTarjetaMadre.setFont(new Font("Tahoma", Font.BOLD, 11));
+				txtTarjetaMadre.setBackground(Color.WHITE);
 				txtTarjetaMadre.setText("$0.0");
 				txtTarjetaMadre.setEnabled(false);
 				txtTarjetaMadre.setBounds(207, 51, 138, 20);
@@ -92,6 +95,8 @@ public class DineroVenta extends JDialog {
 			}
 			{
 				txtDiscoDuro = new JTextField();
+				txtDiscoDuro.setFont(new Font("Tahoma", Font.BOLD, 11));
+				txtDiscoDuro.setBackground(Color.WHITE);
 				txtDiscoDuro.setText("$0.0");
 				txtDiscoDuro.setEnabled(false);
 				txtDiscoDuro.setBounds(207, 88, 138, 20);
@@ -100,6 +105,8 @@ public class DineroVenta extends JDialog {
 			}
 			{
 				txtRAM = new JTextField();
+				txtRAM.setFont(new Font("Tahoma", Font.BOLD, 11));
+				txtRAM.setBackground(Color.WHITE);
 				txtRAM.setText("$0.0");
 				txtRAM.setEnabled(false);
 				txtRAM.setBounds(207, 124, 138, 20);
@@ -108,6 +115,8 @@ public class DineroVenta extends JDialog {
 			}
 			{
 				txtCPU = new JTextField();
+				txtCPU.setFont(new Font("Tahoma", Font.BOLD, 11));
+				txtCPU.setBackground(Color.WHITE);
 				txtCPU.setText("$0.0");
 				txtCPU.setEnabled(false);
 				txtCPU.setBounds(207, 161, 138, 20);
@@ -128,6 +137,8 @@ public class DineroVenta extends JDialog {
 			}
 			{
 				txtTotal = new JTextField();
+				txtTotal.setFont(new Font("Tahoma", Font.BOLD, 11));
+				txtTotal.setBackground(Color.WHITE);
 				txtTotal.setText("$0.0");
 				txtTotal.setEnabled(false);
 				txtTotal.setBounds(248, 202, 97, 20);
@@ -155,7 +166,29 @@ public class DineroVenta extends JDialog {
 		}
 	}
 	public void loadComponente() {
-		//txtTarjetaMadre.setText(String.valueOf(TiendaElite.getInstance().));
+		
+		float TarjetaMadre = 0;
+		float RAM = 0;
+		float Microprocesador = 0;
+		float DiscoDuro = 0;
+		float total = 0;
+		
+		for(Factura aux : TiendaElite.getInstance().getMisFacturas())
+		{
+			TarjetaMadre += aux.ventaTarjeta();
+			RAM += aux.ventaMemoriaRAM();
+			Microprocesador += aux.ventaCPU();
+			DiscoDuro += aux.ventaDiscoDuro();
+			total += aux.precioFactura();
+		}
+		
+		txtTarjetaMadre.setText("$" +String.valueOf(TarjetaMadre));
+		txtDiscoDuro.setText("$" +String.valueOf(DiscoDuro));
+		txtRAM.setText("$" +String.valueOf(RAM));
+		txtCPU.setText("$" +String.valueOf(Microprocesador));
+		txtTotal.setText("$" +String.valueOf(total));
+		
+		
 	}
 
 }

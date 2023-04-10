@@ -7,22 +7,26 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
+
+import logico.Factura;
+import logico.TiendaElite;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Color;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.JTextField;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 public class ReporteVentas extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtTarjetaMadre;
-	private JTextField txtDiscoDuro;
-	private JTextField txtRAM;
-	private JTextField txtCPU;
-	private JTextField txtTotal;
+	private static JTextField txtTarjetaMadre;
+	private static JTextField txtDiscoDuro;
+	private static JTextField txtRAM; 
+	private static JTextField txtCPU;
+	private static JTextField txtTotal;
 
 	/**
 	 * Launch the application.
@@ -33,7 +37,7 @@ public class ReporteVentas extends JDialog {
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 	}
 
@@ -50,87 +54,96 @@ public class ReporteVentas extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
+			JLabel lblNewLabel_1 = new JLabel("Cantidad:");
+			lblNewLabel_1.setBounds(221, 30, 138, 14);
+			contentPanel.add(lblNewLabel_1);
+			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		}
+		{
+			txtTarjetaMadre = new JTextField();
+			txtTarjetaMadre.setFont(new Font("Tahoma", Font.BOLD, 11));
+			txtTarjetaMadre.setBounds(221, 55, 138, 20);
+			contentPanel.add(txtTarjetaMadre);
+			txtTarjetaMadre.setBackground(Color.WHITE);
+			txtTarjetaMadre.setText("0");
+			txtTarjetaMadre.setEnabled(false);
+			txtTarjetaMadre.setColumns(10);
+		}
+		{
+			JLabel lblTarjetaMadre = new JLabel("Tarjeta Madre:");
+			lblTarjetaMadre.setBounds(102, 57, 109, 14);
+			contentPanel.add(lblTarjetaMadre);
+			lblTarjetaMadre.setFont(new Font("Tahoma", Font.BOLD, 12));
+		}
+		{
+			JLabel lblDiscoDuro = new JLabel("Disco Duro:");
+			lblDiscoDuro.setBounds(102, 87, 93, 14);
+			contentPanel.add(lblDiscoDuro);
+			lblDiscoDuro.setFont(new Font("Tahoma", Font.BOLD, 12));
+		}
+		{
+			txtDiscoDuro = new JTextField();
+			txtDiscoDuro.setFont(new Font("Tahoma", Font.BOLD, 11));
+			txtDiscoDuro.setBounds(221, 86, 138, 20);
+			contentPanel.add(txtDiscoDuro);
+			txtDiscoDuro.setBackground(Color.WHITE);
+			txtDiscoDuro.setText("0");
+			txtDiscoDuro.setEnabled(false);
+			txtDiscoDuro.setColumns(10);
+		}
+		{
+			JLabel lblRAM = new JLabel("Memoria RAM:");
+			lblRAM.setBounds(102, 119, 93, 14);
+			contentPanel.add(lblRAM);
+			lblRAM.setFont(new Font("Tahoma", Font.BOLD, 12));
+		}
+		{
+			JLabel lblNewLabel = new JLabel("CPU:");
+			lblNewLabel.setBounds(102, 154, 46, 14);
+			contentPanel.add(lblNewLabel);
+			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		}
+		{
+			txtCPU = new JTextField();
+			txtCPU.setFont(new Font("Tahoma", Font.BOLD, 11));
+			txtCPU.setBounds(221, 148, 138, 20);
+			contentPanel.add(txtCPU);
+			txtCPU.setBackground(Color.WHITE);
+			txtCPU.setText("0");
+			txtCPU.setEnabled(false);
+			txtCPU.setColumns(10);
+		}
+		{
+			txtRAM = new JTextField();
+			txtRAM.setFont(new Font("Tahoma", Font.BOLD, 11));
+			txtRAM.setBounds(221, 117, 138, 20);
+			contentPanel.add(txtRAM);
+			txtRAM.setBackground(Color.WHITE);
+			txtRAM.setText("0");
+			txtRAM.setEnabled(false);
+			txtRAM.setColumns(10);
+		}
+		{
+			JLabel lblTotal = new JLabel("Total:");
+			lblTotal.setBounds(221, 181, 46, 14);
+			contentPanel.add(lblTotal);
+			lblTotal.setFont(new Font("Tahoma", Font.BOLD, 12));
+		}
+		{
+			txtTotal = new JTextField();
+			txtTotal.setFont(new Font("Tahoma", Font.BOLD, 11));
+			txtTotal.setBounds(263, 179, 97, 20);
+			contentPanel.add(txtTotal);
+			txtTotal.setBackground(Color.WHITE);
+			txtTotal.setText("0");
+			txtTotal.setEnabled(false);
+			txtTotal.setColumns(10);
+		}
+		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(30, 144, 255));
-			panel.setBounds(0, 0, 482, 248);
+			panel.setBounds(0, 0, 466, 246);
 			contentPanel.add(panel);
-			panel.setLayout(null);
-			{
-				JLabel lblTarjetaMadre = new JLabel("Tarjeta Madre:");
-				lblTarjetaMadre.setFont(new Font("Tahoma", Font.BOLD, 12));
-				lblTarjetaMadre.setBounds(88, 53, 109, 14);
-				panel.add(lblTarjetaMadre);
-			}
-			{
-				JLabel lblDiscoDuro = new JLabel("Disco Duro:");
-				lblDiscoDuro.setFont(new Font("Tahoma", Font.BOLD, 12));
-				lblDiscoDuro.setBounds(88, 90, 93, 14);
-				panel.add(lblDiscoDuro);
-			}
-			{
-				JLabel lblRAM = new JLabel("Memoria RAM:");
-				lblRAM.setFont(new Font("Tahoma", Font.BOLD, 12));
-				lblRAM.setBounds(88, 126, 93, 14);
-				panel.add(lblRAM);
-			}
-			{
-				JLabel lblNewLabel = new JLabel("CPU:");
-				lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-				lblNewLabel.setBounds(88, 163, 46, 14);
-				panel.add(lblNewLabel);
-			}
-			{
-				txtTarjetaMadre = new JTextField();
-				txtTarjetaMadre.setText("0");
-				txtTarjetaMadre.setEnabled(false);
-				txtTarjetaMadre.setBounds(207, 51, 138, 20);
-				panel.add(txtTarjetaMadre);
-				txtTarjetaMadre.setColumns(10);
-			}
-			{
-				txtDiscoDuro = new JTextField();
-				txtDiscoDuro.setText("0");
-				txtDiscoDuro.setEnabled(false);
-				txtDiscoDuro.setBounds(207, 88, 138, 20);
-				panel.add(txtDiscoDuro);
-				txtDiscoDuro.setColumns(10);
-			}
-			{
-				txtRAM = new JTextField();
-				txtRAM.setText("0");
-				txtRAM.setEnabled(false);
-				txtRAM.setBounds(207, 124, 138, 20);
-				panel.add(txtRAM);
-				txtRAM.setColumns(10);
-			}
-			{
-				txtCPU = new JTextField();
-				txtCPU.setText("0");
-				txtCPU.setEnabled(false);
-				txtCPU.setBounds(207, 161, 138, 20);
-				panel.add(txtCPU);
-				txtCPU.setColumns(10);
-			}
-			{
-				JLabel lblNewLabel_1 = new JLabel("Cantidad:");
-				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-				lblNewLabel_1.setBounds(207, 26, 138, 14);
-				panel.add(lblNewLabel_1);
-			}
-			{
-				JLabel lblTotal = new JLabel("Total:");
-				lblTotal.setFont(new Font("Tahoma", Font.BOLD, 12));
-				lblTotal.setBounds(207, 204, 46, 14);
-				panel.add(lblTotal);
-			}
-			{
-				txtTotal = new JTextField();
-				txtTotal.setText("0");
-				txtTotal.setEnabled(false);
-				txtTotal.setBounds(248, 202, 97, 20);
-				panel.add(txtTotal);
-				txtTotal.setColumns(10);
-			}
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -150,6 +163,34 @@ public class ReporteVentas extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		loadComponentesVendidos();
+	}
+	
+	public static void loadComponentesVendidos()
+	{
+		int TarjetaMadre = 0;
+		int RAM = 0;
+		int Microprocesador = 0;
+		int DiscoDuro = 0;
+		int total = 0;
+		
+		for(Factura aux : TiendaElite.getInstance().getMisFacturas())
+		{
+			TarjetaMadre += aux.cantTarjetaMadreVendido();
+			RAM += aux.cantMemoriaRAMVendido();
+			Microprocesador += aux.cantCPUVendido();
+			DiscoDuro += aux.cantDiscoDuroVendido();
+		}
+		
+		total = TarjetaMadre + RAM + Microprocesador + DiscoDuro;
+		
+		txtTarjetaMadre.setText(String.valueOf(TarjetaMadre));
+		txtDiscoDuro.setText(String.valueOf(DiscoDuro));
+		txtRAM.setText(String.valueOf(RAM));
+		txtCPU.setText(String.valueOf(Microprocesador));
+		txtTotal.setText(String.valueOf(total));
+		
+		
 	}
 
 }

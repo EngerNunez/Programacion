@@ -496,7 +496,7 @@ public class Facturar extends JDialog {
 				
 				if(componente instanceof TarjetaMadre && componente.getDisponibilidad() == 'D')
 				{
-					aux = componente.getNumeroSerie() + " TMB $" + componente.getPrecio();
+					aux = componente.getNumeroSerie() + " MB  $" + componente.getPrecio();
 					compdisp.add(aux);
 					modelListCompDisponibles.addElement(aux);
 				}
