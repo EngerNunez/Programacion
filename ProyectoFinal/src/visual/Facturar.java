@@ -86,7 +86,7 @@ public class Facturar extends JDialog {
 		
 		txtDireccion = new JTextField();
 		txtDireccion.setEditable(false);
-		txtDireccion.setBounds(96, 123, 416, 20);
+		txtDireccion.setBounds(96, 123, 423, 20);
 		contentPanel.add(txtDireccion);
 		txtDireccion.setColumns(10);
 		
@@ -97,7 +97,7 @@ public class Facturar extends JDialog {
 		
 		txtTelefono = new JTextField();
 		txtTelefono.setEditable(false);
-		txtTelefono.setBounds(360, 94, 152, 20);
+		txtTelefono.setBounds(360, 94, 159, 20);
 		contentPanel.add(txtTelefono);
 		txtTelefono.setColumns(10);
 		
@@ -150,18 +150,18 @@ public class Facturar extends JDialog {
 		contentPanel.add(PanelCarritoCompra);
 		
 		JList ListCarritoCompra = new JList();
-		ListCarritoCompra.setBounds(319, 389, 193, -179);
+		ListCarritoCompra.setBounds(319, 630, 193, -420);
 		contentPanel.add(ListCarritoCompra);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(30, 144, 255));
-		panel.setBounds(0, 0, 535, 685);
+		panel.setBounds(0, 0, 547, 685);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(10, 11, 515, 149);
+		panel_1.setBounds(10, 11, 527, 149);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -187,7 +187,7 @@ public class Facturar extends JDialog {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(255, 255, 255));
-		panel_2.setBounds(10, 171, 515, 472);
+		panel_2.setBounds(10, 171, 527, 472);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
