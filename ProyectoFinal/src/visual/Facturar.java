@@ -27,6 +27,7 @@ import logico.Combo;
 import logico.DiscoDuro;
 import logico.Microprocesador;
 import logico.TarjetaMadre;
+import javax.swing.AbstractListModel;
 
 public class Facturar extends JDialog {
 
@@ -219,13 +220,22 @@ public class Facturar extends JDialog {
 		panel_2.add(lblNewLabel_3);
 		
 		JPanel PanelCombo = new JPanel();
-		PanelCombo.setToolTipText("Combo Estudiante");
+		PanelCombo.setToolTipText("");
 		PanelCombo.setBackground(Color.LIGHT_GRAY);
 		PanelCombo.setBounds(10, 278, 199, 183);
 		panel_2.add(PanelCombo);
 		PanelCombo.setLayout(null);
 		
 		JList list = new JList();
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] {};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
 		list.setBounds(0, 191, 199, -190);
 		PanelCombo.add(list);
 		
