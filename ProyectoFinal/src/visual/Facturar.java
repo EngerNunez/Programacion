@@ -214,6 +214,8 @@ public class Facturar extends JDialog {
 				compdisp.add(temp);
 				modelListCompDisponibles.addElement(temp);
 				btnComponentesDerecho.setEnabled(false);
+				btnComboDerecha.setEnabled(false);
+				btnComboIzquierda.setEnabled(false);
 				
 				total -= Float.valueOf(carrito.get(selected).substring(carrito.get(selected).indexOf(" ")+6,carrito.get(selected).length()));
 			
@@ -239,6 +241,9 @@ public class Facturar extends JDialog {
 				carrito.add(temp);
 				modelListCarrito.addElement(temp);
 				btnComponenteIzquierda.setEnabled(false);
+				btnComboDerecha.setEnabled(false);
+				btnComboIzquierda.setEnabled(false);
+				
 				
 				compdisp.remove(selected);
 				
