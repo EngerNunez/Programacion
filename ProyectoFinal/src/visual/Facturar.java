@@ -464,6 +464,7 @@ public class Facturar extends JDialog {
 		txtNombre.setText("");
 		txtDireccion.setText("");
 		txtTelefono.setText("");
+		txtTotal.setText("$0.0");
 		txtNombre.setEditable(false);
 		txtTelefono.setEditable(false);
 		txtDireccion.setEditable(false);
@@ -471,7 +472,13 @@ public class Facturar extends JDialog {
 		compdisp = new ArrayList<>();
 		carrito = new ArrayList<>();
 		modelListCarrito.removeAllElements();
-		//LoadComponentes
+		loadcomponentes();
+		btnComponenteIzquierda.setEnabled(false);
+		btnComponentesDerecho.setEnabled(false);
+		btnComboIzquierda.setEnabled(false);
+		btnComboDerecha.setEnabled(false);
+		
+		
 		
 	}
 	

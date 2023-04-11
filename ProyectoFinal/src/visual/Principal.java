@@ -167,6 +167,13 @@ public class Principal extends JFrame {
 		});
 		
 		JMenuItem mntmAgregarCombo = mnComponentes.add(action_11);
+		mntmAgregarCombo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AgregarCombo agregar_combo = new AgregarCombo();
+				agregar_combo.setModal(true);
+				agregar_combo.setVisible(true);
+			}
+		});
 		mntmAgregarCombo.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmAgregarCombo.setText("Agregar Combo");
 		
