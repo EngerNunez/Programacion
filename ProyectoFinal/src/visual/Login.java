@@ -90,7 +90,6 @@ public class Login extends JFrame {
 	public Login() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
 		setUndecorated(true);
-	
 		setTitle("Elite Eletronics Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -136,7 +135,6 @@ public class Login extends JFrame {
 					dispose();
 					frame.setVisible(true);
 				};
-				
 			}
 		});
 		btnLogin.setBounds(48, 177, 98, 49);

@@ -73,5 +73,15 @@ public class Control implements Serializable{
 		}
 		return login;
 	}
+	
+	public boolean userExist(String name) {
+		boolean existe = false;
+		for(User user:misUsers) {
+			if(user.getUserName().equalsIgnoreCase(name)){
+				existe = true;
+			}
+		}
+		return existe;
+	}
 
 }

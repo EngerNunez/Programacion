@@ -105,9 +105,22 @@ public class RegUsuario extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						User user = new User(cbxTipo.getSelectedItem().toString(),txtnombre.getText(),txtPassword.getText());
-					    Control.getInstance().regUser(user);
-
+						if(!Control.getInstance().userExist(txtnombre.getText())) {
+							if(txtPassword.getText().equalsIgnoreCase(txtConfirmarPass.getText())){
+								User user = new User(cbxTipo.getSelectedItem().toString(),txtnombre.getText(),txtPassword.getText());
+							    Control.getInstance().regUser(user);
+							    clear();
+							    
+							    JOptionPane.showMessageDialog(null, "Usuario agreagdo", "Informacion",JOptionPane.INFORMATION_MESSAGE);
+							}else {
+								JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden intente otra vez!", "Error",JOptionPane.ERROR_MESSAGE);
+								clear();
+							}
+						
+						}else {
+							JOptionPane.showMessageDialog(null, "Este usuario ya exite intente otro nombre!", "Error",JOptionPane.ERROR_MESSAGE);
+							clear();
+						}
 					}
 				});
 				okButton.setActionCommand("OK");
