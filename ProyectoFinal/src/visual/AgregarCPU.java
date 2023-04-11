@@ -20,6 +20,7 @@ import javax.swing.SpinnerNumberModel;
 import logico.Componente;
 import logico.Microprocesador;
 import logico.TiendaElite;
+import java.awt.Toolkit;
 
 public class AgregarCPU extends JDialog {
 
@@ -49,6 +50,7 @@ public class AgregarCPU extends JDialog {
 	 * Create the dialog.
 	 */
 	public AgregarCPU() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarCPU.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
 		setTitle("CPU");
 		setBounds(100, 100, 429, 324);
 		getContentPane().setLayout(new BorderLayout());

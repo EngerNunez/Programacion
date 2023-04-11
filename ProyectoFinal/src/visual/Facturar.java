@@ -491,30 +491,35 @@ public class Facturar extends JDialog {
 		
 		for(Componente componente : TiendaElite.getInstance().getMisComponentes())
 		{				
+			
+			for(int i = 0; i < componente.getCantidad(); i++)	
+			{
 				if(componente instanceof TarjetaMadre && componente.getDisponibilidad() == 'D')
 				{
-					aux = componente.getCantidad() + " " + componente.getNumeroSerie() + " MB  $" + componente.getPrecio();
+					aux = componente.getNumeroSerie() + " MB  $" + componente.getPrecio();
 					compdisp.add(aux);
 					modelListCompDisponibles.addElement(aux);
 				}
 				if(componente instanceof MemoriaRAM && componente.getDisponibilidad() == 'D')
 				{
-					aux = componente.getCantidad() + " " + componente.getNumeroSerie() + " RAM $" + componente.getPrecio();
+					aux = componente.getNumeroSerie() + " RAM $" + componente.getPrecio();
 					compdisp.add(aux);
 					modelListCompDisponibles.addElement(aux);
 				}
 				if(componente instanceof DiscoDuro && componente.getDisponibilidad() == 'D')
 				{
-					aux = componente.getCantidad() + " " + componente.getNumeroSerie() + " SSD $" + componente.getPrecio();
+					aux = componente.getNumeroSerie() + " SSD $" + componente.getPrecio();
 					compdisp.add(aux);
 					modelListCompDisponibles.addElement(aux);
 				}
 				if(componente instanceof Microprocesador && componente.getDisponibilidad() == 'D')
 				{
-					aux = componente.getCantidad() + " " + componente.getNumeroSerie() + " CPU $" + componente.getPrecio();
+					aux = componente.getNumeroSerie() + " CPU $" + componente.getPrecio();
 					compdisp.add(aux);
 					modelListCompDisponibles.addElement(aux);
 				}
+				
+			}
 			
 		}
 	}
