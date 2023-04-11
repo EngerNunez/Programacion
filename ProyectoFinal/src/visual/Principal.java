@@ -367,7 +367,7 @@ public class Principal extends JFrame {
 					e1.printStackTrace();
 				}
 				
-			}
+			}//fix
 		});
 		btnNewButton.setBackground(SystemColor.textHighlight);
 		btnNewButton.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/save_Icon.png")));

@@ -178,7 +178,7 @@ public class DineroVenta extends JDialog {
 		txtDiscoDuro.setText("$"+String.valueOf(DD));
 		txtTarjetaMadre.setText("$"+String.valueOf(TM));
 		txtRAM.setText("$"+String.valueOf(RAM));
-		txtTotal.setText("$"+String.valueOf(CPU+DD+TM+RAM));
+		txtTotal.setText("$"+String.valueOf(CPU+DD+TM+RAM));//fix
 	}
 
 }
