@@ -352,7 +352,7 @@ public class Principal extends JFrame {
 			    {
 			      System.out.println("Comunicaci�n rechazada.");
 			      System.exit(1);
-			    }
+			    }//r
 			}
 		});
 		mntmRespaldar.setFont(new Font("Segoe UI", Font.BOLD, 13));

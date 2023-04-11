@@ -369,7 +369,7 @@ public class Facturar extends JDialog {
 		
 		JPanel PanelCarrito = new JPanel();
 		PanelCarrito.setBackground(Color.LIGHT_GRAY);
-		PanelCarrito.setBounds(313, 41, 204, 198);
+		PanelCarrito.setBounds(313, 41, 204, 420);
 		PanelSecundario.add(PanelCarrito);
 		PanelCarrito.setLayout(new BorderLayout(0, 0));
 		
@@ -435,16 +435,6 @@ public class Facturar extends JDialog {
 		listCombo.setModel(modelListCombos);
 		listCombo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneCombo.setViewportView(listCombo);
-		
-		JPanel PanelCarrito2 = new JPanel();
-		PanelCarrito2.setBackground(Color.WHITE);
-		PanelCarrito2.setBounds(308, 270, 209, 191);
-		PanelSecundario.add(PanelCarrito2);
-		PanelCarrito2.setLayout(null);
-		
-		JList ListCarrito2 = new JList();
-		ListCarrito2.setBounds(0, 188, 209, -191);
-		PanelCarrito2.add(ListCarrito2);
 		
 		JScrollPane scrollPaneCarrito2 = new JScrollPane();
 		scrollPaneCarrito2.setBounds(520, 270, -205, 191);
