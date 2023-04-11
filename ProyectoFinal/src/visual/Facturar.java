@@ -57,6 +57,8 @@ public class Facturar extends JDialog {
 	private DefaultListModel<String>modelListCombos;
 	private JScrollPane scrollPaneCarrito;
 	private JList ListCarrito;
+	private JList listCombo;
+	private JScrollPane scrollPaneCombo;
 	private DefaultListModel<String>modelListCarrito;
 	private ArrayList<String>compdisp;
 	private ArrayList<String>combosdisp;
@@ -268,21 +270,49 @@ public class Facturar extends JDialog {
 		
 
 		btnComboDerecha = new JButton(">>"); 
+		
 		JPanel PanelCombo = new JPanel();
 		PanelCombo.setToolTipText("");
-		PanelCombo.setBackground(Color.LIGHT_GRAY);
+		PanelCombo.setBackground(new Color(255, 255, 255));
 		PanelCombo.setBounds(10, 270, 188, 191);
 		PanelSecundario.add(PanelCombo);
 		PanelCombo.setLayout(null);
 		
 		
-		JButton btnComboDerecha = new JButton(">>");
+		btnComboDerecha = new JButton(">>");
+		btnComboDerecha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+			}
+		});
 		btnComboDerecha.setFont(new Font("Tahoma", Font.BOLD, 13)); 
 		btnComboDerecha.setEnabled(false);
 		btnComboDerecha.setBounds(219, 325, 79, 23);
 		PanelSecundario.add(btnComboDerecha);
 		
 		btnComboIzquierda = new JButton("<<");
+		btnComboIzquierda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String temp = carrito.get(selected);
+				combosdisp.add(temp);
+				modelListCombos.addElement(temp);
+				btnComboDerecha.setEnabled(false);
+				
+				total -= Float.valueOf(carrito.get(selected).substring(carrito.get(selected).indexOf(" ")+6,carrito.get(selected).length()));
+			
+				txtTotal.setText("$" + Float.toString(total));
+
+				carrito.remove(selected);
+				reloadcarrito();
+				ind--;
+				
+				
+				
+			}
+		});
 		btnComboIzquierda.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnComboIzquierda.setEnabled(false);
 		btnComboIzquierda.setBounds(219, 359, 79, 23);
@@ -358,6 +388,31 @@ public class Facturar extends JDialog {
 		PanelSecundario.add(lblCarritoCompra);
 		lblCarritoCompra.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
+		scrollPaneCombo = new JScrollPane();
+		PanelSecundario.add(scrollPaneCombo, BorderLayout.CENTER);
+		
+		listCombo = new JList<>();
+		listCombo.setBounds(10, 463, 188, -194);
+		listCombo.addMouseListener(new MouseAdapter() {
+			
+			public void mouseClicked(MouseEvent e)
+			{
+				selected = listCombo.getSelectedIndex();
+				
+				if(selected >= 0)
+				{
+					btnComboDerecha.setEnabled(true);
+					btnComboIzquierda.setEnabled(false);
+				}
+			}
+			
+			
+		});
+		
+		modelListCombos = new DefaultListModel<String>();
+		listCombo.setModel(modelListCombos);
+		scrollPaneCombo.setViewportView(listCombo);
+		
 		txtTotal = new JTextField();
 		txtTotal.setText("$0.0");
 		txtTotal.setBounds(367, 654, 158, 20);
@@ -414,8 +469,8 @@ public class Facturar extends JDialog {
 							}
 			
 						}
-						
-						Factura factura = new Factura(txtCodigo.getText(), compcarrito, cliente);
+						//Poner combo
+						Factura factura = new Factura(txtCodigo.getText(), compcarrito,null, cliente);
 						
 						TiendaElite.getInstance().insertarFactura(factura);
 						
@@ -453,6 +508,7 @@ public class Facturar extends JDialog {
 		
 		loadcomponentes();
 		loadcarrito();
+		loadcombo();
 		
 		
 	}
@@ -471,8 +527,10 @@ public class Facturar extends JDialog {
 		total = 0;
 		compdisp = new ArrayList<>();
 		carrito = new ArrayList<>();
+		combosdisp = new ArrayList<>();
 		modelListCarrito.removeAllElements();
 		loadcomponentes();
+		loadcombo();
 		btnComponenteIzquierda.setEnabled(false);
 		btnComponentesDerecho.setEnabled(false);
 		btnComboIzquierda.setEnabled(false);
@@ -506,6 +564,33 @@ public class Facturar extends JDialog {
 			aux = carrito;
 			modelListCarrito.addElement(aux);
 		}
+	}
+	
+	private void reloadcombo()
+	{
+		modelListCombos.removeAllElements();
+		String aux = "";
+		
+		for(String combo : combosdisp)
+		{
+			aux = combo;
+			modelListCarrito.addElement(aux);
+		}
+		
+	}
+	
+	private void loadcombo()
+	{
+		modelListCombos.removeAllElements();
+		String aux = "";
+		
+		for(Combo combo : TiendaElite.getInstance().getMisCombos())
+		{
+			aux = combo.getCodigo() + "     $" + combo.precioCombo();
+			combosdisp.add(aux);
+			modelListCombos.addElement(aux);
+		}
+		
 	}
 	
 	private void loadcomponentes()

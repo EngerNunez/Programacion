@@ -202,6 +202,15 @@ public class Principal extends JFrame {
 		mntmListaDeComponentes.setText("Lista de Componentes");
 		
 		JMenuItem mntmListaDeCombo = mnComponentes.add(action_12);
+		mntmListaDeCombo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ListaCombos listcombo = new ListaCombos();
+				listcombo.setModal(true);
+				listcombo.setVisible(true);
+				
+			}
+		});
 		mntmListaDeCombo.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmListaDeCombo.setText("Lista de Combo");
 		
