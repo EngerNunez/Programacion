@@ -87,7 +87,7 @@ public class DineroVenta extends JDialog {
 				txtTarjetaMadre = new JTextField();
 				txtTarjetaMadre.setFont(new Font("Tahoma", Font.BOLD, 11));
 				txtTarjetaMadre.setBackground(Color.WHITE);
-				txtTarjetaMadre.setText("$0.0");
+			
 				txtTarjetaMadre.setEnabled(false);
 				txtTarjetaMadre.setBounds(207, 51, 138, 20);
 				panel.add(txtTarjetaMadre);
@@ -97,7 +97,7 @@ public class DineroVenta extends JDialog {
 				txtDiscoDuro = new JTextField();
 				txtDiscoDuro.setFont(new Font("Tahoma", Font.BOLD, 11));
 				txtDiscoDuro.setBackground(Color.WHITE);
-				txtDiscoDuro.setText("$0.0");
+			
 				txtDiscoDuro.setEnabled(false);
 				txtDiscoDuro.setBounds(207, 88, 138, 20);
 				panel.add(txtDiscoDuro);
@@ -107,7 +107,7 @@ public class DineroVenta extends JDialog {
 				txtRAM = new JTextField();
 				txtRAM.setFont(new Font("Tahoma", Font.BOLD, 11));
 				txtRAM.setBackground(Color.WHITE);
-				txtRAM.setText("$0.0");
+			
 				txtRAM.setEnabled(false);
 				txtRAM.setBounds(207, 124, 138, 20);
 				panel.add(txtRAM);
@@ -117,7 +117,7 @@ public class DineroVenta extends JDialog {
 				txtCPU = new JTextField();
 				txtCPU.setFont(new Font("Tahoma", Font.BOLD, 11));
 				txtCPU.setBackground(Color.WHITE);
-				txtCPU.setText("$0.0");
+			
 				txtCPU.setEnabled(false);
 				txtCPU.setBounds(207, 161, 138, 20);
 				panel.add(txtCPU);
@@ -139,7 +139,7 @@ public class DineroVenta extends JDialog {
 				txtTotal = new JTextField();
 				txtTotal.setFont(new Font("Tahoma", Font.BOLD, 11));
 				txtTotal.setBackground(Color.WHITE);
-				txtTotal.setText("$0.0");
+		
 				txtTotal.setEnabled(false);
 				txtTotal.setBounds(248, 202, 97, 20);
 				panel.add(txtTotal);
@@ -164,33 +164,21 @@ public class DineroVenta extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		loadComponente();
 	}
 	public void loadComponente() {
-		
-		
-		
-		float TarjetaMadre = 0;
-		float RAM = 0;
-		float Microprocesador = 0;
-		float DiscoDuro = 0;
-		float total = 0;
-		
-		for(Factura aux : TiendaElite.getInstance().getMisFacturas())
-		{
-			TarjetaMadre += aux.ventaTarjeta();
+		float CPU = 0,DD = 0,TM = 0,RAM=0;
+		for(Factura aux: TiendaElite.getInstance().getMisFacturas()) {
+			CPU += aux.ventaCPU();
+			DD += aux.ventaDiscoDuro();
+			TM += aux.ventaTarjeta();
 			RAM += aux.ventaMemoriaRAM();
-			Microprocesador += aux.ventaCPU();
-			DiscoDuro += aux.ventaDiscoDuro();
-			total += aux.precioFactura();
 		}
-		
-		txtTarjetaMadre.setText("$" +String.valueOf(TarjetaMadre));
-		txtDiscoDuro.setText("$" +String.valueOf(DiscoDuro));
-		txtRAM.setText("$" +String.valueOf(RAM));
-		txtCPU.setText("$" +String.valueOf(Microprocesador));
-		txtTotal.setText("$" +TiendaElite.getInstance().dineroTotalGenerado());
-		
-		
+		txtCPU.setText("$"+String.valueOf(CPU));
+		txtDiscoDuro.setText("$"+String.valueOf(DD));
+		txtTarjetaMadre.setText("$"+String.valueOf(TM));
+		txtRAM.setText("$"+String.valueOf(RAM));
+		txtTotal.setText("$"+String.valueOf(CPU+DD+TM+RAM));
 	}
 
 }
