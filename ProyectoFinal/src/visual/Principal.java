@@ -63,6 +63,7 @@ public class Principal extends JFrame {
 	static DataInputStream EntradaSocket;
 	static DataOutputStream SalidaSocket;
 	private final Action action_11 = new SwingAction_11();
+	private final Action action_12 = new SwingAction_12();
 
 
 	/**
@@ -192,6 +193,10 @@ public class Principal extends JFrame {
 		});
 		mntmListaDeComponentes.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmListaDeComponentes.setText("Lista de Componentes");
+		
+		JMenuItem mntmListaDeCombo = mnComponentes.add(action_12);
+		mntmListaDeCombo.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		mntmListaDeCombo.setText("Lista de Combo");
 		
 		JMenu mnClientes = new JMenu("Clientes");
 		mnClientes.setFont(new Font("Segoe UI", Font.BOLD, 15));
@@ -476,6 +481,14 @@ public class Principal extends JFrame {
 	private class SwingAction_11 extends AbstractAction {
 		public SwingAction_11() {
 			putValue(NAME, "SwingAction_11");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
+	}
+	private class SwingAction_12 extends AbstractAction {
+		public SwingAction_12() {
+			putValue(NAME, "SwingAction_12");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {

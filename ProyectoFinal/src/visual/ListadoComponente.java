@@ -83,6 +83,12 @@ public class ListadoComponente extends JDialog {
 			String[] headers = {"Numero de Serie","Marca","Precio", "Cantidad", "Tipo"};
 			
 			table = new JTable();
+			table.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+				}
+			});
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			scrollPane.setViewportView(table);
 			
