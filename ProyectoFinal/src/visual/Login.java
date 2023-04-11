@@ -29,6 +29,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Window.Type;
 import java.awt.Dialog.ModalExclusionType;
+import java.awt.Font;
 
 public class Login extends JFrame {
 
@@ -94,33 +95,34 @@ public class Login extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLUE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 0, 255));
+		panel.setBackground(Color.BLUE);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setForeground(new Color(255, 255, 255));
-		lblUsuario.setBounds(10, 37, 136, 14);
+		lblUsuario.setBounds(10, 70, 136, 14);
 		panel.add(lblUsuario);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 		lblContrasea.setForeground(new Color(255, 255, 255));
-		lblContrasea.setBounds(10, 96, 105, 14);
+		lblContrasea.setBounds(10, 129, 105, 14);
 		panel.add(lblContrasea);
 		
 		textField = new JTextField();
-		textField.setBounds(10, 62, 191, 20);
+		textField.setBounds(10, 95, 191, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JPasswordField();
-		textField_1.setBounds(10, 126, 191, 20);
+		textField_1.setBounds(10, 159, 191, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -137,12 +139,12 @@ public class Login extends JFrame {
 				};
 			}
 		});
-		btnLogin.setBounds(48, 177, 98, 49);
+		btnLogin.setBounds(59, 203, 87, 49);
 		panel.add(btnLogin);
 		
 		JLabel lblNewLabel = new JLabel("\r\n");
 		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/imagenes/user (1).png")));
-		lblNewLabel.setBounds(211, 37, 211, 236);
+		lblNewLabel.setBounds(230, 63, 200, 188);
 		panel.add(lblNewLabel);
 		
 		JButton btnSalir = new JButton("\r\n");
@@ -155,5 +157,11 @@ public class Login extends JFrame {
 		});
 		btnSalir.setBounds(390, 0, 67, 49);
 		panel.add(btnSalir);
+		
+		JLabel lblNewLabel_1 = new JLabel("Login");
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblNewLabel_1.setBounds(172, -17, 129, 71);
+		panel.add(lblNewLabel_1);
 	}
 }

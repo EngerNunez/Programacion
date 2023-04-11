@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 
 import logico.Control;
 import logico.TiendaElite;
+import logico.User;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -69,12 +70,43 @@ public class Principal extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				FileInputStream empresa;
+				FileOutputStream empresa2;
+				ObjectInputStream empresaRead;
+				ObjectOutputStream empresaWrite;
+				try {
+					empresa = new FileInputStream ("empresa.dat");
+					empresaRead = new ObjectInputStream(empresa);
+					TiendaElite temp = (TiendaElite)empresaRead.readObject();
+					TiendaElite.setTienda(temp);
+					empresa.close();
+					empresaRead.close();
+				} catch (FileNotFoundException e) {
+					try {
+						empresa2 = new  FileOutputStream("empresa.dat");
+						empresaWrite = new ObjectOutputStream(empresa2);
+						empresaWrite.writeObject(TiendaElite.getInstance());
+						empresa2.close();
+						empresaWrite.close();
+					} catch (FileNotFoundException e1) {
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+					}
+				} catch (IOException e) {
+					
+					
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				try {
 					Principal frame = new Principal();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		});
 	}
@@ -269,12 +301,8 @@ public class Principal extends JFrame {
 			      sfd = new Socket("127.0.0.1",7000);
 			      ObjectInputStream aux = new ObjectInputStream(new FileInputStream(new File("empresa.dat")));
 					
-				
-			     // EntradaSocket = new ObjectInputStream(sfd.getInputStream());
-			      SalidaSocket = new DataOutputStream((sfd.getOutputStream()));
-				    
-			     // EntradaSocket = new DataInputStream(new BufferedInputStream(sfd.getInputStream()));
-			     // SalidaSocket = new DataOutputStream(new BufferedOutputStream(sfd.getOutputStream()));
+			      SalidaSocket = new DataOutputStream(sfd.getOutputStream());
+			     // SalidaSocket = new FileOutputStream();
 			      int unByte;
 			      try
 			      {
@@ -328,9 +356,11 @@ public class Principal extends JFrame {
 				FileOutputStream empresa2;
 				ObjectOutputStream empresaWrite;
 				try {
-					empresa2 = new  FileOutputStream("info.dat");
+					empresa2 = new FileOutputStream("empresa.dat");;
 					empresaWrite = new ObjectOutputStream(empresa2);
 					empresaWrite.writeObject(TiendaElite.getInstance());
+					empresa2.close();
+					empresaWrite.close();
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
