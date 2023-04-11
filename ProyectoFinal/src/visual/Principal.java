@@ -371,7 +371,7 @@ public class Principal extends JFrame {
 		});
 		btnNewButton.setBackground(SystemColor.textHighlight);
 		btnNewButton.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/save_Icon.png")));
-		btnNewButton.setBounds(44, 861, 148, 69);
+		btnNewButton.setBounds(44, 861, 157, 69);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("");
