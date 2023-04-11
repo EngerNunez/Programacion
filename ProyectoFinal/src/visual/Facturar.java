@@ -436,6 +436,20 @@ public class Facturar extends JDialog {
 		listCombo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneCombo.setViewportView(listCombo);
 		
+		JPanel PanelCarrito2 = new JPanel();
+		PanelCarrito2.setBackground(Color.WHITE);
+		PanelCarrito2.setBounds(308, 270, 209, 191);
+		PanelSecundario.add(PanelCarrito2);
+		PanelCarrito2.setLayout(null);
+		
+		JList ListCarrito2 = new JList();
+		ListCarrito2.setBounds(0, 188, 209, -191);
+		PanelCarrito2.add(ListCarrito2);
+		
+		JScrollPane scrollPaneCarrito2 = new JScrollPane();
+		scrollPaneCarrito2.setBounds(520, 270, -205, 191);
+		PanelSecundario.add(scrollPaneCarrito2);
+		
 		txtTotal = new JTextField();
 		txtTotal.setText("$0.0");
 		txtTotal.setBounds(367, 654, 158, 20);
