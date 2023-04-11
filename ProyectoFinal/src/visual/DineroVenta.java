@@ -167,6 +167,8 @@ public class DineroVenta extends JDialog {
 	}
 	public void loadComponente() {
 		
+		
+		
 		float TarjetaMadre = 0;
 		float RAM = 0;
 		float Microprocesador = 0;
@@ -186,7 +188,7 @@ public class DineroVenta extends JDialog {
 		txtDiscoDuro.setText("$" +String.valueOf(DiscoDuro));
 		txtRAM.setText("$" +String.valueOf(RAM));
 		txtCPU.setText("$" +String.valueOf(Microprocesador));
-		txtTotal.setText("$" +String.valueOf(total));
+		txtTotal.setText("$" +TiendaElite.getInstance().dineroTotalGenerado());
 		
 		
 	}

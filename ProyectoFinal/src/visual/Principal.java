@@ -21,12 +21,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 import javax.swing.Action;
 import javax.swing.JMenuItem;
@@ -50,6 +58,9 @@ public class Principal extends JFrame {
 	private final Action action_8 = new SwingAction_8();
 	private final Action action_9 = new SwingAction_9();
 	private final Action action_10 = new SwingAction_10();
+	static Socket sfd = null;
+	static DataInputStream EntradaSocket;
+	static DataOutputStream SalidaSocket;
 
 
 	/**
@@ -251,6 +262,45 @@ public class Principal extends JFrame {
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mntmRespaldar = mnNewMenu_1.add(action_10);
+		mntmRespaldar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try
+			    {
+			      sfd = new Socket("127.0.0.1",7000);
+			      ObjectInputStream aux = new ObjectInputStream(new FileInputStream(new File("empresa.dat")));
+					
+				
+			     // EntradaSocket = new ObjectInputStream(sfd.getInputStream());
+			      SalidaSocket = new DataOutputStream((sfd.getOutputStream()));
+				    
+			     // EntradaSocket = new DataInputStream(new BufferedInputStream(sfd.getInputStream()));
+			     // SalidaSocket = new DataOutputStream(new BufferedOutputStream(sfd.getOutputStream()));
+			      int unByte;
+			      try
+			      {
+			    	  while ((unByte = aux.read()) != -1)
+							SalidaSocket.write(unByte);
+							SalidaSocket.flush();
+			        //SalidaSocket.writeUTF(ejemplo);
+			       // SalidaSocket.flush();
+			      }
+			      catch (IOException ioe)
+			      {
+			        System.out.println("Error: "+ioe);
+			      }
+			    }
+			    catch (UnknownHostException uhe)
+			    {
+			      System.out.println("No se puede acceder al servidor.");
+			      System.exit(1);
+			    }
+			    catch (IOException ioe)
+			    {
+			      System.out.println("Comunicación rechazada.");
+			      System.exit(1);
+			    }
+			}
+		});
 		mntmRespaldar.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		mntmRespaldar.setText("Respaldar");
 		
