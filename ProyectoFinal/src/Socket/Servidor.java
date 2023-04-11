@@ -37,6 +37,6 @@ public class Servidor extends Thread {
 			} catch (IOException ioe) {
 				System.out.println("Error: " + ioe);
 			}
-		}
+		}//file
 	}
 }
