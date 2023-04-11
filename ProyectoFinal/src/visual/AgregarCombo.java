@@ -148,6 +148,11 @@ public class AgregarCombo extends JDialog {
 				
 				total = total + descuento;
 				
+				if(total < 0)
+				{
+					total = 0;
+				}
+				
 				txtTotal.setText("$" + Float.toString(total));
 
 				Combo.remove(selected);
@@ -186,6 +191,7 @@ public class AgregarCombo extends JDialog {
 				{
 					descuento = (float) (total * 0.20);
 				}
+				
 
 				total = total - descuento;
 				txtTotal.setText("$" + Float.toString(total));

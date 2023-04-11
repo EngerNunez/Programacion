@@ -150,8 +150,6 @@ public class Facturar extends JDialog {
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null, "El cliente no se encuentra", "Buscar Cliente",
-							JOptionPane.INFORMATION_MESSAGE);
 					
 					txtNombre.setEditable(true);
 					txtTelefono.setEditable(true);
@@ -290,7 +288,7 @@ public class Facturar extends JDialog {
 				
 				reloadcombo();
 				
-                total += Float.valueOf(combosdisp.get(ind).substring(combosdisp.get(ind).indexOf(" ")+1,combosdisp.get(ind).length()));
+                total += Float.valueOf(combosdisp.get(ind).substring(combosdisp.get(ind).indexOf(" ")+2,combosdisp.get(ind).length()));
 				
 				txtTotal.setText("$" + Float.toString(total));
 				
@@ -496,7 +494,7 @@ public class Facturar extends JDialog {
 							}
 			
 						}
-						//Poner combo
+						
 						Factura factura = new Factura(txtCodigo.getText(), compcarrito,null, cliente);
 						
 						TiendaElite.getInstance().insertarFactura(factura);

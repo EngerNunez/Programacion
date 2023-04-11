@@ -34,6 +34,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.SystemColor;
 
 public class ListadoComponente extends JDialog {
 
@@ -149,6 +150,7 @@ public class ListadoComponente extends JDialog {
 				});
 				
 				btnMostrar = new JButton("Mostrar\r\n");
+				btnMostrar.setBackground(SystemColor.info);
 				btnMostrar.setEnabled(false);
 				btnMostrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
