@@ -153,16 +153,16 @@ public class ListadoComponente extends JDialog {
 					rows[3] = aux.getCantidad();
 					
 					if (aux instanceof TarjetaMadre) {
-						rows[3] = "MB";
+						rows[4] = "MB";
 					}
 					if (aux instanceof DiscoDuro) {
-						rows[3] = "HDD";
+						rows[4] = "HDD";
 					}
 					if (aux instanceof Microprocesador) {
-						rows[3] = "CPU";
+						rows[4] = "CPU";
 					}
 					if (aux instanceof MemoriaRAM) {
-						rows[3] = "RAM";
+						rows[4] = "RAM";
 					}
 					
 				}
@@ -179,7 +179,8 @@ public class ListadoComponente extends JDialog {
 						rows[0] = aux.getNumeroSerie();
 						rows[1] = aux.getMarca();
 						rows[2] = "$" + aux.getPrecio();
-						rows[3] = "MB";
+						rows[3] = aux.getCantidad();
+						rows[4] = "MB";
 						model.addRow(rows);
 					}
 				
@@ -194,7 +195,8 @@ public class ListadoComponente extends JDialog {
 						rows[0] = aux.getNumeroSerie();
 						rows[1] = aux.getMarca();
 						rows[2] = "$" + aux.getPrecio();
-						rows[3] = "RAM";
+						rows[3] = aux.getCantidad();
+						rows[4] = "RAM";
 						model.addRow(rows);
 					}
 				
@@ -207,7 +209,8 @@ public class ListadoComponente extends JDialog {
 						rows[0] = aux.getNumeroSerie();
 						rows[1] = aux.getMarca();
 						rows[2] = "$" + aux.getPrecio();
-						rows[3] = "HDD";
+						rows[3] = aux.getCantidad();
+						rows[4] = "HDD";
 						model.addRow(rows);
 					}
 					
@@ -222,7 +225,8 @@ public class ListadoComponente extends JDialog {
 						rows[0] = aux.getNumeroSerie();
 						rows[1] = aux.getMarca();
 						rows[2] = "$" + aux.getPrecio();
-						rows[3] = "CPU"; 
+						rows[3] = aux.getCantidad();
+						rows[4] = "CPU"; 
 						model.addRow(rows);
 					}
 				
