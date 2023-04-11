@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import logico.Control;
+import logico.TiendaElite;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,14 +21,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javax.swing.Action;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.SystemColor;
 
 public class Principal extends JFrame {
 
@@ -265,6 +271,30 @@ public class Principal extends JFrame {
 		});
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Guardar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FileOutputStream empresa2;
+				ObjectOutputStream empresaWrite;
+				try {
+					empresa2 = new  FileOutputStream("info.dat");
+					empresaWrite = new ObjectOutputStream(empresa2);
+					empresaWrite.writeObject(TiendaElite.getInstance());
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnNewButton.setBackground(SystemColor.textHighlight);
+		btnNewButton.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/save_Icon.png")));
+		btnNewButton.setBounds(44, 861, 148, 69);
+		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/5.png")));
