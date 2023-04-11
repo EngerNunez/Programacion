@@ -359,6 +359,7 @@ public class Facturar extends JDialog {
 		lblCarritoCompra.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		txtTotal = new JTextField();
+		txtTotal.setText("$0.0");
 		txtTotal.setBounds(367, 654, 158, 20);
 		panel.add(txtTotal);
 		txtTotal.setEnabled(false);
