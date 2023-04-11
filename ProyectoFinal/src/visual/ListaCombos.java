@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import javafx.scene.control.SelectionMode;
 
 import logico.TiendaElite;
+import logico.Combo;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
@@ -78,10 +79,10 @@ public class ListaCombos extends JDialog {
 
 		scrollPane = new JScrollPane();
 		
-		scrollPane.setBounds(0, 0, 626, 321);
+		scrollPane.setBounds(0, 11, 626, 321);
 		panel.add(scrollPane,BorderLayout.CENTER);
 		{
-			String[] headers = {"Numero de Serie","Marca","Precio", "Cantidad", "Tipo"};
+			String[] headers = {"Codigo","Precio","Tipo"};
 			
 			table = new JTable();
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -105,112 +106,15 @@ public class ListaCombos extends JDialog {
 						dispose();
 					}
 				});
-				
-				JButton btnNewButton = new JButton("Mostrar\r\n");
-				btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-				buttonPane.add(btnNewButton);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
-		loadComponentes(0);
+		
+	}
+	public void loadCombos() {
+		
 	}
 
-	public void loadComponentes(int index) {
-		model.setRowCount(0);
-		rows = new Object[model.getColumnCount()];
-		if (index == 0) {
-			
-			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
-				
-				if (aux.getDisponibilidad() == 'D') {
-					rows[0] = aux.getNumeroSerie();
-					rows[1] = aux.getMarca();
-					rows[2] = "$" + aux.getPrecio();
-					rows[3] = aux.getCantidad();
-					
-					if (aux instanceof TarjetaMadre) {
-						rows[4] = "MB";
-					}
-					if (aux instanceof DiscoDuro) {
-						rows[4] = "HDD";
-					}
-					if (aux instanceof Microprocesador) {
-						rows[4] = "CPU";
-					}
-					if (aux instanceof MemoriaRAM) {
-						rows[4] = "RAM";
-					}
-					
-				}
-					model.addRow(rows);
-					
-			}
-			
-		}
-		if (index == 1) {
-			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
-				
-				
-					if (aux instanceof TarjetaMadre && aux.getDisponibilidad() == 'D') {
-						rows[0] = aux.getNumeroSerie();
-						rows[1] = aux.getMarca();
-						rows[2] = "$" + aux.getPrecio();
-						rows[3] = aux.getCantidad();
-						rows[4] = "MB";
-						model.addRow(rows);
-					}
-				
-				
-			}
-		}
-		if (index == 2) {
-			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
-				
-					
-					if (aux instanceof MemoriaRAM && aux.getDisponibilidad() == 'D') {
-						rows[0] = aux.getNumeroSerie();
-						rows[1] = aux.getMarca();
-						rows[2] = "$" + aux.getPrecio();
-						rows[3] = aux.getCantidad();
-						rows[4] = "RAM";
-						model.addRow(rows);
-					}
-				
-			}
-		}
-		if (index == 3) {
-			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
-				
-					if (aux instanceof DiscoDuro && aux.getDisponibilidad() == 'D') {
-						rows[0] = aux.getNumeroSerie();
-						rows[1] = aux.getMarca();
-						rows[2] = "$" + aux.getPrecio();
-						rows[3] = aux.getCantidad();
-						rows[4] = "HDD";
-						model.addRow(rows);
-					}
-					
-				
-				
-			}
-		}
-		if (index == 4) {
-			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
-				
-					if (aux instanceof Microprocesador && aux.getDisponibilidad() == 'D') {
-						rows[0] = aux.getNumeroSerie();
-						rows[1] = aux.getMarca();
-						rows[2] = "$" + aux.getPrecio();
-						rows[3] = aux.getCantidad();
-						rows[4] = "CPU"; 
-						model.addRow(rows);
-					}
-				
-				
-				
-			}
-		}
-	}
 	
 }

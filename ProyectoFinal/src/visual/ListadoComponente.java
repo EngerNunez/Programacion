@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.sun.corba.se.impl.encoding.CodeSetConversion.BTCConverter;
+
 import javafx.scene.control.SelectionMode;
 
 import javax.swing.JScrollPane;
@@ -42,6 +44,7 @@ public class ListadoComponente extends JDialog {
 	private JTable table;
 	private Object rows[];
 	private Componente selected = null;
+	private JButton btnMostrar;
 
 	/**
 	 * Launch the application.
@@ -86,6 +89,12 @@ public class ListadoComponente extends JDialog {
 			table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					int index = table.getSelectedRow();
+					if(index>=0){
+						btnMostrar.setEnabled(true);
+						String serial = table.getValueAt(index, 0).toString();
+						selected = TiendaElite.getInstance().buscarComponenteBySerial(serial);
+					}
 					
 				}
 			});
@@ -139,9 +148,17 @@ public class ListadoComponente extends JDialog {
 					}
 				});
 				
-				JButton btnNewButton = new JButton("Mostrar\r\n");
-				btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-				buttonPane.add(btnNewButton);
+				btnMostrar = new JButton("Mostrar\r\n");
+				btnMostrar.setEnabled(false);
+				btnMostrar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						MostrarComponente MC = new MostrarComponente(selected);
+						MC.setModal(true);
+						MC.setVisible(true);
+					}
+				});
+				btnMostrar.setFont(new Font("Tahoma", Font.BOLD, 13));
+				buttonPane.add(btnMostrar);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

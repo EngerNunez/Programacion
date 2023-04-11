@@ -167,14 +167,6 @@ public class AgregarCPU extends JDialog {
 						float precio = Float.valueOf(spnPrecio.getValue().toString());
 						float velocidadprocesamiento = Float.valueOf(spnVelocidadProcesamiento.getValue().toString());
 						int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
-						
-						aux = new Microprocesador(marca,numserie,precio,cantidad,modelo,tipoconexion,velocidadprocesamiento);
-						
-						TiendaElite.getInstance().insertarComponente(aux);
-						
-						JOptionPane.showMessageDialog(null, "CPU agregado", "Informacion",JOptionPane.INFORMATION_MESSAGE);
-						
-						clean();
 
 						if(TiendaElite.getInstance().serialExiste(numserie)) {
 							JOptionPane.showMessageDialog(null, "Este numero de serie ya esta en uso!", "Error",JOptionPane.ERROR_MESSAGE);
