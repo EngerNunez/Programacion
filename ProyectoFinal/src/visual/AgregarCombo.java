@@ -332,7 +332,7 @@ public class AgregarCombo extends JDialog {
 							}
 						}
 						
-						Combo combo = new Combo(txtCodigo.getText(),null);
+						Combo combo = new Combo(txtCodigo.getText(),null,total);
 						
 						TiendaElite.getInstance().insertarCombo(combo);
 

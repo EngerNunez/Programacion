@@ -267,22 +267,34 @@ public class Facturar extends JDialog {
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_3.setBounds(10, 245, 199, 14);
 		PanelSecundario.add(lblNewLabel_3);
-		
-
-		btnComboDerecha = new JButton(">>"); 
+	
 		
 		JPanel PanelCombo = new JPanel();
 		PanelCombo.setToolTipText("");
-		PanelCombo.setBackground(new Color(255, 255, 255));
+		PanelCombo.setBackground(Color.WHITE);
 		PanelCombo.setBounds(10, 270, 188, 191);
 		PanelSecundario.add(PanelCombo);
-		PanelCombo.setLayout(null);
+		PanelCombo.setLayout(new BorderLayout(0, 0));
 		
 		
 		btnComboDerecha = new JButton(">>");
 		btnComboDerecha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				String temp = combosdisp.get(selected);
+				carrito.add(temp);
+				modelListCombos.addElement(temp);
+				btnComboIzquierda.setEnabled(false);
+				
+				combosdisp.remove(selected);
+				
+				reloadcombo();
+				
+                total += Float.valueOf(combosdisp.get(ind).substring(combosdisp.get(ind).indexOf(" ")+1,combosdisp.get(ind).length()));
+				
+				txtTotal.setText("$" + Float.toString(total));
+				
+				ind++;
 				
 				
 			}
@@ -301,7 +313,7 @@ public class Facturar extends JDialog {
 				modelListCombos.addElement(temp);
 				btnComboDerecha.setEnabled(false);
 				
-				total -= Float.valueOf(carrito.get(selected).substring(carrito.get(selected).indexOf(" ")+6,carrito.get(selected).length()));
+				total -= Float.valueOf(carrito.get(selected).substring(carrito.get(selected).indexOf(" ")+2,carrito.get(selected).length()));
 			
 				txtTotal.setText("$" + Float.toString(total));
 
@@ -340,6 +352,10 @@ public class Facturar extends JDialog {
 				{
 					btnComponentesDerecho.setEnabled(true);
 					btnComponenteIzquierda.setEnabled(false);
+					
+					btnComboIzquierda.setEnabled(false);
+					btnComboDerecha.setEnabled(false);
+					
 				}
 			}
 			
@@ -353,7 +369,7 @@ public class Facturar extends JDialog {
 		
 		JPanel PanelCarrito = new JPanel();
 		PanelCarrito.setBackground(Color.LIGHT_GRAY);
-		PanelCarrito.setBounds(313, 41, 204, 420);
+		PanelCarrito.setBounds(313, 41, 204, 198);
 		PanelSecundario.add(PanelCarrito);
 		PanelCarrito.setLayout(new BorderLayout(0, 0));
 		
@@ -373,6 +389,9 @@ public class Facturar extends JDialog {
 					btnComponenteIzquierda.setEnabled(true);
 					btnComponentesDerecho.setEnabled(false);
 					
+					btnComboDerecha.setEnabled(false);
+					btnComboIzquierda.setEnabled(true);
+					
 				}
 			}
 			
@@ -389,10 +408,10 @@ public class Facturar extends JDialog {
 		lblCarritoCompra.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		scrollPaneCombo = new JScrollPane();
-		PanelSecundario.add(scrollPaneCombo, BorderLayout.CENTER);
+		PanelCombo.add(scrollPaneCombo, BorderLayout.CENTER);
 		
 		listCombo = new JList<>();
-		listCombo.setBounds(10, 463, 188, -194);
+		listCombo.setBackground(Color.WHITE);
 		listCombo.addMouseListener(new MouseAdapter() {
 			
 			public void mouseClicked(MouseEvent e)
@@ -403,6 +422,9 @@ public class Facturar extends JDialog {
 				{
 					btnComboDerecha.setEnabled(true);
 					btnComboIzquierda.setEnabled(false);
+					
+					btnComponentesDerecho.setEnabled(false);
+					btnComponenteIzquierda.setEnabled(false);
 				}
 			}
 			
@@ -411,6 +433,7 @@ public class Facturar extends JDialog {
 		
 		modelListCombos = new DefaultListModel<String>();
 		listCombo.setModel(modelListCombos);
+		listCombo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneCombo.setViewportView(listCombo);
 		
 		txtTotal = new JTextField();
@@ -586,7 +609,7 @@ public class Facturar extends JDialog {
 		
 		for(Combo combo : TiendaElite.getInstance().getMisCombos())
 		{
-			aux = combo.getCodigo() + "     $" + combo.precioCombo();
+			aux = combo.getCodigo() + " $" + combo.getPrecio();
 			combosdisp.add(aux);
 			modelListCombos.addElement(aux);
 		}

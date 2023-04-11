@@ -111,14 +111,21 @@ public class ListaCombos extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		loadCombos();
+		loadCombos(0);
 	}
-	public void loadCombos() {
+	public void loadCombos(int index) {
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
+		
+		if(index == 0)
+		{
+		
 		for(Combo aux: TiendaElite.getInstance().getMisCombos()) {
 			rows[0] = aux.getCodigo();
-			rows[1] = aux.precioCombo();
+			rows[1] = aux.getPrecio();
+			model.addRow(rows);
+		}
+		
 		}
 	}
 

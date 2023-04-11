@@ -6,11 +6,13 @@ public class Combo {
 	
 	private String codigo;
 	private ArrayList<Componente>misComponentes;
+	private float precio;
 
-	public Combo(String codigo, ArrayList<Componente> misComponentes) {
+	public Combo(String codigo, ArrayList<Componente> misComponentes, float precio) {
 		super();
 		this.codigo = codigo;
 		this.misComponentes = misComponentes;
+		this.precio = precio;
 	}
 	
 	
@@ -31,14 +33,13 @@ public class Combo {
 		this.misComponentes = misComponentes;
 	}
 	
-	public float precioCombo() {
-		float precio = 0;
-		for(Componente aux: misComponentes) {
-			precio += aux.precio;
-		}
+	public float getPrecio() {
 		return precio;
 	}
-	
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
 	
 	
 
