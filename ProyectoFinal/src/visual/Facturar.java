@@ -140,9 +140,6 @@ public class Facturar extends JDialog {
 				
 				if(cliente != null)
 				{
-					JOptionPane.showMessageDialog(null, "El cliente se encuentra", "Buscar Cliente",
-							JOptionPane.INFORMATION_MESSAGE);
-					
 					txtNombre.setText(cliente.getNombre());
 					txtTelefono.setText(cliente.getTelefono());
 					txtDireccion.setText(cliente.getDireccion());
@@ -242,7 +239,11 @@ public class Facturar extends JDialog {
 				carrito.add(temp);
 				modelListCarrito.addElement(temp);
 				btnComponenteIzquierda.setEnabled(false);
+				
 				compdisp.remove(selected);
+				
+				
+				
 				reloadcomponentes();
 				
 				total += Float.valueOf(carrito.get(ind).substring(carrito.get(ind).indexOf(" ")+6,carrito.get(ind).length()));
@@ -358,6 +359,7 @@ public class Facturar extends JDialog {
 		lblCarritoCompra.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		txtTotal = new JTextField();
+		txtTotal.setText("$0.0");
 		txtTotal.setBounds(367, 654, 158, 20);
 		panel.add(txtTotal);
 		txtTotal.setEnabled(false);
@@ -379,6 +381,7 @@ public class Facturar extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						
 						Cliente cliente = TiendaElite.getInstance().buscarClienteByCedula(txtCedula.getText());
+						Componente aux = null;
 						
 						if(cliente == null)
 						{
@@ -395,7 +398,21 @@ public class Facturar extends JDialog {
 							Componente componente = TiendaElite.getInstance().buscarComponenteBySerial(codcomponente);
 							
 							int posicion = TiendaElite.getInstance().buscarComponenteIndexBySerial(componente.getNumeroSerie());
-							compcarrito.add(TiendaElite.getInstance().getMisComponentes().remove(posicion));
+							
+							componente.setCantidad(componente.getCantidad()-1);
+							
+							if(componente.getCantidad() > 0)
+							{ 
+								aux = componente;
+								compcarrito.add(aux);	
+							
+							}
+							else
+							{
+								compcarrito.add(TiendaElite.getInstance().getMisComponentes().remove(posicion));
+								
+							}
+			
 						}
 						
 						Factura factura = new Factura(txtCodigo.getText(), compcarrito, cliente);

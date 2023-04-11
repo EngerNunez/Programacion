@@ -62,6 +62,7 @@ public class Principal extends JFrame {
 	static Socket sfd = null;
 	static DataInputStream EntradaSocket;
 	static DataOutputStream SalidaSocket;
+	private final Action action_11 = new SwingAction_11();
 
 
 	/**
@@ -163,6 +164,10 @@ public class Principal extends JFrame {
 			}
 
 		});
+		
+		JMenuItem mntmAgregarCombo = mnComponentes.add(action_11);
+		mntmAgregarCombo.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		mntmAgregarCombo.setText("Agregar Combo");
 		
 		JMenuItem mntmReabastecerComponente = mnComponentes.add(action_7);
 		mntmReabastecerComponente.addActionListener(new ActionListener() {
@@ -324,7 +329,7 @@ public class Principal extends JFrame {
 			    }
 			    catch (IOException ioe)
 			    {
-			      System.out.println("Comunicación rechazada.");
+			      System.out.println("Comunicaciï¿½n rechazada.");
 			      System.exit(1);
 			    }
 			}
@@ -463,6 +468,14 @@ public class Principal extends JFrame {
 	private class SwingAction_10 extends AbstractAction {
 		public SwingAction_10() {
 			putValue(NAME, "SwingAction_10");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
+	}
+	private class SwingAction_11 extends AbstractAction {
+		public SwingAction_11() {
+			putValue(NAME, "SwingAction_11");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
