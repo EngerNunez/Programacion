@@ -132,6 +132,10 @@ public class ListadoComponente extends JDialog {
 						dispose();
 					}
 				});
+				
+				JButton btnNewButton = new JButton("Mostrar\r\n");
+				btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+				buttonPane.add(btnNewButton);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
