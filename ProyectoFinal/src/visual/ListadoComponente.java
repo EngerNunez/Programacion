@@ -80,7 +80,7 @@ public class ListadoComponente extends JDialog {
 		scrollPane.setBounds(0, 0, 626, 236);
 		panel.add(scrollPane,BorderLayout.CENTER);
 		{
-			String[] headers = {"Numero de Serie","Marca","Precio","Tipo"};
+			String[] headers = {"Numero de Serie","Marca","Precio", "Cantidad", "Tipo"};
 			
 			table = new JTable();
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -146,13 +146,11 @@ public class ListadoComponente extends JDialog {
 			
 			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
 				
-				for(int i = 0; i < aux.getCantidad(); i++) 
-				{
-				
 				if (aux.getDisponibilidad() == 'D') {
 					rows[0] = aux.getNumeroSerie();
 					rows[1] = aux.getMarca();
 					rows[2] = "$" + aux.getPrecio();
+					rows[3] = aux.getCantidad();
 					
 					if (aux instanceof TarjetaMadre) {
 						rows[3] = "MB";
@@ -170,14 +168,12 @@ public class ListadoComponente extends JDialog {
 				}
 					model.addRow(rows);
 					
-				}
 			}
+			
 		}
 		if (index == 1) {
 			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
 				
-				for(int i = 0; i < aux.getCantidad(); i++)
-				{
 				
 					if (aux instanceof TarjetaMadre && aux.getDisponibilidad() == 'D') {
 						rows[0] = aux.getNumeroSerie();
@@ -187,16 +183,12 @@ public class ListadoComponente extends JDialog {
 						model.addRow(rows);
 					}
 				
-				}
 				
 			}
 		}
 		if (index == 2) {
 			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
 				
-				for(int i = 0; i < aux.getCantidad(); i++)
-				{
-					
 					
 					if (aux instanceof MemoriaRAM && aux.getDisponibilidad() == 'D') {
 						rows[0] = aux.getNumeroSerie();
@@ -206,15 +198,10 @@ public class ListadoComponente extends JDialog {
 						model.addRow(rows);
 					}
 				
-				}
-				
 			}
 		}
 		if (index == 3) {
 			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
-				
-				for(int i = 0; i < aux.getCantidad(); i++)
-				{
 				
 					if (aux instanceof DiscoDuro && aux.getDisponibilidad() == 'D') {
 						rows[0] = aux.getNumeroSerie();
@@ -224,15 +211,12 @@ public class ListadoComponente extends JDialog {
 						model.addRow(rows);
 					}
 					
-				}
+				
 				
 			}
 		}
 		if (index == 4) {
 			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
-				
-				for(int i = 0; i < aux.getCantidad(); i++)
-				{
 				
 					if (aux instanceof Microprocesador && aux.getDisponibilidad() == 'D') {
 						rows[0] = aux.getNumeroSerie();
@@ -242,7 +226,7 @@ public class ListadoComponente extends JDialog {
 						model.addRow(rows);
 					}
 				
-				}
+				
 				
 			}
 		}

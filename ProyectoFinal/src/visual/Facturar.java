@@ -490,10 +490,7 @@ public class Facturar extends JDialog {
 		String aux = "";
 		
 		for(Componente componente : TiendaElite.getInstance().getMisComponentes())
-		{
-			for(int i = 0; i < componente.getCantidad(); i++)
-			{
-				
+		{				
 				if(componente instanceof TarjetaMadre && componente.getDisponibilidad() == 'D')
 				{
 					aux = componente.getNumeroSerie() + " MB  $" + componente.getPrecio();
@@ -518,9 +515,6 @@ public class Facturar extends JDialog {
 					compdisp.add(aux);
 					modelListCompDisponibles.addElement(aux);
 				}
-				
-			
-			}
 			
 		}
 	}

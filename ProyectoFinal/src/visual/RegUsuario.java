@@ -21,6 +21,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.Font;
 
 public class RegUsuario extends JDialog {
 
@@ -53,13 +55,14 @@ public class RegUsuario extends JDialog {
 		setBounds(100, 100, 450, 228);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(0, 0, 255));
+		contentPanel.setBackground(new Color(30, 144, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
 		JLabel lblNombreUsuario = new JLabel("Nombre Usuario:");
-		lblNombreUsuario.setBounds(20, 26, 97, 14);
+		lblNombreUsuario.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNombreUsuario.setBounds(20, 26, 116, 14);
 		contentPanel.add(lblNombreUsuario);
 
 		txtnombre = new JTextField();
@@ -73,6 +76,7 @@ public class RegUsuario extends JDialog {
 		contentPanel.add(cbxTipo);
 
 		JLabel lblTipo = new JLabel("Tipo:");
+		lblTipo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblTipo.setBounds(20, 88, 97, 14);
 		contentPanel.add(lblTipo);
 
@@ -84,10 +88,12 @@ public class RegUsuario extends JDialog {
 		txtPassword.setColumns(10);
 
 		JLabel lblPassword = new JLabel("Password:");
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblPassword.setBounds(189, 26, 97, 14);
 		contentPanel.add(lblPassword);
 
 		JLabel lblConfirmarPassword = new JLabel("Confirmar Password:");
+		lblConfirmarPassword.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblConfirmarPassword.setBounds(189, 88, 167, 14);
 		contentPanel.add(lblConfirmarPassword);
 
@@ -98,11 +104,13 @@ public class RegUsuario extends JDialog {
 
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBackground(new Color(240, 230, 140));
+			buttonPane.setBackground(SystemColor.info);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Registrar");
+				okButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+				okButton.setBackground(SystemColor.info);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(!Control.getInstance().userExist(txtnombre.getText())) {
@@ -113,7 +121,7 @@ public class RegUsuario extends JDialog {
 							    
 							    JOptionPane.showMessageDialog(null, "Usuario agreagdo", "Informacion",JOptionPane.INFORMATION_MESSAGE);
 							}else {
-								JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden intente otra vez!", "Error",JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Las contraseï¿½as no coinciden intente otra vez!", "Error",JOptionPane.ERROR_MESSAGE);
 								clear();
 							}
 						
@@ -128,7 +136,9 @@ public class RegUsuario extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+				cancelButton.setBackground(SystemColor.info);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
