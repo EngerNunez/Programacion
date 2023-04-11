@@ -61,8 +61,7 @@ public class ListadoComponente extends JDialog {
 	 */
 	public ListadoComponente() {
 		setTitle("Lista de componente");
-		setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(ListadoComponente.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListadoComponente.class.getResource("/imagenes/Logotipo ELITE ELECTRONICS.png")));
 		setBounds(100, 100, 667, 422);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(30, 144, 255));
@@ -77,20 +76,22 @@ public class ListadoComponente extends JDialog {
 		panel.setLayout(null);
 
 		scrollPane = new JScrollPane();
-
+		
 		scrollPane.setBounds(0, 0, 626, 236);
-		panel.add(scrollPane, BorderLayout.CENTER);
+		panel.add(scrollPane,BorderLayout.CENTER);
 		{
-			String[] headers = { "Numero de Serie", "Marca", "Precio", "Tipo", "Cantidad" };
-
+			String[] headers = {"Numero de Serie","Marca","Precio", "Cantidad", "Tipo"};
+			
 			table = new JTable();
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			scrollPane.setViewportView(table);
-
+			
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(headers);
 			table.setModel(model);
 		}
+
+		
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(10, 11, 626, 74);
@@ -100,12 +101,14 @@ public class ListadoComponente extends JDialog {
 		cbxTipos = new JComboBox();
 		cbxTipos.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cbxTipos.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
+			
+			public void actionPerformed(ActionEvent e)
+			{
 				loadComponentes(cbxTipos.getSelectedIndex());
 			}
 		});
-
+		
+		
 		cbxTipos.setModel(new DefaultComboBoxModel(
 				new String[] { "<Todos>", "Tarjeta Madre", "Memoria RAM", "Disco Duro", "CPU" }));
 		cbxTipos.setBounds(183, 24, 158, 25);
@@ -140,14 +143,15 @@ public class ListadoComponente extends JDialog {
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
 		if (index == 0) {
-
+			
 			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
-
+				
 				if (aux.getDisponibilidad() == 'D') {
 					rows[0] = aux.getNumeroSerie();
 					rows[1] = aux.getMarca();
 					rows[2] = "$" + aux.getPrecio();
-
+					rows[3] = aux.getCantidad();
+					
 					if (aux instanceof TarjetaMadre) {
 						rows[3] = "MB";
 					}
@@ -160,70 +164,72 @@ public class ListadoComponente extends JDialog {
 					if (aux instanceof MemoriaRAM) {
 						rows[3] = "RAM";
 					}
-
-					rows[4] = aux.getCantidad();
-
+					
 				}
-				model.addRow(rows);
-
+					model.addRow(rows);
+					
 			}
+			
 		}
 		if (index == 1) {
 			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
-
-				if (aux instanceof TarjetaMadre && aux.getDisponibilidad() == 'D') {
-					rows[0] = aux.getNumeroSerie();
-					rows[1] = aux.getMarca();
-					rows[2] = "$" + aux.getPrecio();
-					rows[3] = "MB";
-					rows[4] = aux.getCantidad();
-					model.addRow(rows);
-				}
-
+				
+				
+					if (aux instanceof TarjetaMadre && aux.getDisponibilidad() == 'D') {
+						rows[0] = aux.getNumeroSerie();
+						rows[1] = aux.getMarca();
+						rows[2] = "$" + aux.getPrecio();
+						rows[3] = "MB";
+						model.addRow(rows);
+					}
+				
+				
 			}
 		}
 		if (index == 2) {
 			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
-
-				if (aux instanceof MemoriaRAM && aux.getDisponibilidad() == 'D') {
-					rows[0] = aux.getNumeroSerie();
-					rows[1] = aux.getMarca();
-					rows[2] = "$" + aux.getPrecio();
-					rows[3] = "RAM";
-					rows[4] = aux.getCantidad();
-					model.addRow(rows);
-				}
-
+				
+					
+					if (aux instanceof MemoriaRAM && aux.getDisponibilidad() == 'D') {
+						rows[0] = aux.getNumeroSerie();
+						rows[1] = aux.getMarca();
+						rows[2] = "$" + aux.getPrecio();
+						rows[3] = "RAM";
+						model.addRow(rows);
+					}
+				
 			}
 		}
 		if (index == 3) {
 			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
-
-				if (aux instanceof DiscoDuro && aux.getDisponibilidad() == 'D') {
-					rows[0] = aux.getNumeroSerie();
-					rows[1] = aux.getMarca();
-					rows[2] = "$" + aux.getPrecio();
-					rows[3] = "HDD";
-					rows[4] = aux.getCantidad();
-					model.addRow(rows);
-				}
-
+				
+					if (aux instanceof DiscoDuro && aux.getDisponibilidad() == 'D') {
+						rows[0] = aux.getNumeroSerie();
+						rows[1] = aux.getMarca();
+						rows[2] = "$" + aux.getPrecio();
+						rows[3] = "HDD";
+						model.addRow(rows);
+					}
+					
+				
+				
 			}
 		}
 		if (index == 4) {
 			for (Componente aux : TiendaElite.getInstance().getMisComponentes()) {
-
-				if (aux instanceof Microprocesador && aux.getDisponibilidad() == 'D') {
-					rows[0] = aux.getNumeroSerie();
-					rows[1] = aux.getMarca();
-					rows[2] = "$" + aux.getPrecio();
-					rows[3] = "CPU";
-					rows[4] = aux.getCantidad();
-					model.addRow(rows);
-				}
-
+				
+					if (aux instanceof Microprocesador && aux.getDisponibilidad() == 'D') {
+						rows[0] = aux.getNumeroSerie();
+						rows[1] = aux.getMarca();
+						rows[2] = "$" + aux.getPrecio();
+						rows[3] = "CPU"; 
+						model.addRow(rows);
+					}
+				
+				
+				
 			}
 		}
 	}
-
+	
 }
