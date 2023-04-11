@@ -20,6 +20,7 @@ import javafx.scene.control.SelectionMode;
 
 import logico.TiendaElite;
 import logico.Combo;
+import logico.Componente;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
@@ -73,16 +74,16 @@ public class ListaCombos extends JDialog {
 		contentPanel.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 626, 321);
+		panel.setBounds(10, 11, 626, 326);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 
 		scrollPane = new JScrollPane();
 		
-		scrollPane.setBounds(0, 11, 626, 321);
+		scrollPane.setBounds(0, 0, 626, 332);
 		panel.add(scrollPane,BorderLayout.CENTER);
 		{
-			String[] headers = {"Codigo","Precio","Tipo"};
+			String[] headers = {"Codigo","Precio"};
 			
 			table = new JTable();
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -110,10 +111,15 @@ public class ListaCombos extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		
+		loadCombos();
 	}
 	public void loadCombos() {
-		
+		model.setRowCount(0);
+		rows = new Object[model.getColumnCount()];
+		for(Combo aux: TiendaElite.getInstance().getMisCombos()) {
+			rows[0] = aux.getCodigo();
+			rows[1] = aux.precioCombo();
+		}
 	}
 
 	
