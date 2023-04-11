@@ -126,7 +126,7 @@ public class AgregarCombo extends JDialog {
 		btnIzquierda = new JButton("<<");
 		btnIzquierda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				float descuento = 0;
 				String temp = Combo.get(selected);
 				Componentes.add(temp);
 				modelListComponentesDisp.addElement(temp);
@@ -134,6 +134,20 @@ public class AgregarCombo extends JDialog {
 				
 				total -= Float.valueOf(Combo.get(selected).substring(Combo.get(selected).indexOf(" ")+6,Combo.get(selected).length()));
 
+				
+				
+				if(cbxOpciones.getSelectedIndex() == 1)
+				{
+					descuento = (float) (total * 0.10);
+				}
+				
+				if(cbxOpciones.getSelectedIndex() == 2)
+				{
+					descuento = (float) ( total * 0.20);
+				}
+				
+				total = total + descuento;
+				
 				txtTotal.setText("$" + Float.toString(total));
 
 				Combo.remove(selected);
@@ -150,7 +164,7 @@ public class AgregarCombo extends JDialog {
 		btnDerecha = new JButton(">>");
 		btnDerecha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				float descuento = 0;
 				String temp = Componentes.get(selected);
 				Combo.add(temp);
 				modelListCombo.addElement(temp);
@@ -162,15 +176,18 @@ public class AgregarCombo extends JDialog {
 				
 				total += Float.valueOf(Combo.get(ind).substring(Combo.get(ind).indexOf(" ")+6,Combo.get(ind).length()));
 				
-				if(cbxOpciones.getSelectedIndex() > 0)
+			
+				if(cbxOpciones.getSelectedIndex() == 1)
 				{
-					
+					descuento = (float) (total * 0.10);
 				}
 				
-				total -= total * 0.10;
-				total -= total * 0.20;
-				
-				
+				if(cbxOpciones.getSelectedIndex() == 2)
+				{
+					descuento = (float) (total * 0.20);
+				}
+
+				total = total - descuento;
 				txtTotal.setText("$" + Float.toString(total));
 				
 				ind++;
@@ -226,6 +243,8 @@ public class AgregarCombo extends JDialog {
 					btnDerecha.setEnabled(true);
 					
 				}
+				
+				
 			}
 			
 			
